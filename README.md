@@ -13,11 +13,11 @@ Regarding the pharaoh names: Associated hieroglyphs with its transliterations ar
 
 ### The Five Names of Pharao
 Names are important to establish identity, particularly for a king. In general, egyptian pharaohs received five names to emphasise their power compared to ordinary people. They got the first one at birth and four additional ones at accession. The royal names titles are in classical order:
-- **Horus** - rectangular box with horus called serech and a horus falcon in front of it, has been the only framed royal name up to the third dynasty
+- **Horus** - rectangular box with horus falcon in front of it called serech, has been the only framed royal name up to the third dynasty
 - **He of the Two Ladies** - starts with hieroglyphs for upper- and lower-egypt, the falcon Nechbet and the cobra Wadjet
 - **(Horus of) Gold** - starts with horus falcon sitting on the hieroglyph sign for gold
 - **He of the Sedge and Bee** - throne name in general as cartouche, used from the fourth dynasty on
-- **Son of Ra** - birth name of the king, shown as cartouche as well, can be modified by an added epithet given in parenthesis
+- **Son of Ra** - birth name of the king, shown as cartouche as well, can be modified by an added epithet which is in the .csv file given in parenthesis 
 
 
 
