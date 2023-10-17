@@ -1,4 +1,4 @@
-# Egypt_Pharao_Hieroglyphs
+# Egypt Pharaoh Hieroglyphs
 Python/Plotly-Dash web application informs about most important egypt pharaoh names of BC dynasties.
 
 Note:<br>
