@@ -11,9 +11,9 @@ Sources and attribution of shown images are mentioned according [CC](https://cre
 
 Regarding the pharaoh names: Associated hieroglyphs with its transliterations are created with the open source hieroglyph editor [JSesh](https://jsesh.qenherkhopeshef.org/) from Serge Rosmorduc. A general introduction reading egyptian hieroglyphs delivers the step-by-step guide of [Mark Collier and Bill Manley](https://www.britishmuseumshoponline.org/how-to-read-egyptian-hieroglyphs-a-step-by-step-guide-to-teach-yourself.html) from The British Museum.
 
-### The Five Names of Pharao
+### The Five Names of Pharaoh
 Names are important to establish identity, particularly for a king. In general, egyptian pharaohs received five names to emphasise their power compared to ordinary people. They got the first one at birth and four additional ones at accession. The royal names titles are in classical order:
-- **Horus** - rectangular box with horus falcon in front of it called serech, has been the only framed royal name up to the third dynasty
+- **Horus** - rectangular box with horus falcon in front of it called serech, has been the only framed royal name up to the fourth dynasty
 - **He of the Two Ladies** - starts with hieroglyphs for upper- and lower-egypt, the falcon Nechbet and the cobra Wadjet
 - **(Horus of) Gold** - starts with horus falcon sitting on the hieroglyph sign for gold
 - **He of the Sedge and Bee** - throne name in general as cartouche, used from the fourth dynasty on
