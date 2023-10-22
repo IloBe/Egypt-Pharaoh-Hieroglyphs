@@ -1,6 +1,6 @@
 [//]: # (Image References)
 
-[image1]: ./images/1280px-Abydos_kinglist_stitched_1.jpg "abydos_kinglist"
+[image1]: ./Egypt_Pharaoh_Hieroglyphs/images/1280px-Abydos_kinglist_stitched_1.jpg "abydos_kinglist"
 
 # Egypt Pharaoh Hieroglyphs
 Python/Plotly-Dash web application informs about most important egypt pharaoh names of BC dynasties.
@@ -34,7 +34,6 @@ Few king lists are found, the major ones are:
 They include rows of cartouches, including the pharaoh names. Here as an example image created by _Olaf Tausch_, the [Abydos list](https://commons.wikimedia.org/wiki/File:Abydos_K%C3%B6nigsliste_stitched_1.jpg) is shown:
 
 ![abydos_kinglist][image1]
-[image source](https://commons.wikimedia.org/wiki/File:Abydos_K%C3%B6nigsliste_stitched_1.jpg)
 
 
 ## Software
