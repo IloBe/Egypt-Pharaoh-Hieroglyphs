@@ -32,7 +32,7 @@ Few king lists are found, the major ones are:
 - **Abydos** - inscribed in stone during the reign of Seti I
 - **Saqqara** - inscribed in stone during the reign of Ramesses II
 
-They include rows of cartouches, including the pharaoh names. Here as an example image created by _Olaf Tausch_, the [Abydos list](https://commons.wikimedia.org/wiki/File:Abydos_K%C3%B6nigsliste_stitched_1.jpg) is shown. This list is used as background information for this application to create the transliterals and cartouche images.
+They include rows of cartouches, including the pharaoh names. Here as an example image, created by _Olaf Tausch_, the [Abydos list](https://commons.wikimedia.org/wiki/File:Abydos_K%C3%B6nigsliste_stitched_1.jpg) is shown. This list is used as background information for this application to create the transliterals and cartouche images.
 
 ![abydos_kinglist][image1]
 
