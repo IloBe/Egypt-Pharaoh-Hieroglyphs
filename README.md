@@ -1,5 +1,4 @@
 [//]: # (Image References)
-
 [image1]: ./Egypt_Pharaoh_Hieroglyphs/images/1280px-Abydos_kinglist_stitched_1.jpg "abydos_kinglist"
 
 # Egypt Pharaoh Hieroglyphs
@@ -23,7 +22,9 @@ Names are important to establish identity, particularly for a king or queen. In 
 - **He of the Two Ladies** - starts with hieroglyphs for upper- and lower-egypt, the falcon Nechbet and the cobra Wadjet
 - **(Horus of) Gold** - starts with horus falcon sitting on the hieroglyph sign for gold
 - **He of the Sedge and Bee** - throne name in general as cartouche, used from the fourth dynasty on
-- **Son of Ra** - birth name of the king, shown as cartouche as well, can be modified by an added epithet which is in the .csv file given in parenthesis 
+- **Son of Ra** - birth name of the king, shown as cartouche as well, can be modified by an added epithet which is in the data .csv file given in parenthesis
+
+So, their five names are an elaboration of names, titles and epithets. On monuments you will find mainly the three common ones which are the Horus name and the praenomen (assigned on accession) resp. nomen (birth name), both contained in cartouches. The cartouche contents of the pharaoh names look a little bit different for kings or queens depending on specific king list visualisation. 
 
 ### King Lists
 Few king lists are found, the major ones are:
@@ -31,7 +32,7 @@ Few king lists are found, the major ones are:
 - **Abydos** - inscribed in stone during the reign of Seti I
 - **Saqqara** - inscribed in stone during the reign of Ramesses II
 
-They include rows of cartouches, including the pharaoh names. Here as an example image created by _Olaf Tausch_, the [Abydos list](https://commons.wikimedia.org/wiki/File:Abydos_K%C3%B6nigsliste_stitched_1.jpg) is shown:
+They include rows of cartouches, including the pharaoh names. Here as an example image created by _Olaf Tausch_, the [Abydos list](https://commons.wikimedia.org/wiki/File:Abydos_K%C3%B6nigsliste_stitched_1.jpg) is shown. This list is used as background information for this application to create the transliterals and cartouche images.
 
 ![abydos_kinglist][image1]
 
