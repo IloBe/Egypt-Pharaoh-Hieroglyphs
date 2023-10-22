@@ -13,7 +13,7 @@ calendar_period_start,calendar_period_end,dynasty_no,dynasty_name,kingdom_name,k
 2890,2686,2,'Second Dynasty','Early Dynastic Period',Peribsen,,,,,None,None,None,None,None,None,peribsen_seth_throne_cartouche.PNG
 2890,2686,2,'Second Dynasty','Early Dynastic Period',Sekhemib,,,,,None,None,None,None,None,None,sekhemib_throne_cartouche.PNG
 2890,2686,2,'Second Dynasty','Early Dynastic Period',Khasekhem,,,,Djadjay,khasekhem_birth_transliteral.PNG,khasekhem_throne_transliteral.PNG,None,None,None,khasekhem_birth_cartouche.PNG,None
-2686,2613,3,'Third Dynasty','Old Kingdom',Djoser,,,,Netjerikhet,None,djoser_throne_transliteral.PNG,None,None,None,djoser_throne_cartouche.PNG
+2686,2613,3,'Third Dynasty','Old Kingdom',Djoser,,,,Netjerikhet,None,djoser_throne_transliteral.PNG,None,None,None,None,djoser_throne_cartouche.PNG
 2686,2613,3,'Third Dynasty','Old Kingdom',Sekhemkhet,,,,Teti,sekhemkhet_birth_transliteral.PNG,None,None,None,sekhemkhet_birth_cartouche.PNG,sekhemkhet_throne_cartouche.PNG
 2686,2613,3,'Third Dynasty','Old Kingdom',Sanakht,,,,None,None,None,None,None,None
 2613,2494,4,'Fourth Dynasty','Old Kingdom',,,,Sneferu,,None,None,None,None,None,None
