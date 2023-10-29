@@ -18,7 +18,7 @@ import dash
 # coding
 ##########################
 
-dash.register_page(__name__, path="/pages/")
+#dash.register_page(__name__, path="/pages/")
 
 layout = html.Div(
     children = [

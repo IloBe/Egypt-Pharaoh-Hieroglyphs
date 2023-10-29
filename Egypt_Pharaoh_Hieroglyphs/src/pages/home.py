@@ -21,7 +21,7 @@ import dash_bootstrap_components as dbc
 # coding
 ##########################
 
-dash.register_page(__name__, path='/pages/')
+#dash.register_page(__name__, path='/pages/')
 
 #
 # initialise components

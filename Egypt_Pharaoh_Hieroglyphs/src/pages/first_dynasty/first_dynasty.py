@@ -20,7 +20,7 @@ import dash_bootstrap_components as dbc
 # coding
 ##########################
 
-dash.register_page(__name__, path="/pages/first_dynasty/")
+#dash.register_page(__name__, path="/pages/first_dynasty/")
 
 layout = html.Div(
     children = [
