@@ -25,16 +25,13 @@ from dash import (
     Dash, dcc, html, Input, Output, State,
     callback, page_registry, page_container
 )
-from dash_iconify import DashIconify
 from pages.layouts import get_header, get_footer
 
 import dash
 import dash_bootstrap_components as dbc
-import plotly.express as px
 import sys
 import logging
 import pandas as pd
-#import uvicorn   # not installed yet; used for deployment
 
 from app import app
 from pages.not_found_404 import layout as layout_404
