@@ -1,11 +1,11 @@
 [//]: # (Image References)
-[image1]: ./Egypt_Pharaoh_Hieroglyphs/assets/images/1280px-Abydos_kinglist_stitched_1.jpg "abydos_kinglist"
+[image1]: ./Egypt_Pharaoh_Hieroglyphs/src/assets/images/1280px-Abydos_kinglist_stitched_1.jpg "abydos_kinglist"
 
 # Egypt Pharaoh Hieroglyphs
-Python/Plotly-Dash web application informs about most important Egypt pharaoh names of BC dynasties.
+Python/Plotly-Dash web application informs about most important Egypt pharaoh names of main BC dynasties.
 
 Note:<br>
-Main reason implementing this web application is to learn functionalities and concepts of [Plotly-Dash](https://dash.plotly.com/). As I am not an archaeologist, but a data scientist, I do not guarantee the correctness and completeness of the pharaoh name list. Notes on errors and necessary corrections are therefore expressly welcome. 
+The goal implementing this web application is to learn functionalities and concepts of [Plotly-Dash](https://dash.plotly.com/). As I am not an archaeologist, but a data scientist, I do not guarantee the correctness and completeness of the pharaoh name list. Notes on errors and necessary corrections are therefore expressly welcome. 
 
 
 ## Data
