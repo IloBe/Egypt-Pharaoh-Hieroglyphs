@@ -46,7 +46,7 @@ import callbacks
 # coding
 ##########################
 
-# set basic, simple logger
+# set basic, simple console logger
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("pharaoh_hieroglyphs")
 
