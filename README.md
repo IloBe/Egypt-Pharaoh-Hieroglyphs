@@ -1,5 +1,5 @@
 [//]: # (Image References)
-[image1]: ./Egypt_Pharaoh_Hieroglyphs/src/assets/images/1280px-Abydos_kinglist_stitched_1.jpg "abydos_kinglist"
+[image1]: ./Egypt_Pharaoh_Hieroglyphs/src/assets/images/Abydos_kinglist_stitched_1.jpg "abydos_kinglist"
 
 # Egypt Pharaoh Hieroglyphs
 Python/Plotly-Dash web application informs about most important Egypt pharaoh names of main BC dynasties.
