@@ -17,30 +17,27 @@ from app import app
 
 import dash
 import dash_bootstrap_components as dbc
+import logging
 
 ##########################
 # coding
 ##########################
 
+# set basic, simple console logger
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger("pharaoh_hieroglyphs")
+
 #
 # header
 #
-def get_header(df):
+def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_names):
     """
     Returns the navbar header with introduction title, home icon and dropdowns.
     """
     # for local image see: https://dash.plotly.com/dash-enterprise/static-assets?de-version=5.1
     ECHNATON_NOFRETETE = app.get_asset_url('images/EchnatonNofretete_AegyptischesMuseumBerlin_small-18.PNG')
-    
-    def get_dynasty_names(start_no, end_no):
-        dynasty_list = df.query('@start_no <= dynasty_no <= @end_no')['dynasty_name'].unique()
-        return dynasty_list
-        
-    first_dynasty_names = get_dynasty_names(1,9)
-    decimal_dynasty_names = get_dynasty_names(10,19)
-    twenties_dynasty_names = get_dynasty_names(20,29)
-    
-    
+    logger.info('----- echnaton, nofretete img path: %s', ECHNATON_NOFRETETE)
+
     # for dropdown's see:
     # https://dash-bootstrap-components.opensource.faculty.ai/docs/components/dropdown_menu/
     dynasty_items = [
@@ -51,13 +48,15 @@ def get_header(df):
             href='/pages/all_dynasties/',
         ),
         dbc.DropdownMenu(
-            id='first_dynasty',
+            id='first_dynasties',
             children=[
                 dbc.DropdownMenuItem(
                     name,
                     id=name,
                     n_clicks=0,
-                    href='/pages/first_dynasty/',
+                    # href like e.g. '/pages/first_dynasty/'
+                    href=''.join(['/pages/', name.replace(' ', '_').lower(), '/']),
+                    #href='/pages/' + name.replace(' ', '_').lower() + '/',
                 ) for name in first_dynasty_names
             ],
             label='1st Dynasties',
@@ -76,7 +75,13 @@ def get_header(df):
         dbc.DropdownMenu(
             id='decimal_dynasties',
             children=[
-                dbc.DropdownMenuItem(name, id=name, n_clicks=0) for name in decimal_dynasty_names
+                dbc.DropdownMenuItem(
+                    name,
+                    id=name,
+                    n_clicks=0,
+                    href=''.join(['/pages/', name.replace(' ', '_').lower(), '/']),
+                    #href='/pages/' + name.replace(' ', '_').lower() + '/',
+                ) for name in decimal_dynasty_names
             ],
             label='10th Dynasties',
             toggle_style={
@@ -90,7 +95,13 @@ def get_header(df):
         dbc.DropdownMenu(
             id='twenties_dynasties',
             children=[
-                dbc.DropdownMenuItem(name, id=name, n_clicks=0) for name in twenties_dynasty_names
+                dbc.DropdownMenuItem(
+                    name,
+                    id=name,
+                    n_clicks=0,
+                    href=''.join(['/pages/', name.replace(' ', '_').lower(), '/']),
+                    #href='/pages/' + name.replace(' ', '_').lower() + '/',
+                ) for name in twenties_dynasty_names
             ],
             label='20s Dynasties',
             toggle_style={
@@ -362,6 +373,9 @@ def get_footer():
                             html.A(
                                 [
                                     html.Img(
+                                        # completely black background and white signs
+                                        #src='https://global.discourse-cdn.com/business7/uploads/plot/optimized/3X/b/2/b20398c2f56ade4bbfdbfdb8f2dc09188eac4d86_2_504x500.jpeg',
+                                        # link with black signs
                                         src='https://global.discourse-cdn.com/business7/uploads/plot/original/3X/f/3/f3da33405ee7e693abfd12bd4ae334a55e8345d0.png',
                                         height='25px',
                                     ),

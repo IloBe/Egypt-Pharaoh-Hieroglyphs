@@ -25,7 +25,7 @@ import dash_bootstrap_components as dbc
 layout = html.Div(
     children = [
         html.Br(),
-        html.H4("In dropdown: 'All' dynasties selected...")
+        html.H4("In dropdown: 'All' dynasties selected..."),
     ],
     style={
         'background-color': '#f7f7f4',

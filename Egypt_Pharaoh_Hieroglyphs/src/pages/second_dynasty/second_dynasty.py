@@ -1,7 +1,7 @@
 #!/usr/bin/env -S python3 -i
 
 """
-Web applications page content of having selected first dynasties. 
+Web applications page content of having selected second dynasties. 
 
 Author: Ilona Brinkmeier
 Date: Oct. 2023
@@ -32,13 +32,10 @@ import logging
 
 # project path
 PROJ_PATH = Path(__file__).parent.parent.parent
-print(f'====   first dyn: PROJ_PATH: {PROJ_PATH}')
+print(f'====   second dyn: PROJ_PATH: {PROJ_PATH}')
 # local image path
 IMG_PATH = ''.join([str(PROJ_PATH), '/assets/images/'])
-print(f'====   first dyn: IMG_PATH: {IMG_PATH}')
-
-# start with one example image to put in all cells
-birth_cartouches = dash.get_asset_url('images/narmer_birth_name.svg')  #narmer_birth_transliteral.PNG')
+print(f'====   second dyn: IMG_PATH: {IMG_PATH}')
 
 
 # set basic, simple console logger
@@ -136,17 +133,14 @@ layout = html.Div(
     children = [
         html.Br(),
         html.H4(
-            "First Dynasty",
+            "Second Dynasty",
             className="fw-bolder text-decoration-underline opacity-75",
         ),
-        html.H6('3100 - 2890 BC, belongs to "Early Dynastic Period"'),
+        html.H6('2890 - 2686 BC, belongs to "Early Dynastic Period"'),
         html.Br(),
-        html.Div(id="grid-output_1"),
-        dbc.Modal(id="custom-component-img-modal_1", size="s"),
-        html.H6(
-            """Click on image/cartouche to see it in a new window,
-click on keyboard 'Esc' or image/cartouche again to come back to this page."""
-        ),
+        html.Div(id="grid-output_2"),
+        dbc.Modal(id="custom-component-img-modal_2", size="s"),
+        html.H6("Click on image/cartouche to see it in a new window, click on keyboard 'Esc' or image/cartouche again to come back to this page."),
         html.Br(),
     ],
     style={
@@ -163,24 +157,23 @@ click on keyboard 'Esc' or image/cartouche again to come back to this page."""
 # 
 
 @callback(
-    Output("grid-output_1", "children"),
+    Output("grid-output_2", "children"),
     Input("store", "data"),
 )
 def update(store):
     if store == {}:
-        return "Have you selected first dynasty dropdown item? Dataset is empty ..."
+        return "Have you selected second dynasty dropdown item? Dataset is empty ..."
         
     df_first_dyn = pd.DataFrame(store)
     print('-------------------------------------')
     birth_cartouches = df_first_dyn['JSesh_birth_cartouche'].tolist()
-#    df_first_dyn['img'] = birth_cartouches
     data_dict = df_first_dyn.to_dict('records')
-    logger.info('first dyn: data dict: %s', data_dict)
-    logger.info('first dyn: birth cartouche img sequence: %s', birth_cartouches)
+    logger.info('sec dyn: data dict: %s', data_dict)
+    logger.info('sec dyn: birth cartouche img sequence: %s', birth_cartouches)
     print('-------------------------------------')
 
     return dag.AgGrid(
-                id='first_dynasty_img_dag',
+                id='second_dynasty_img_dag',
                 columnDefs=col_defs,
                 rowData=df_first_dyn.to_dict("records"),
                 dashGridOptions={"rowHeight": 64},
@@ -195,12 +188,12 @@ def update(store):
            )
 
 @callback(
-    Output("custom-component-img-modal_1", "is_open"),
-    Output("custom-component-img-modal_1", "children"),
-    Input('first_dynasty_img_dag', "cellRendererData"),
+    Output("custom-component-img-modal_2", "is_open"),
+    Output("custom-component-img-modal_2", "children"),
+    Input('second_dynasty_img_dag', "cellRendererData"),
 )
 def show_change(data):
     if data:
-        logger.info(f' ==> First Dyn Page callback: show_change: ==> data: %s', data)
+        logger.info(f' ==> Sec Dyn Page callback: show_change: ==> data: %s', data)
         return True, html.Img(src=data["value"])
     return False, None

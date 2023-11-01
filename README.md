@@ -9,12 +9,12 @@ The goal implementing this web application is to learn functionalities and conce
 
 
 ## Data
-Regarding the historical data used for analysis from a self-generated dataset, the BC dates from the first dynasty up to the late period and its dynasties given are approximate. The information is based on [_Stephen Quirke_, 2010, Who are the Pharaohs?](https://www.britishmuseum.org/collection/term/BIB766) published by The British Museum. Another source of more detailed listed pharaoh names is given via [Wikipedia](https://en.wikipedia.org/wiki/List_of_pharaohs), but I don't know how much such article is reviewed and accepted by domain experts.
+Regarding the historical data used for analysis from a self-generated dataset, the BC dates from the first dynasty up to the late period and its dynasties given are approximate. The information is based on [_Stephen Quirke_, 2010, Who are the Pharaohs?](https://www.britishmuseum.org/collection/term/BIB766) published by _The British Museum_. Another source of more detailed listed pharaoh names is given via [Wikipedia](https://en.wikipedia.org/wiki/List_of_pharaohs), but I don't know how much such article is reviewed and accepted by domain experts.
 <br> 
 So, regarding the kings list of the web application (the _egypt_pharaohs_dynasties.csv_ data source stored in the data directory) is created with primary focus on the Quirke information, but predynastic rulers before dynasty one and the greek resp. roman period after the late period are ignored yet.<br>
 Sources and attribution of shown images are mentioned according [CC](https://creativecommons.org/licenses/by/4.0/deed.en). No image changes are made. If known, the creator is mentioned as well.
 
-Regarding the pharaoh names: Associated hieroglyphs with its transliterations are created with the open source hieroglyph editor [JSesh](https://jsesh.qenherkhopeshef.org/) from _Serge Rosmorduc_ and the special font for Egyptian characters [Trlit_CG Times](https://dmd.wepwawet.nl/fonts.htm). A general introduction reading Egyptian hieroglyphs delivers the step-by-step guide of [_Mark Collier_ and _Bill Manley_](https://www.britishmuseumshoponline.org/how-to-read-egyptian-hieroglyphs-a-step-by-step-guide-to-teach-yourself.html) from The British Museum.
+Regarding the pharaoh names: Associated hieroglyphs with its transliterations are created with the open source hieroglyph editor [JSesh](https://jsesh.qenherkhopeshef.org/) from _Serge Rosmorduc_ and the special font for Egyptian characters [Trlit_CG Times](https://dmd.wepwawet.nl/fonts.htm). To use this application, this specific font has to be installed. A general introduction reading Egyptian hieroglyphs delivers the step-by-step guide of [_Mark Collier_ and _Bill Manley_](https://www.britishmuseumshoponline.org/how-to-read-egyptian-hieroglyphs-a-step-by-step-guide-to-teach-yourself.html) from _The British Museum_.
 
 ### The Five Names of Pharaoh
 Names are important to establish identity, particularly for a king or queen. In general, Egyptian pharaohs received five names to emphasise their power compared to ordinary people. They got the first one at birth and four additional ones at accession. In classical order, the royal name titles were:
@@ -32,7 +32,7 @@ Few king lists are found, the major ones are:
 - **Abydos** - inscribed in stone during the reign of Seti I
 - **Saqqara** - inscribed in stone during the reign of Ramesses II
 
-They include rows of pharaoh names cartouches. Here as an example image, created by _Olaf Tausch_, the [Abydos list](https://commons.wikimedia.org/wiki/File:Abydos_K%C3%B6nigsliste_stitched_1.jpg) is shown. This list is used as background information for this application to create the transliterals and cartouche images.
+They include rows of pharaoh names cartouches. Basis for this application is the [Abydos list](https://commons.wikimedia.org/wiki/File:Abydos_K%C3%B6nigsliste_stitched_1.jpg) (object image image created by _Olaf Tausch_). This list is used as background information to create the transliterals and cartouche images.
 
 ![abydos_kinglist][image1]
 

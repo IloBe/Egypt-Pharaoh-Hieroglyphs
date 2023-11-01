@@ -38,6 +38,8 @@ from pages.not_found_404 import layout as layout_404
 from pages.home import layout as layout_home
 from pages.all_dynasties.all_dynasties import layout as layout_all_dynasties
 from pages.first_dynasty.first_dynasty import layout as layout_first_dynasty
+from pages.second_dynasty.second_dynasty import layout as layout_second_dynasty
+
 
 import callbacks
 #import config  # necessary for future ML CV&classification feature dealing with own images
@@ -54,16 +56,33 @@ logger = logging.getLogger("pharaoh_hieroglyphs")
 try:
     logging.info("Read in egypt hieroglyphs csv file")
     df = pd.read_csv("../data/egypt_pharaohs_dynasties.csv")
+
+    # remove empty columns
+    df = df.drop(columns=['king_two_ladies', 'king_horus_gold'])
+
 except Exception as e:
     logger.exception("Exit because exception of type %s occurred. Details: %s",
                      type(e).__name__, str(e))
     sys.exit(1)
 
+logging.info('Dataset content overview ...\n %s \n----------', df.info())
+
+    
+def get_dynasty_names(start_no, end_no):
+    ''' Returns specific dynasties from start up to end params as unique list '''
+    dynasty_list = df.query('@start_no <= dynasty_no <= @end_no')['dynasty_name'].unique()
+    return dynasty_list
+    
+first_dynasty_names = get_dynasty_names(1,9)
+decimal_dynasty_names = get_dynasty_names(10,19)
+twenties_dynasty_names = get_dynasty_names(20,29)
+
+
 
 #
 # app layout
 #
-header = get_header(df)
+header = get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_names)
 footer = get_footer()
 app.layout = dbc.Container(
     children =[
@@ -87,7 +106,7 @@ app.layout = dbc.Container(
 
 #
 # add controls to build the interaction
-# 
+#
 
 # changes layout of the page based on the URL,
 # read current URL page "http://127.0.0.1:8050/<page path - name>"
@@ -95,7 +114,7 @@ app.layout = dbc.Container(
 @app.callback(Output('page-content', 'children'),  #this changes the content
               [Input('url', 'pathname')])  #this listens for the url in use
 def display_page(pathname):
-    logging.info('--- Selected page path: %s ---', pathname)
+    logger.info('--- MAIN - Selected page path: %s ---', pathname)
     
     if pathname == '/':
         return layout_home
@@ -103,6 +122,8 @@ def display_page(pathname):
         return layout_all_dynasties
     elif pathname == '/pages/first_dynasty/':
          return layout_first_dynasty
+    elif pathname == '/pages/second_dynasty/':
+         return layout_second_dynasty
     else:
         # domain page not found, return 404 page
         return layout_404  
@@ -112,5 +133,5 @@ def display_page(pathname):
 # run the app
 #
 if __name__ == '__main__':
-   logging.info("Start pharaoh hieroglyphs app...") 
+   logger.info("Start pharaoh hieroglyphs app...") 
    app.run(debug=True)

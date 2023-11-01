@@ -22,6 +22,7 @@ import dash_bootstrap_components as dbc
 ##########################
 
 #dash.register_page(__name__, path='/pages/')
+#dash.register_page(__name__)
 
 #
 # initialise components
@@ -49,7 +50,7 @@ So, their five names are an elaboration of names, titles and epithets. On monume
 
 king_lists_part = dcc.Markdown(
     """
-Few king lists are found. As this major ones, they include rows of pharaoh name cartouches. The basis for this application is the [Abydos list](https://commons.wikimedia.org/wiki/File:Abydos_K%C3%B6nigsliste_stitched_1.jpg) (image created by _Olaf Tausch_).
+Few king lists are found. As this major ones, they include rows of pharaoh name cartouches. The basis for this application is the [Abydos list](https://commons.wikimedia.org/wiki/File:Abydos_K%C3%B6nigsliste_stitched_1.jpg) (object image created by _Olaf Tausch_).
 - **Karnak** - inscribed in stone during the reign of Thutmose II
 - **Abydos** - inscribed in stone during the reign of Seti I
 - **Saqqara** - inscribed in stone during the reign of Ramesses II
