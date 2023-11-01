@@ -190,6 +190,7 @@ def update(store):
                     # https://www.color-hex.com/color/000000  (black)
                     '--ag-header-background-color': '#d3d0c2',
                     '--ag-header-foreground-color': '#666666',
+                    'height': '550px',
                 },
                 columnSize="sizeToFit",  # 'autoSize',
            )
