@@ -113,6 +113,17 @@ def search_all_dynasties(click_all_dynasties):
 
 
 @callback(
+    Output("all_periods", "href"),
+    Input("all_periods", "n_clicks"),
+)
+@print_callback(log_level)
+def search_all_periods(click_all_periods):
+    if click_all_periods is None or click_all_periods == 0:
+        return dash.no_update
+    return f"/pages/all_periods/"
+
+
+@callback(
     Output("First Dynasty", "href"),
     Output("store", "data"),
     Input("First Dynasty", "n_clicks"),

@@ -42,6 +42,13 @@ print(f'====   second dyn: IMG_PATH: {IMG_PATH}')
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("pharaoh_hieroglyphs")
 
+# image column filter params
+objectFilterParams = {
+    "filterOptions": ["contains", "notContains"],
+    "debounceMs": 200,
+    "suppressAndOrCondition": True,
+}
+
 # create table structure for visualisation data 
 col_defs = [
     {
@@ -51,6 +58,7 @@ col_defs = [
         "cellRenderer": "ImgThumbnail",
         "width": 20,
         "height": 20,
+        "filterParams": objectFilterParams,
     },
     {
         "headerName": "Throne Name",
@@ -91,17 +99,19 @@ col_defs = [
                 "cellStyle": {
                     'font-family': 'Trlit_CG Times',
                     'font-size': 20,
-                }
+                },
+                "filter": False,
             },
             {
-                "field": "image_throne_transliteration",
+                "field": "king_horus",
                 "headerName": "Throne",
                 "width": 50,
                 "height": 10,
                 "cellStyle": {
                     'font-family': 'Trlit_CG Times',
                     'font-size': 20,
-                }
+                },
+                "filter": False,
             },
         ],
     },
@@ -115,6 +125,7 @@ col_defs = [
                 "cellRenderer": "ImgThumbnail",
                 "width": 20,
                 "height": 10,
+                "filter": False,
             },
             {
                 "field": "JSesh_throne_praenomen_cartouche",
@@ -122,10 +133,16 @@ col_defs = [
                 "cellRenderer": "ImgThumbnail",
                 "width": 20,
                 "height": 10,
+                "filter": False,
             },
         ],
     },
 ]
+
+defaultColDef = {
+    "flex": 1,
+    "filter": True,
+}
 
 
 # subtitle includes BC calendar period and period kingdom name
@@ -174,6 +191,7 @@ def update(store):
 
     return dag.AgGrid(
                 id='second_dynasty_img_dag',
+                defaultColDef = defaultColDef,
                 columnDefs=col_defs,
                 rowData=df_first_dyn.to_dict("records"),
                 dashGridOptions={"rowHeight": 64},

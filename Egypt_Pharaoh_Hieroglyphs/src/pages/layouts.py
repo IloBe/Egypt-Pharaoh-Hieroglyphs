@@ -118,11 +118,15 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
                 dbc.DropdownMenuItem(
                     "Thirtieth Dynasty",
                     id='thirtith_dynasty',
-                    n_clicks=0),
+                    n_clicks=0,
+                    href=''.join(['/pages/', "Thirtieth Dynasty".replace(' ', '_').lower(), '/']),
+                ),
                 dbc.DropdownMenuItem(
                     "Thirty-First Dynasty",
                     id='thirtyfirst_dynasty',
-                    n_clicks=0),
+                    n_clicks=0,
+                    href=''.join(['/pages/', "Thirty-First Dynasty".replace(' ', '_').lower(), '/']),
+                ),
             ],
             label='30s Dynasties',
             toggle_style={
@@ -141,14 +145,37 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
                 'All',
                 id='all_periods',
                 n_clicks=0,
+                href='/pages/all_periods/',
             ),
-            dbc.DropdownMenuItem("Early Dynastic Period"),
-            dbc.DropdownMenuItem("Old Kingdom"),
+            dbc.DropdownMenuItem(
+                "Early Dynastic Period",
+                id='early_dynastic_periods',
+                n_clicks=0,
+                href='/pages/early_dynastic_periods/',
+            ),
+            dbc.DropdownMenuItem(
+                "Old Kingdom",
+                id='old_kingdom',
+                n_clicks=0,
+                href='/pages/old_kingdom/',
+            ),
             dbc.DropdownMenu(
                 id='first_intermediate',
                 children=[
-                    dbc.DropdownMenuItem("First Intermediate Period - general"),
-                    dbc.DropdownMenuItem("First Intermediate Period - Thebes only"),
+                    dbc.DropdownMenuItem(
+                        "First Intermediate Period - general",
+                        id='first_intermediate_period_general',
+                        n_clicks=0,
+                        href=''.join(['/pages/', "First Intermediate Period - general".
+                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
+                    ),
+                    dbc.DropdownMenuItem(
+                        "First Intermediate Period - Thebes only",
+                        id='first_intermediate_period_thebes_only',
+                        n_clicks=0,
+                        href=''.join(['/pages/', "First Intermediate Period - Thebes only".
+                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
+                    ),
                 ],
                 label='First Intermediate Period',
                 toggle_style={
@@ -159,12 +186,21 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
                 className="px-1",
                 align_end=True,
             ),
-            dbc.DropdownMenuItem("Middle Kingdom"),
+            dbc.DropdownMenuItem(
+                "Middle Kingdom",
+                id='middle_kingdom',
+                n_clicks=0,
+                href=''.join(['/pages/', "Middle Kingdom".replace(' ', '_').lower(), '/']),
+            ),
             dbc.DropdownMenu(
                 id='second_intermediate',
                 children=[
-                    dbc.DropdownMenuItem("Second Intermediate Period - Hyksos"),
-                    dbc.DropdownMenuItem("Second Intermediate Period - rulers based in Thebes"),
+                    dbc.DropdownMenuItem(
+                        "Second Intermediate Period - Hyksos"
+                    ),
+                    dbc.DropdownMenuItem(
+                        "Second Intermediate Period - rulers based in Thebes"
+                    ),
                 ],
                 label='Second Intermediate Period',
                 toggle_style={
@@ -174,15 +210,53 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
                 className="px-1",
                 align_end=True,
             ),
-            dbc.DropdownMenuItem("New Kingdom"),
+            dbc.DropdownMenuItem(
+                "New Kingdom",
+                id='new_kingdom',
+                n_clicks=0,
+                href=''.join(['/pages/', "New Kingdom".replace(' ', '_').lower(), '/']),
+            ),
             dbc.DropdownMenu(
                 id='third_intermediate',
                 children=[
-                    dbc.DropdownMenuItem("Third Intermediate Period - Tanite"),
-                    dbc.DropdownMenuItem("Third Intermediate Period - Bubastite/Libyan"),
-                    dbc.DropdownMenuItem("Third Intermediate Period - Tanite/Libyan"),
-                    dbc.DropdownMenuItem("Third Intermediate Period - General"),
-                    dbc.DropdownMenuItem("Third Intermediate Period - Kushite"),
+                    dbc.DropdownMenuItem(
+                        "Third Intermediate Period - Tanite",
+                        id='third_intermediate_period_tanite',
+                        n_clicks=0,
+                        href=''.join(['/pages/', "Third Intermediate Period - Tanite".
+                                    replace(' ', '_').replace('-','').replace('  ', '_').
+                                    lower(), '/']),
+                    ),
+                    dbc.DropdownMenuItem(
+                        "Third Intermediate Period - Bubastite/Libyan",
+                        id='third_intermediate_period_bubastite_libyan',
+                        n_clicks=0,
+                        href=''.join(['/pages/', "Third Intermediate Period - Bubastite/Libyan".
+                                    replace(' ', '_').replace('-','').replace('  ', '_').
+                                    replace('/', '_').lower(), '/']),
+                    ),
+                    dbc.DropdownMenuItem(
+                        "Third Intermediate Period - Tanite/Libyan",
+                        id='third_intermediate_period_tanite_libyan',
+                        n_clicks=0,
+                        href=''.join(['/pages/', "Third Intermediate Period - Tanite/Libyan".
+                                    replace(' ', '_').replace('-','').replace('  ', '_').
+                                    replace('/', '_').lower(), '/']),
+                    ),
+                    dbc.DropdownMenuItem(
+                        "Third Intermediate Period - General",
+                        id='third_intermediate_period_general',
+                        n_clicks=0,
+                        href=''.join(['/pages/', "Third Intermediate Period - General".
+                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
+                    ),
+                    dbc.DropdownMenuItem(
+                        "Third Intermediate Period - Kushite",
+                        id='third_intermediate_period_kushite',
+                        n_clicks=0,
+                        href=''.join(['/pages/', "Third Intermediate Period - Kushite".
+                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
+                    ),
                 ],
                 label='Third Intermediate Period',
                 toggle_style={
@@ -195,10 +269,34 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
             dbc.DropdownMenu(
                 id='late_period',
                 children=[
-                    dbc.DropdownMenuItem("Late Period - General First"),
-                    dbc.DropdownMenuItem("Late Period - First Persian Period"),
-                    dbc.DropdownMenuItem("Late Period - General Second"),
-                    dbc.DropdownMenuItem("Late Period - Second Persian Period"),
+                    dbc.DropdownMenuItem(
+                        "Late Period - General First",
+                        id='late_period_general_first',
+                        n_clicks=0,
+                        href=''.join(['/pages/', "Late Period - General First".
+                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
+                    ),
+                    dbc.DropdownMenuItem(
+                        "Late Period - First Persian Period",
+                        id='late_period_first_persian_period',
+                        n_clicks=0,
+                        href=''.join(['/pages/', "Late Period - First Persian Period".
+                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
+                    ),
+                    dbc.DropdownMenuItem(
+                        "Late Period - General Second",
+                        id='late_period_general_second',
+                        n_clicks=0,
+                        href=''.join(['/pages/', "Late Period - General Second".
+                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
+                    ),
+                    dbc.DropdownMenuItem(
+                        "Late Period - Second Persian Period",
+                        id='late_period_second_persian_period',
+                        n_clicks=0,
+                        href=''.join(['/pages/', "Late Period - Second Persian Period".
+                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
+                    ),
                 ],
                 label='Late Period',
                 toggle_style={
@@ -257,13 +355,13 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
             dbc.Col(
                 periods_dropdown,
                 className="me-auto",
-                align='end',
+                align='start',   #'end',
                 style={'color': 'dark'},
             ),
             dbc.Col(
                 dynasties_dropdown,
                 className="me-auto px-2",
-                align='end',
+                align='start',   #'end',
             ),
         ],
         className="g-0 ms-auto",

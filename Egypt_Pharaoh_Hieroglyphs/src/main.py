@@ -39,7 +39,7 @@ from pages.home import layout as layout_home
 from pages.all_dynasties.all_dynasties import layout as layout_all_dynasties
 from pages.first_dynasty.first_dynasty import layout as layout_first_dynasty
 from pages.second_dynasty.second_dynasty import layout as layout_second_dynasty
-
+from pages.all_periods.all_periods import layout as layout_all_periods
 
 import callbacks
 #import config  # necessary for future ML CV&classification feature dealing with own images
@@ -118,6 +118,8 @@ def display_page(pathname):
     
     if pathname == '/':
         return layout_home
+    elif pathname == '/pages/all_periods/':
+        return layout_all_periods
     elif pathname == '/pages/all_dynasties/':
         return layout_all_dynasties
     elif pathname == '/pages/first_dynasty/':
