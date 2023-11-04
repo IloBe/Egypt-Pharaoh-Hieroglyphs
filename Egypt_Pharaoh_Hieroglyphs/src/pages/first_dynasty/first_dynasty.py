@@ -19,6 +19,7 @@ from pathlib import Path
 import dash
 import dash_bootstrap_components as dbc
 import dash_ag_grid as dag
+import dash_mantine_components as dmc
 import pandas as pd
 import logging
 
@@ -147,6 +148,18 @@ defaultColDef = {
     "filter": True,
 }
 
+grid_note = dcc.Markdown(
+    """
+**Note:**
+
+- Click on image/cartouche to see it in a new window, click on keyboard 'Esc' or on
+image/cartouche again to come back to this page.
+- To filter on Object column, enter i(mage) in the editable filter text field.
+- If you don't see the diacritic transliteration marks, check if you have installed the
+[CGT_2023.TTF font](https://dmd.wepwawet.nl/fonts.htm) file properly.
+    """
+)
+
 
 # subtitle includes BC calendar period and period kingdom name
 layout = html.Div(
@@ -160,10 +173,7 @@ layout = html.Div(
         html.Br(),
         html.Div(id="grid-output_1"),
         dbc.Modal(id="custom-component-img-modal_1", size="s"),
-        html.H6(
-            """Click on image/cartouche to see it in a new window,
-click on keyboard 'Esc' or image/cartouche again to come back to this page."""
-        ),
+        html.Div(grid_note),
         html.Br(),
     ],
     style={
@@ -190,7 +200,6 @@ def update(store):
     df_first_dyn = pd.DataFrame(store)
     print('-------------------------------------')
     birth_cartouches = df_first_dyn['JSesh_birth_cartouche'].tolist()
-#    df_first_dyn['img'] = birth_cartouches
     data_dict = df_first_dyn.to_dict('records')
     logger.info('first dyn: data dict: %s', data_dict)
     logger.info('first dyn: birth cartouche img sequence: %s', birth_cartouches)

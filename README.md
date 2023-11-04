@@ -1,5 +1,6 @@
 [//]: # (Image References)
 [image1]: ./Egypt_Pharaoh_Hieroglyphs/src/assets/images/Abydos_kinglist_stitched_1.jpg "abydos_kinglist"
+[image2]: ./Egypt_Pharaoh_Hieroglyphs/src/assets/images/screenshot_secDyn_halfSize.png "sec_dyn"
 
 # Egypt Pharaoh Hieroglyphs
 Python/Plotly-Dash web application informs about most important Egypt pharaoh names of main BC dynasties.
@@ -35,6 +36,12 @@ Few king lists are found, the major ones are:
 They include rows of pharaoh names cartouches. Basis for this application is the [Abydos list](https://commons.wikimedia.org/wiki/File:Abydos_K%C3%B6nigsliste_stitched_1.jpg) (object image image created by _Olaf Tausch_). This list is used as background information to create the transliterals and cartouche images.
 
 ![abydos_kinglist][image1]
+
+
+## Application
+After starting the application and having read some information about it on the home page, you can search for names selecting a specific period or dynasty via hovering on dropdown menu buttons of the navigation bar. E.g. having clicked on second dynasty the page you are going to get is looking like this, after having installed the mentioned font for diacritic transliteration. There you can filter on _Object_, _Throne-_ and _Birth-Name_.
+
+![sec_dyn][image2]
 
 
 ## Software
