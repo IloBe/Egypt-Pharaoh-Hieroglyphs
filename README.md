@@ -1,8 +1,8 @@
 [//]: # (Image References)
 [image1]: ./Egypt_Pharaoh_Hieroglyphs/src/assets/images/Abydos_kinglist_stitched_1.jpg "abydos_kinglist"
-[image2]: ./Egypt_Pharaoh_Hieroglyphs/src/assets/images/screenshot_secDyn.png "sec_dyn"
+[image2]: ./Egypt_Pharaoh_Hieroglyphs/src/assets/images/screenshot_secDyn.PNG "sec_dyn"
 
-[![made-with-python](https://img.shields.io/badge/Made_with-Python_3.12-blue?style=flat&logo=Python%203.12)(https://www.python.org/)
+[![made-with-python](https://img.shields.io/badge/Made_with-Python_3.12-blue?style=flat&logo=Python%203.12)](https://www.python.org/)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg?style=flat&logo=appveyor)](https://opensource.org/license/mit/)
 
 
