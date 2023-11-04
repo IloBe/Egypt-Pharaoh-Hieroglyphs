@@ -29,8 +29,9 @@ import dash_mantine_components as dmc
 # https://www.dash-mantine-components.com/components/timeline
 #
 
+# helper functions for timeline creation
 def make_icon(icon, color=None):
-    """ Returns the time line theme icon; code from AnneMarieW modified """
+    """ Returns the timeline theme icon; code from AnneMarieW modified """
     if color:
         children = [DashIconify(icon=icon, width=25, style={'color': color})]
     else:
@@ -43,7 +44,7 @@ def make_icon(icon, color=None):
 
 
 def create_dyn_txt(dyn_name, dyn_time, throne_names):
-    """ Returns specific dynastic information for time line item """
+    """ Returns specific dynastic information for timeline item """
     return [
         html.Span(dyn_name, style={"fontWeight": "bold", "color": "#666666"}),
         dyn_time,
@@ -53,7 +54,7 @@ def create_dyn_txt(dyn_name, dyn_time, throne_names):
 
 
 def create_dyn_anchor(dyn_name, dyn_time, throne_names_dict):
-    """ Returns specific dynastic information with some anchor pharaoh name for time line item """
+    """ Returns specific dynastic information with some anchor pharaoh names for timeline item """
     names_record = [
         html.Span(dyn_name, style={"fontWeight": "bold", "color": "#666666"}),
         dyn_time,
@@ -84,9 +85,10 @@ def create_dyn_anchor(dyn_name, dyn_time, throne_names_dict):
     return names_record
 
 
+# create time line visualisation
 dyn_timeline_items = [
     dmc.TimelineItem(
-        "Dynastic Overview 3100 BC - 332 BC",
+        "Dynastic Overview 3100 - 332 BC",
         className="fw-bold",
         bullet=make_icon("akar-icons:circle-fill", '#d3d0c2'), 
     ),
@@ -233,7 +235,7 @@ dyn_timeline_items = [
     ),
     dmc.TimelineItem(
         children = create_dyn_txt(
-            "16th & 17 Dynasties (based in Thebes)", " c. 1650 - 1550 BC, ",
+            "16th & 17 Dynasties (rulers based in Thebes)", " c. 1650 - 1550 BC, ",
             "Anather, Yakobaam, Nubkheperra, Sekhemra-Wadjkhau, Seqnenra, Wadjkheperra",
         ),
         bullet=make_icon("openmoji:great-pyramid-of-giza"),
@@ -419,7 +421,7 @@ layout = html.Div(
                 html.Span("Ptolemaic dynasties (305 - 30 BC) ", style={"fontWeight": "bold", "color": "#666666"}),
                 'and ',
                 html.Span("Roman emperors (30 BC - AD 395)", style={"fontWeight": "bold", "color": "#666666"}),
-                ', means the Greek and Roman periods, are not mentioned by now.'
+                ', means the Greek and Roman periods, are not mentioned by now. Blue names are links to other specific pages.'
             ]
         ),
         html.Br(),
