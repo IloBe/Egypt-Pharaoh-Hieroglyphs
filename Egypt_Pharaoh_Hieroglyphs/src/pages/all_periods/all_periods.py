@@ -50,7 +50,7 @@ def create_period_txt(p_name, p_time, dyn_names, hist_txt=None):
         children = [
             dmc.HoverCard(
                 withArrow=True,
-                width=200,
+                width=250,
                 shadow="md",
                 children=[
                     dmc.HoverCardTarget(
@@ -148,7 +148,8 @@ period_timeline_items = [
  20th Dynasty (c. 1186-1069 BC, Ramesside period)",
             "Egypt became an empire. First tomb in Valley of the Kings. Queen Hatshepsut ruled\
  as female Pharaoh. Luxur Temple begun. Akhenaten founded city of Akhenaten. Tutankhamun returned\
- to Thebes and became king. Rameses III repelled the Sea People.",
+ to Thebes and became king. Clashes with Hittites in Syria. Peace treaty between Ramses II and Hittite\
+ king Hattushili. Ramses II: Temple of Abu Simbel (280km south of Aswan). Rameses III repelled the Sea People.",
         ),
         bullet=make_icon("openmoji:great-pyramid-of-giza"),
     ),
