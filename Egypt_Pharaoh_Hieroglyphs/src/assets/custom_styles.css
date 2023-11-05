@@ -1,12 +1,11 @@
 /* --- Dropdowns --- */
-
 /* specific background color, text black, alignment given in dash code */
 .dropdown-menu {
     background-color: #E1DFD6;
     color: black; 
 }
 
-/* add media part being clickable on mobile */
+/* add media part being clickable on mobile; hover nested dropdown*/
 @media (min-width: 576px) {
     .dropdown:hover > .dropdown-menu {
         display: block;

@@ -149,7 +149,7 @@ period_timeline_items = [
             "Egypt became an empire. First tomb in Valley of the Kings. Queen Hatshepsut ruled\
  as female Pharaoh. Luxur Temple begun. Akhenaten founded city of Akhenaten. Tutankhamun returned\
  to Thebes and became king. Clashes with Hittites in Syria. Peace treaty between Ramses II and Hittite\
- king Hattushili. Ramses II: Temple of Abu Simbel (280km south of Aswan). Rameses III repelled the Sea People.",
+ King Hattushili. Ramses II: Temple of Abu Simbel (280km south of Aswan). Rameses III repelled the Sea People.",
         ),
         bullet=make_icon("openmoji:great-pyramid-of-giza"),
     ),
@@ -160,7 +160,7 @@ period_timeline_items = [
             "21st Dynasty (Tanite, c. 1069-945 BC),\
  22nd Dynasty (Bubastite/Libyan, c. 945-715 BC),\
  23rd Dynasty (Tanite/Libyan, c. 818-715 BC), 24th Dynasty (c. 727-715 BC),\
- 25th Dynasty(Kushite, c. 747-656 BC)"),
+ 25th Dynasty (Kushite, c. 747-656 BC)"),
         bullet=make_icon("openmoji:great-pyramid-of-giza"),
     ),
     dmc.TimelineItem(
