@@ -8,13 +8,18 @@ names, transliterations and images
 (https://github.com/IloBe/Egypt-Pharaoh-Hieroglyphs/blob/main/Egypt_Pharaoh_Hieroglyphs/data/egypt_pharaohs_dynasties.csv).
 This csv file is stored in the general projects data directory.
 On the landing page, some background information about the pharaoh names is given.
-Then with the callback’s State argument we display a ... chart when a dynasty or specific period is selected. 
+Then with the callback’s Input, Output arguments we display another page when a dynasty or period is selected. 
 
 Note:
 All relevant Python libraries are stored in the virtual environment which is activated to run this code.
+Regarding Cross-Site Request Forgery (CSRF) protection, which is an attack that uses the
+victim’s credentials to perform undesired actions on behalf of the victim, by default this protection is
+automatically applied to all forms in a Dash app. The CSRF token is included in the form submission and
+validated on the server side to prevent cross-site request forgery attacks.
+Furthermore, this main.py file is modified, so, SSL handling can be activated if cert files are available.
 
 Author: Ilona Brinkmeier
-Date: Oct. 2023
+Date: Nov. 2023
 """
 
 ##########################
@@ -25,21 +30,23 @@ from dash import (
     Dash, dcc, html, Input, Output, State,
     callback, page_registry, page_container
 )
-from pages.layouts import get_header, get_footer
-
-import dash
-import dash_bootstrap_components as dbc
-import sys
-import logging
-import pandas as pd
+from flask_wtf.csrf import CSRFProtect
 
 from app import app
+from pages.layouts import get_header, get_footer
 from pages.not_found_404 import layout as layout_404
 from pages.home import layout as layout_home
 from pages.all_dynasties.all_dynasties import layout as layout_all_dynasties
 from pages.first_dynasty.first_dynasty import layout as layout_first_dynasty
 from pages.second_dynasty.second_dynasty import layout as layout_second_dynasty
 from pages.all_periods.all_periods import layout as layout_all_periods
+
+import ssl
+import dash
+import dash_bootstrap_components as dbc
+import sys
+import logging
+import pandas as pd
 
 import callbacks
 #import config  # necessary for future ML CV&classification feature dealing with own images
@@ -51,6 +58,10 @@ import callbacks
 # set basic, simple console logger
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("pharaoh_hieroglyphs")
+
+# create an SSL context  (future toDo: certificate and key files don't exist yet)
+ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+#ssl_context.load_cert_chain(certfile='path/to/certificate.pem', keyfile='path/to/private_key.pem'
 
 # incorporate data
 try:
@@ -76,7 +87,6 @@ def get_dynasty_names(start_no, end_no):
 first_dynasty_names = get_dynasty_names(1,9)
 decimal_dynasty_names = get_dynasty_names(10,19)
 twenties_dynasty_names = get_dynasty_names(20,29)
-
 
 
 #
@@ -135,5 +145,9 @@ def display_page(pathname):
 # run the app
 #
 if __name__ == '__main__':
-   logger.info("Start pharaoh hieroglyphs app...") 
-   app.run(debug=True)
+    logger.info(" ***  Start pharaoh hieroglyphs app...  *** ")
+    # run on local machine with default http://127.0.0.1:8050/
+    app.run(debug=True)
+
+    # run the app on server with SSL/TLS encryption
+    #app.run_server(ssl_context=ssl_context)

@@ -1,5 +1,3 @@
-#!/usr/bin/env -S python3 -i
-
 """
 Web application about egypt pharaoh names and their dynasties. Callback interactions.
 More information is given with file main.py.
@@ -13,7 +11,6 @@ Date: Oct. 2023
 ##########################
 
 from dash import callback, Input, Output, no_update, ctx
-from app import app
 from pathlib import Path
 
 import dash
@@ -79,8 +76,8 @@ def print_callback(debug_mode):
     def decorator(func):
         def wrapper(*args, **kwargs):
             if debug_mode:
-                logger.info("--- Function called: %s", func.__name__)
-                logger.info("--- Triggered by: %s", dash.callback_context.triggered[0]['prop_id'])
+                logger.debug("--- Function called: %s", func.__name__)
+                logger.debug("--- Triggered by: %s", dash.callback_context.triggered[0]['prop_id'])
             result = func(*args, **kwargs)
             return result
         return wrapper
@@ -124,7 +121,6 @@ def search_all_periods(click_all_periods):
 
 
 @callback(
-    Output("First Dynasty", "href"),
     Output("store", "data"),
     Input("First Dynasty", "n_clicks"),
     Input("Second Dynasty", "n_clicks"),
@@ -137,13 +133,11 @@ def search_page_dynasty(click_first, click_second):
         Returns first dynasty layout page too, if clicked, nothing changed if not.
     '''
     item_clicked = ctx.triggered_id
-    logger.info('---  item_clicked: %s ---', item_clicked)
+    logger.debug('---  item_clicked: %s ---', item_clicked)
     
     if (click_first is None or click_first == 0) and (click_second is None or click_second == 0):
         return dash.no_update
 
-    # default value as fallback
-    dyn_no = 1
     if item_clicked == "First Dynasty":
         dyn_no = 1,
     if item_clicked == "Second Dynasty":
@@ -158,8 +152,8 @@ def search_page_dynasty(click_first, click_second):
             type(e).__name__, str(e)
         )
 
-    logger.info('callback search_page_dynasty ===>  2 first rows of mod dataframe ...')
-    logger.info(df_mod.head(2))
+    logger.debug('callback search_page_dynasty ===>  2 first rows of mod dataframe ...')
+    logger.debug(df_mod.head(2))
 
-    # return path and df dictionary
-    return f"/pages/first_dynasty/", df_mod.to_dict("records")
+    # return df dictionary
+    return  df_mod.to_dict("records")

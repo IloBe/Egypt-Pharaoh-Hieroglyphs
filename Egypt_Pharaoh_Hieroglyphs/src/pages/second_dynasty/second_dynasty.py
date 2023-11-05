@@ -1,5 +1,3 @@
-#!/usr/bin/env -S python3 -i
-
 """
 Web applications page content of having selected second dynasties. 
 
@@ -193,12 +191,12 @@ def update(store):
         return "Have you selected second dynasty dropdown item? Dataset is empty ..."
         
     df_first_dyn = pd.DataFrame(store)
-    print('-------------------------------------')
+    logger.debug('-----  sec dyn: callback update(store) -----')
     birth_cartouches = df_first_dyn['JSesh_birth_cartouche'].tolist()
     data_dict = df_first_dyn.to_dict('records')
-    logger.info('sec dyn: data dict: %s', data_dict)
-    logger.info('sec dyn: birth cartouche img sequence: %s', birth_cartouches)
-    print('-------------------------------------')
+    logger.debug('data dict: %s', data_dict)
+    logger.debug('birth cartouche img sequence: %s', birth_cartouches)
+    logger.debug('-------------------------------------')
 
     return dag.AgGrid(
                 id='second_dynasty_img_dag',
@@ -224,6 +222,6 @@ def update(store):
 )
 def show_change(data):
     if data:
-        logger.info(f' ==> Sec Dyn Page callback: show_change: ==> data: %s', data)
+        logger.debug(f' ==> Sec Dyn Page callback: show_change: ==> data: %s', data)
         return True, html.Img(src=data["value"])
     return False, None

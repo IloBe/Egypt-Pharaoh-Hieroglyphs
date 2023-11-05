@@ -1,5 +1,3 @@
-#!/usr/bin/env -S python3 -i
-
 """
 Web applications home page content. 
 

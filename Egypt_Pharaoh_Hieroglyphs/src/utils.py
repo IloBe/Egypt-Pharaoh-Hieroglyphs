@@ -1,5 +1,3 @@
-#!/usr/bin/env -S python3 -i
-
 """
 Delivers the projects root path.
 

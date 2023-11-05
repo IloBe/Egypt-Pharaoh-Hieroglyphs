@@ -1,5 +1,3 @@
-#!/usr/bin/env -S python3 -i
-
 """
 Web applications page content of having selected 'All' periods. 
 
