@@ -83,14 +83,17 @@ def update(store):
         return "Have you selected old kingdom dropdown item? Dataset is empty ..."
 
     df_old_kingdom = pd.DataFrame(store)
+    # original distribution: "king_horus": 3, "king_sedge_bee": 17;
+    # we need a mixture, valueGetter functionality didn't work in layouts.py
+    df_old_kingdom['king_throne_names_mixed'] = df_old_kingdom['king_horus'].combine_first(df_old_kingdom['king_sedge_bee'])
+    
     return dag.AgGrid(
                 id='old_kingdom_img_dag',
                 defaultColDef=get_default_col_def(),
-                # only for old kingdom, rest is not mixed:
+                # only for old kingdom, rest kind of periods are not mixed:
                 # first 3 names are horus names, all others sdge bee ones
                 columnDefs=get_col_defs(
-                    # original distribution: {"king_horus": 3, "king_sedge_bee": 17}
-                    throne_class= "king_sedge_bee"
+                    throne_class= "king_throne_names_mixed"
                 ),
                 rowData=df_old_kingdom.to_dict("records"),
                 dashGridOptions={"rowHeight": 64},

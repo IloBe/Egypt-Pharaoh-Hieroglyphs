@@ -518,22 +518,7 @@ objectFilterParams = {
     "suppressAndOrCondition": True,
 }
 
-# transliteration of throne names
-def get_throne_class_name(throne_class):
-    ''' Returns the string name of the used throne class horus or sedge-bee '''
-    if isinstance(throne_class, str):
-        return f'"field": {throne_class}'
-    else: # from 'old_kingdom' period selection can be horus or sedge-bee throne name
-        return f'"valueGetter": {'''
-            function(params) {
-                if (params.data.king_sedge_bee) {
-                    return params.data.king_sedge_bee + 'bin in sedge_bee...';
-                } else {
-                    return params.data.king_horus + 'bin in horus...';
-                }
-            }
-        '''}'
-
+# structure includes transliterations of birth, throne names and cartouches as svg images
 def get_col_defs(throne_class):
     ''' Returns DashAgGrid table structure, means column definitions for data visualisation '''
     return [
@@ -591,15 +576,6 @@ def get_col_defs(throne_class):
                 {
                     "headerName": "Throne",
                     "field": throne_class,
-                    "valueGetter": {'function': "params.row.king_sedge_bee if pd.notnull(params.row.sedge_bee) else params.row.king_horus;"},
-                    #{"function": '''
-                    #    if pd.notnull(params.row.king_sedge_bee): 
-                    #        return '${params.row.king_sedge_bee}';
-                    #    else:
-                    #        return '${params.row.king_horus}';
-                    #    '''               
-                        # "params.data.king_sedge_bee if pd.notnull(params.data.sedge_bee) else params.data.king_horus;"
-                    #},
                     "width": 48,
                     "height": 10,
                     "cellStyle": {
