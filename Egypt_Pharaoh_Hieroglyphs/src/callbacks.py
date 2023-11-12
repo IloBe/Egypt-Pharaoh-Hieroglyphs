@@ -186,11 +186,14 @@ def search_page_period(click_early, click_old):
     if item_clicked == "old_kingdom":
         dyn_no_list = [3, 4, 5, 6],
 
+    # list is first element of a tuple ?
+    logger.debug('---  search_page_period:   dyn_no_list: %s', dyn_no_list[0])
+    
     try:
         dfs = []
-        for i, element in enumerate(dyn_no_list):
-            logger.debug(f'-----> callback: search_page_period: element of dyn_no_list: {element}, index: {i}  -----')
-            df = get_dynasty_df(element)  # delivers a tuple to function, why not integer ?
+        for element in dyn_no_list[0]:
+            logger.debug(f'-----> callback: search_page_period: element of dyn_no_list: {element}  -----')
+            df = get_dynasty_df(element)
             dfs.append(df)
 
         df_mod = pd.concat(dfs)   
