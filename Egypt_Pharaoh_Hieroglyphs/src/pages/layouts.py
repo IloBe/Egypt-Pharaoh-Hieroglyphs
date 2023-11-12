@@ -626,7 +626,7 @@ def get_col_defs(throne_class):
                     "field": "JSesh_throne_praenomen_cartouche",
                     "headerName": "Throne",
                     "cellRenderer": "ImgThumbnail",
-                    "width": 48,
+                    "width": 52,
                     "height": 20,
                     "filter": False,
                 },
