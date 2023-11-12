@@ -12,7 +12,8 @@ Date: Oct. 2023
 from dash import (
     dcc, html, no_update, State,
     Input, Output, callback, register_page)
-from pathlib import Path
+#from pathlib import Path
+from ..layouts import get_default_col_def, get_col_defs
 
 import dash
 import dash_bootstrap_components as dbc
@@ -38,107 +39,6 @@ dash.register_page(__name__)
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("pharaoh_hieroglyphs")
 
-# image column filter params
-objectFilterParams = {
-    "filterOptions": ["contains", "notContains"],
-    "debounceMs": 200,
-    "suppressAndOrCondition": True,
-}
-
-# create table structure for visualisation data 
-col_defs = [
-    {
-        "headerName": "Object",
-        "stickyLabel": True,
-        "field": "image_local",
-        "cellRenderer": "ImgThumbnail",
-        "width": 20,
-        "height": 20,
-        "filterParams": objectFilterParams,
-    },
-    {
-        "headerName": "Throne Name",
-        "stickyLabel": True,
-        "children": [
-            {
-                "field": "king_horus", 
-                "headerName": "Horus", 
-                "width": 70
-            },
-            {
-                "field": "king_sedge_bee",
-                "headerName": "Sedge Bee",
-                "width": 50
-            },
-        ],
-    },
-    {
-        "headerName": "Birth Name",
-        "stickyLabel": True,
-        "children": [
-            {
-                "field": "king_birth_son_of_ra",
-                "headerName": "Son of Ra",
-                "width": 70,
-            },
-        ]
-    },
-    {
-        "headerName": "Name Transliteration",
-        "stickyLabel": True,
-        "children": [
-            {
-                "field":  "king_birth_son_of_ra",
-                "headerName": "Birth",
-                "width": 50,
-                "height": 10,
-                "cellStyle": {
-                    'font-family': 'Trlit_CG Times',
-                    'font-size': 20,
-                },
-                "filter": False,
-            },
-            {
-                "field": "king_horus",
-                "headerName": "Throne",
-                "width": 50,
-                "height": 10,
-                "cellStyle": {
-                    'font-family': 'Trlit_CG Times',
-                    'font-size': 20,
-                },
-                "filter": False,
-            },
-        ],
-    },
-    {
-        "headerName": "Cartouche",
-        "stickyLabel": True,
-        "children": [
-            {
-                "field": "JSesh_birth_cartouche",
-                "headerName": "Birth",
-                "cellRenderer": "ImgThumbnail",
-                "width": 20,
-                "height": 10,
-                "filter": False,
-            },
-            {
-                "field": "JSesh_throne_praenomen_cartouche",
-                "headerName": "Throne",
-                "cellRenderer": "ImgThumbnail",
-                "width": 20,
-                "height": 10,
-                "filter": False,
-            },
-        ],
-    },
-]
-
-defaultColDef = {
-    "flex": 1,
-    "filter": True,
-}
 
 grid_note = dcc.Markdown(
     """
@@ -193,8 +93,8 @@ def update(store):
     df_early_period = pd.DataFrame(store)
     return dag.AgGrid(
                 id='early_dynastic_period_img_dag',
-                defaultColDef = defaultColDef,
-                columnDefs=col_defs,
+                defaultColDef = get_default_col_def(),
+                columnDefs=get_col_defs(throne_class="king_horus"),
                 rowData=df_early_period.to_dict("records"),
                 dashGridOptions={"rowHeight": 64},
                 style={
@@ -214,7 +114,8 @@ def update(store):
     Input('early_dynastic_period_img_dag', "cellRendererData"),
 )
 def show_change(data):
+    ''' Shows image or cartouche on additional screen after click on such element '''
     if data:
-        logger.debug(' ==> early_dynastic_period.py  callback show_change(data):\n   ==> data: %s', data)
+        logger.debug('--- in early_dynastic_period: callback show_change(data):\n  ==> data: %s', data)
         return True, html.Img(src=data["value"])
     return False, None

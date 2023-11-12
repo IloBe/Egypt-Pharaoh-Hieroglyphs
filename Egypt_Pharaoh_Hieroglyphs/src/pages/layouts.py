@@ -11,11 +11,12 @@ Date: Oct. 2023
 
 from dash import dcc, html
 from dash_iconify import DashIconify
-from app import app
 
 import dash
+import dash_ag_grid as dag
 import dash_bootstrap_components as dbc
 import logging
+import pandas as pd
 
 ##########################
 # coding
@@ -39,12 +40,11 @@ def create_dropdownitem(name, id, href):
 #
 # header
 #
-def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_names):
+def get_header(ech_nof_img_path, first_dynasty_names, decimal_dynasty_names, twenties_dynasty_names):
     """
     Returns the navbar header with introduction title, home icon and dropdowns.
     """
-    # for local image see: https://dash.plotly.com/dash-enterprise/static-assets?de-version=5.1
-    ECHNATON_NOFRETETE = app.get_asset_url('images/EchnatonNofretete_AegyptischesMuseumBerlin_small-18.PNG')
+    ECHNATON_NOFRETETE = ech_nof_img_path 
     logger.info('----- echnaton, nofretete img path: %s', ECHNATON_NOFRETETE)
 
     # for dropdown's see:
@@ -506,3 +506,138 @@ def get_footer():
        ],
        className="g-0 ps-5 pe-5",
     )
+
+#
+#  to create DashAgGrid
+#
+
+# image column filter params
+objectFilterParams = {
+    "filterOptions": ["contains", "notContains"],
+    "debounceMs": 200,
+    "suppressAndOrCondition": True,
+}
+
+# transliteration of throne names
+def get_throne_class_name(throne_class):
+    ''' Returns the string name of the used throne class horus or sedge-bee '''
+    if isinstance(throne_class, str):
+        return f'"field": {throne_class}'
+    else: # from 'old_kingdom' period selection can be horus or sedge-bee throne name
+        return f'"valueGetter": {'''
+            function(params) {
+                if (params.data.king_sedge_bee) {
+                    return params.data.king_sedge_bee + 'bin in sedge_bee...';
+                } else {
+                    return params.data.king_horus + 'bin in horus...';
+                }
+            }
+        '''}'
+
+def get_col_defs(throne_class):
+    ''' Returns DashAgGrid table structure, means column definitions for data visualisation '''
+    return [
+        {
+            "headerName": "Object",
+            "stickyLabel": True,
+            "field": "image_local",
+            "cellRenderer": "ImgThumbnail",
+            "width": 20,
+            "height": 20,
+            "filterParams": objectFilterParams,
+        },
+        {
+            "headerName": "Throne Name",
+            "stickyLabel": True,
+            "children": [
+                {
+                    "field": "king_horus", 
+                    "headerName": "Horus", 
+                    "width": 60
+                },
+                {
+                    "field": "king_sedge_bee",
+                    "headerName": "Sedge Bee",
+                    "width": 50
+                },
+            ],
+        },
+        {
+            "headerName": "Birth Name",
+            "stickyLabel": True,
+            "children": [
+                {
+                    "field": "king_birth_son_of_ra",
+                    "headerName": "Son of Ra",
+                    "width": 70,
+                },
+            ]
+        },
+        {
+            "headerName": "Name Transliteration",
+            "stickyLabel": True,
+            "children": [
+                {
+                    "field":  "king_birth_son_of_ra",
+                    "headerName": "Birth",
+                    "width": 48,
+                    "height": 10,
+                    "cellStyle": {
+                        'font-family': 'Trlit_CG Times',
+                        'font-size': 16,
+                    },
+                    "filter": False,
+                },
+                {
+                    "headerName": "Throne",
+                    "field": throne_class,
+                    "valueGetter": {'function': "params.row.king_sedge_bee if pd.notnull(params.row.sedge_bee) else params.row.king_horus;"},
+                    #{"function": '''
+                    #    if pd.notnull(params.row.king_sedge_bee): 
+                    #        return '${params.row.king_sedge_bee}';
+                    #    else:
+                    #        return '${params.row.king_horus}';
+                    #    '''               
+                        # "params.data.king_sedge_bee if pd.notnull(params.data.sedge_bee) else params.data.king_horus;"
+                    #},
+                    "width": 48,
+                    "height": 10,
+                    "cellStyle": {
+                        'font-family': 'Trlit_CG Times',
+                        'font-size': 16,
+                    },
+                    "filter": False,
+                },
+            ],
+        },
+        {
+            "headerName": "Cartouche",
+            "stickyLabel": True,
+            "children": [
+                {
+                    "field": "JSesh_birth_cartouche",
+                    "headerName": "Birth",
+                    "cellRenderer": "ImgThumbnail",
+                    "width": 52,
+                    "height": 20,
+                    "filter": False,
+                },
+                {
+                    "field": "JSesh_throne_praenomen_cartouche",
+                    "headerName": "Throne",
+                    "cellRenderer": "ImgThumbnail",
+                    "width": 48,
+                    "height": 20,
+                    "filter": False,
+                },
+            ],
+        },
+    ]
+
+def get_default_col_def():
+    ''' Returns the default column definition for visualisation '''
+    return {
+        "flex": 1,
+        "minWidth": 38,
+        "filter": True,
+    }

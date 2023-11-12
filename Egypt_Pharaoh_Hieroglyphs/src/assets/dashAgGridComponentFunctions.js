@@ -22,7 +22,7 @@ dagcomponentfuncs.ImgThumbnail = function (props) {
             'img',
             {
                 onClick: onClick,
-                style: {width: '100%', height: 'auto'},
+                style: {width: 'auto', height: '65%'},
                 src: props.value,
             },
         )

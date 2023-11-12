@@ -95,12 +95,18 @@ twenties_dynasty_names = get_dynasty_names(20,29)
 #
 # app layout
 #
-header = get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_names)
+
+# for local image see: https://dash.plotly.com/dash-enterprise/static-assets?de-version=5.1
+echnaton_nofretete_img_path = app.get_asset_url(
+    'images/EchnatonNofretete_AegyptischesMuseumBerlin_small-18.PNG'
+)
+header = get_header(echnaton_nofretete_img_path,
+                    first_dynasty_names, decimal_dynasty_names, twenties_dynasty_names)
 footer = get_footer()
 app.layout = dbc.Container(
     children =[
-        dcc.Location(id='url', refresh='callback-nav'),  #False),
-        dcc.Store(id="store", data={}),   #'initial data'),  #{}),
+        dcc.Location(id='url', refresh='callback-nav'),
+        dcc.Store(id="store", data={}),
         header,
         #dmc.Container(page_container),
         html.Div(id='page-content',),
