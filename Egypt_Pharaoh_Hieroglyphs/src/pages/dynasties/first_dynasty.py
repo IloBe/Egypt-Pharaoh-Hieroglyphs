@@ -1,5 +1,5 @@
 """
-Web applications page content of having selected second dynasties. 
+Web applications page content of having selected first dynasties. 
 
 Author: Ilona Brinkmeier
 Date: Oct. 2023
@@ -17,6 +17,7 @@ from pathlib import Path
 import dash
 import dash_bootstrap_components as dbc
 import dash_ag_grid as dag
+import dash_mantine_components as dmc
 import pandas as pd
 import logging
 
@@ -24,17 +25,15 @@ import logging
 # coding
 ##########################
 
-#dash.register_page(__name__, path="/pages/first_dynasty/")
-#dash.register_page(__name__)
+dash.register_page(__name__)
 
 
 # project path
-PROJ_PATH = Path(__file__).parent.parent.parent
-print(f'====   second dyn: PROJ_PATH: {PROJ_PATH}')
+#PROJ_PATH = Path(__file__).parent.parent.parent
+#print(f'====   first dyn: PROJ_PATH: {PROJ_PATH}')
 # local image path
-IMG_PATH = ''.join([str(PROJ_PATH), '/assets/images/'])
-print(f'====   second dyn: IMG_PATH: {IMG_PATH}')
-
+#IMG_PATH = ''.join([str(PROJ_PATH), '/assets/images/'])
+#print(f'====   first dyn: IMG_PATH: {IMG_PATH}')
 
 # set basic, simple console logger
 logging.basicConfig(level=logging.DEBUG)
@@ -145,8 +144,9 @@ defaultColDef = {
 grid_note = dcc.Markdown(
     """
 **Note:**
-- Click on image/cartouche to see it in a new window, click on keyboard 'Esc' or image/cartouche again 
-to come back to this page.
+
+- Click on image/cartouche to see it in a new window, click on keyboard 'Esc' or on
+image/cartouche again to come back to this page.
 - To filter on Object column, enter i(mage) in the editable filter text field.
 - If you don't see the diacritic transliteration marks, check if you have installed the
 [CGT_2023.TTF font](https://dmd.wepwawet.nl/fonts.htm) file properly.
@@ -159,13 +159,13 @@ layout = html.Div(
     children = [
         html.Br(),
         html.H4(
-            "Second Dynasty",
+            "First Dynasty",
             className="fw-bolder text-decoration-underline opacity-75",
         ),
-        html.H6('2890 - 2686 BC, belongs to "Early Dynastic Period"'),
+        html.H6('3100 - 2890 BC, belongs to "Early Dynastic Period"'),
         html.Br(),
-        html.Div(id="grid-output_2"),
-        dbc.Modal(id="custom-component-img-modal_2", size="s"),
+        html.Div(id="grid-output_1"),
+        dbc.Modal(id="custom-component-img-modal_1", size="s"),
         html.Div(grid_note),
         html.Br(),
     ],
@@ -183,23 +183,23 @@ layout = html.Div(
 # 
 
 @callback(
-    Output("grid-output_2", "children"),
+    Output("grid-output_1", "children"),
     Input("store", "data"),
 )
 def update(store):
     if store == {}:
-        return "Have you selected second dynasty dropdown item? Dataset is empty ..."
+        return "Have you selected first dynasty dropdown item? Dataset is empty ..."
         
+    logger.info(f'-----  first_dynasty.py  callback update(store): store: {store}  -----')
     df_first_dyn = pd.DataFrame(store)
-    logger.debug('-----  sec dyn: callback update(store) -----')
     birth_cartouches = df_first_dyn['JSesh_birth_cartouche'].tolist()
     data_dict = df_first_dyn.to_dict('records')
-    logger.debug('data dict: %s', data_dict)
-    logger.debug('birth cartouche img sequence: %s', birth_cartouches)
+    logger.debug('first dyn: data dict: %s', data_dict)
+    logger.debug('first dyn: birth cartouche img sequence: %s', birth_cartouches)
     logger.debug('-------------------------------------')
 
     return dag.AgGrid(
-                id='second_dynasty_img_dag',
+                id='first_dynasty_img_dag',
                 defaultColDef = defaultColDef,
                 columnDefs=col_defs,
                 rowData=df_first_dyn.to_dict("records"),
@@ -216,12 +216,12 @@ def update(store):
            )
 
 @callback(
-    Output("custom-component-img-modal_2", "is_open"),
-    Output("custom-component-img-modal_2", "children"),
-    Input('second_dynasty_img_dag', "cellRendererData"),
+    Output("custom-component-img-modal_1", "is_open"),
+    Output("custom-component-img-modal_1", "children"),
+    Input('first_dynasty_img_dag', "cellRendererData"),
 )
 def show_change(data):
     if data:
-        logger.debug(f' ==> Sec Dyn Page callback: show_change: ==> data: %s', data)
+        logger.debug(f' ==> first_dynasty.py  callback show_change(data):\n   ==> data: %s', data)
         return True, html.Img(src=data["value"])
     return False, None

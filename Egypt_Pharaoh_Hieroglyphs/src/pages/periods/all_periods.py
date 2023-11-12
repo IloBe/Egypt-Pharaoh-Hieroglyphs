@@ -20,7 +20,7 @@ import dash_mantine_components as dmc
 # coding
 ##########################
 
-#dash.register_page(__name__, path="/pages/all_dynasties/")
+dash.register_page(__name__)
 
 
 #

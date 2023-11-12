@@ -25,6 +25,17 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("pharaoh_hieroglyphs")
 
+
+# helper functions
+def create_dropdownitem(name, id, href):
+    ''' returns the dbc.DropdownMenuItem '''
+    return dbc.DropdownMenuItem(
+            name,
+            href=href,
+            id=id,
+            n_clicks=0,
+    )
+
 #
 # header
 #
@@ -39,22 +50,17 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
     # for dropdown's see:
     # https://dash-bootstrap-components.opensource.faculty.ai/docs/components/dropdown_menu/
     dynasty_items = [
-        dbc.DropdownMenuItem(
-            'All',
-            id='all_dynasties',
-            n_clicks=0,
-            href='/pages/all_dynasties/',
+        create_dropdownitem(
+            name='All', id='all_dynasties',
+            href='/pages/dynasties/all_dynasties.py',
         ),
         dbc.DropdownMenu(
             id='first_dynasties',
             children=[
-                dbc.DropdownMenuItem(
-                    name,
-                    id=name,
-                    n_clicks=0,
-                    # href like e.g. '/pages/first_dynasty/'
-                    href=''.join(['/pages/', name.replace(' ', '_').lower(), '/']),
-                    #href='/pages/' + name.replace(' ', '_').lower() + '/',
+                create_dropdownitem(
+                    name=name, id=name, 
+                    #href='/pages/dynasties/'
+                    href=''.join(['/pages/dynasties/', name.replace(' ', '_').lower(), '.py']),
                 ) for name in first_dynasty_names
             ],
             label='1st Dynasties',
@@ -73,12 +79,10 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
         dbc.DropdownMenu(
             id='decimal_dynasties',
             children=[
-                dbc.DropdownMenuItem(
-                    name,
-                    id=name,
-                    n_clicks=0,
-                    href=''.join(['/pages/', name.replace(' ', '_').lower(), '/']),
-                    #href='/pages/' + name.replace(' ', '_').lower() + '/',
+                create_dropdownitem(
+                    name=name, id=name,
+                    #href='/pages/dynasties/',
+                    href=''.join(['/pages/dynasties/', name.replace(' ', '_').lower(), '.py']),
                 ) for name in decimal_dynasty_names
             ],
             label='10th Dynasties',
@@ -93,12 +97,10 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
         dbc.DropdownMenu(
             id='twenties_dynasties',
             children=[
-                dbc.DropdownMenuItem(
-                    name,
-                    id=name,
-                    n_clicks=0,
-                    href=''.join(['/pages/', name.replace(' ', '_').lower(), '/']),
-                    #href='/pages/' + name.replace(' ', '_').lower() + '/',
+                create_dropdownitem(
+                    name=name, id=name,
+                    #href='/pages/dynasties/',
+                    href=''.join(['/pages/dynasties/', name.replace(' ', '_').lower(), '.py']),
                 ) for name in twenties_dynasty_names
             ],
             label='20s Dynasties',
@@ -115,15 +117,19 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
             children=[
                 dbc.DropdownMenuItem(
                     "Thirtieth Dynasty",
+                    #page["name"], href=page["path"],
                     id='thirtith_dynasty',
                     n_clicks=0,
-                    href=''.join(['/pages/', "Thirtieth Dynasty".replace(' ', '_').lower(), '/']),
+                    #href='/pages/dynasties/',
+                    href=''.join(['/pages/dynasties/', "Thirtieth Dynasty".replace(' ', '_').lower(), '.py']),
                 ),
                 dbc.DropdownMenuItem(
                     "Thirty-First Dynasty",
+                    #page["name"], href=page["path"],
                     id='thirtyfirst_dynasty',
                     n_clicks=0,
-                    href=''.join(['/pages/', "Thirty-First Dynasty".replace(' ', '_').lower(), '/']),
+                    #href='/pages/dynasties/',
+                    href=''.join(['/pages/dynasties/', "Thirty-First Dynasty".replace(' ', '_').lower(), '.py']),
                 ),
             ],
             label='30s Dynasties',
@@ -137,175 +143,188 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
         ),
     ]
     
-    period_items = html.Div(
-        children = [
-            dbc.DropdownMenuItem(
-                'All',
-                id='all_periods',
-                n_clicks=0,
-                href='/pages/all_periods/',
-            ),
-            dbc.DropdownMenuItem(
-                "Early Dynastic Period",
-                id='early_dynastic_periods',
-                n_clicks=0,
-                href='/pages/early_dynastic_periods/',
-            ),
-            dbc.DropdownMenuItem(
-                "Old Kingdom",
-                id='old_kingdom',
-                n_clicks=0,
-                href='/pages/old_kingdom/',
-            ),
-            dbc.DropdownMenu(
-                id='first_intermediate',
-                children=[
-                    dbc.DropdownMenuItem(
-                        "First Intermediate Period - general",
-                        id='first_intermediate_period_general',
-                        n_clicks=0,
-                        href=''.join(['/pages/', "First Intermediate Period - general".
-                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
-                    ),
-                    dbc.DropdownMenuItem(
-                        "First Intermediate Period - Thebes only",
-                        id='first_intermediate_period_thebes_only',
-                        n_clicks=0,
-                        href=''.join(['/pages/', "First Intermediate Period - Thebes only".
-                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
-                    ),
-                ],
-                label='First Intermediate Period',
-                toggle_style={
-                    # Tints of french grey, French Grey, color Azure Sky
-                    "background": '#E1DFD6',
-                    'color': 'black',
-                },
-                className="px-1",
-                align_end=True,
-            ),
-            dbc.DropdownMenuItem(
-                "Middle Kingdom",
-                id='middle_kingdom',
-                n_clicks=0,
-                href=''.join(['/pages/', "Middle Kingdom".replace(' ', '_').lower(), '/']),
-            ),
-            dbc.DropdownMenu(
-                id='second_intermediate',
-                children=[
-                    dbc.DropdownMenuItem(
-                        "Second Intermediate Period - Hyksos"
-                    ),
-                    dbc.DropdownMenuItem(
-                        "Second Intermediate Period - rulers based in Thebes"
-                    ),
-                ],
-                label='Second Intermediate Period',
-                toggle_style={
-                    "background": '#E1DFD6',
-                    'color': 'black',
-                },
-                className="px-1",
-                align_end=True,
-            ),
-            dbc.DropdownMenuItem(
-                "New Kingdom",
-                id='new_kingdom',
-                n_clicks=0,
-                href=''.join(['/pages/', "New Kingdom".replace(' ', '_').lower(), '/']),
-            ),
-            dbc.DropdownMenu(
-                id='third_intermediate',
-                children=[
-                    dbc.DropdownMenuItem(
-                        "Third Intermediate Period - Tanite",
-                        id='third_intermediate_period_tanite',
-                        n_clicks=0,
-                        href=''.join(['/pages/', "Third Intermediate Period - Tanite".
-                                    replace(' ', '_').replace('-','').replace('  ', '_').
-                                    lower(), '/']),
-                    ),
-                    dbc.DropdownMenuItem(
-                        "Third Intermediate Period - Bubastite/Libyan",
-                        id='third_intermediate_period_bubastite_libyan',
-                        n_clicks=0,
-                        href=''.join(['/pages/', "Third Intermediate Period - Bubastite/Libyan".
-                                    replace(' ', '_').replace('-','').replace('  ', '_').
-                                    replace('/', '_').lower(), '/']),
-                    ),
-                    dbc.DropdownMenuItem(
-                        "Third Intermediate Period - Tanite/Libyan",
-                        id='third_intermediate_period_tanite_libyan',
-                        n_clicks=0,
-                        href=''.join(['/pages/', "Third Intermediate Period - Tanite/Libyan".
-                                    replace(' ', '_').replace('-','').replace('  ', '_').
-                                    replace('/', '_').lower(), '/']),
-                    ),
-                    dbc.DropdownMenuItem(
-                        "Third Intermediate Period - General",
-                        id='third_intermediate_period_general',
-                        n_clicks=0,
-                        href=''.join(['/pages/', "Third Intermediate Period - General".
-                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
-                    ),
-                    dbc.DropdownMenuItem(
-                        "Third Intermediate Period - Kushite",
-                        id='third_intermediate_period_kushite',
-                        n_clicks=0,
-                        href=''.join(['/pages/', "Third Intermediate Period - Kushite".
-                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
-                    ),
-                ],
-                label='Third Intermediate Period',
-                toggle_style={
-                    "background": '#E1DFD6',
-                    'color': 'black',
-                },
-                className="px-1",
-                align_end=True,
-            ),
-            dbc.DropdownMenu(
-                id='late_period',
-                children=[
-                    dbc.DropdownMenuItem(
-                        "Late Period - General First",
-                        id='late_period_general_first',
-                        n_clicks=0,
-                        href=''.join(['/pages/', "Late Period - General First".
-                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
-                    ),
-                    dbc.DropdownMenuItem(
-                        "Late Period - First Persian Period",
-                        id='late_period_first_persian_period',
-                        n_clicks=0,
-                        href=''.join(['/pages/', "Late Period - First Persian Period".
-                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
-                    ),
-                    dbc.DropdownMenuItem(
-                        "Late Period - General Second",
-                        id='late_period_general_second',
-                        n_clicks=0,
-                        href=''.join(['/pages/', "Late Period - General Second".
-                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
-                    ),
-                    dbc.DropdownMenuItem(
-                        "Late Period - Second Persian Period",
-                        id='late_period_second_persian_period',
-                        n_clicks=0,
-                        href=''.join(['/pages/', "Late Period - Second Persian Period".
-                                    replace(' ', '_').replace('-','').replace('  ', '_').lower(), '/']),
-                    ),
-                ],
-                label='Late Period',
-                toggle_style={
-                    "background": '#E1DFD6',
-                    'color': 'black',
-                },
-                className="mt-1 px-1",
-                align_end=True,
-            ),
-        ],
-    )
+    period_items = [
+        create_dropdownitem(
+            name='All', id='all_periods',
+            href='/pages/periods/all_periods.py',
+        ),
+        create_dropdownitem(
+            name='Early Dynastic Period', id='early_dynastic_period',
+            href='/pages/periods/early_dynastic_period.py',
+        ),
+        create_dropdownitem(
+            name='Old Kingdom', id='old_kingdom',
+            href='/pages/periods/old_kingdom.py',
+        ),
+        dbc.DropdownMenu(
+            id='first_intermediate',
+            children=[
+                dbc.DropdownMenuItem(
+                    "First Intermediate Period - general",
+                    #page["name"], href=page["path"],
+                    id='first_intermediate_period_general',
+                    n_clicks=0,
+                    href='/pages/periods/first_intermediate_period_general.py',
+                ),
+                dbc.DropdownMenuItem(
+                    "First Intermediate Period - Thebes only",
+                    #page["name"], href=page["path"],
+                    id='first_intermediate_period_thebes_only',
+                    n_clicks=0,
+                    href='/pages/periods/first_intermediate_period_thebes_only.py',
+                )
+            ],
+            label='First Intermediate Period',
+            toggle_style={
+                # Tints of french grey, French Grey, color Azure Sky
+                "background": '#E1DFD6',
+                'color': 'black',
+            },
+            className="px-1",
+            align_end=True,
+        ),
+        create_dropdownitem(
+            name='Middle Kingdom', id='middle_kingdom',
+            href='/pages/periods/middle_kingdom.py',
+        ),
+        dbc.DropdownMenu(
+            id='second_intermediate',
+            children=[
+                dbc.DropdownMenuItem(
+                    "Second Intermediate Period - Hyksos",
+                    #page["name"], href=page["path"],
+                    id='second_intermediate_period_hyksos',
+                    n_clicks=0,
+                    href='/pages/periods/second_intermediate_period_hyksos.py',
+                ),
+                dbc.DropdownMenuItem(
+                    "Second Intermediate Period - rulers based in Thebes",
+                    #page["name"], href=page["path"],
+                    id='second_intermediate_period_rulers_thebes',
+                    n_clicks=0,
+                    href='/pages/periods/second_intermediate_period_rulers_thebes.py',
+                ),
+            ],
+            label='Second Intermediate Period',
+            toggle_style={
+                "background": '#E1DFD6',
+                'color': 'black',
+            },
+            className="px-1",
+            align_end=True,
+        ),
+        create_dropdownitem(
+            name='New Kingdom', id='new_kingdom',
+            href='/pages/periods/new_kingdom.py',
+        ),
+        dbc.DropdownMenu(
+            id='third_intermediate',
+            children=[
+                dbc.DropdownMenuItem(
+                    "Third Intermediate Period - Tanite",
+                    #page["name"], href=page["path"],
+                    id='third_intermediate_period_tanite',
+                    n_clicks=0,
+                    #href='/pages/periods/',
+                    href=''.join(['/pages/periods/', "Third Intermediate Period - Tanite".
+                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
+                ),
+                dbc.DropdownMenuItem(
+                    "Third Intermediate Period - Bubastite/Libyan",
+                    #page["name"], href=page["path"],
+                    id='third_intermediate_period_bubastite_libyan',
+                    n_clicks=0,
+                    #href='/pages/periods/',
+                    href=''.join(['/pages/periods/', "Third Intermediate Period - Bubastite/Libyan".
+                        replace(' ', '_').replace('-','').replace('  ', '_').
+                        replace('/', '_').lower(), '.py']),
+                ),
+                dbc.DropdownMenuItem(
+                    "Third Intermediate Period - Tanite/Libyan",
+                    #page["name"], href=page["path"],
+                    id='third_intermediate_period_tanite_libyan',
+                    n_clicks=0,
+                    #href='/pages/periods/',
+                    href=''.join(['/pages/periods/', "Third Intermediate Period - Tanite/Libyan".
+                        replace(' ', '_').replace('-','').replace('  ', '_').
+                        replace('/', '_').lower(), '.py']),
+                ),
+                dbc.DropdownMenuItem(
+                    "Third Intermediate Period - General",
+                    #page["name"], href=page["path"],
+                    id='third_intermediate_period_general',
+                    n_clicks=0,
+                    #href='/pages/periods/',
+                    href=''.join(['/pages/periods/', "Third Intermediate Period - General".
+                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
+                ),
+                dbc.DropdownMenuItem(
+                    "Third Intermediate Period - Kushite",
+                    #page["name"], href=page["path"],
+                    id='third_intermediate_period_kushite',
+                    n_clicks=0,
+                    #href='/pages/periods/',
+                    href=''.join(['/pages/periods/', "Third Intermediate Period - Kushite".
+                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
+                ),
+            ],
+            label='Third Intermediate Period',
+            toggle_style={
+                "background": '#E1DFD6',
+                'color': 'black',
+            },
+            className="px-1",
+            align_end=True,
+        ),
+        dbc.DropdownMenu(
+            id='late_period',
+            children=[
+                dbc.DropdownMenuItem(
+                    "Late Period - General First",
+                    #page["name"], href=page["path"],
+                    id='late_period_general_first',
+                    n_clicks=0,
+                    #href='/pages/periods/',
+                    href=''.join(['/pages/periods/', "Late Period - General First".
+                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
+                ),
+                dbc.DropdownMenuItem(
+                    "Late Period - First Persian Period",
+                    #page["name"], href=page["path"],
+                    id='late_period_first_persian_period',
+                    n_clicks=0,
+                    #href='/pages/periods/',
+                    href=''.join(['/pages/periods/', "Late Period - First Persian Period".
+                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
+                ),
+                dbc.DropdownMenuItem(
+                    "Late Period - General Second",
+                    #page["name"], href=page["path"],
+                    id='late_period_general_second',
+                    n_clicks=0,
+                    #href='/pages/periods/',
+                    href=''.join(['/pages/', "Late Period - General Second".
+                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
+                ),
+                dbc.DropdownMenuItem(
+                    "Late Period - Second Persian Period",
+                    #page["name"], href=page["path"],
+                    id='late_period_second_persian_period',
+                    n_clicks=0,
+                    #href='/pages/periods/',
+                    href=''.join(['/pages/', "Late Period - Second Persian Period".
+                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
+                ),
+            ],
+            label='Late Period',
+            toggle_style={
+                "background": '#E1DFD6',
+                'color': 'black',
+            },
+            className="mt-1 px-1",
+            align_end=True,
+        ),
+    ]
     
     dynasties_dropdown = dbc.DropdownMenu(
         id='dynasties_dropdown',
@@ -314,7 +333,7 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
         toggle_style={"background": "black"},
         in_navbar=True,
         align_end=True,
-    ),
+    )
     
     periods_dropdown = dbc.DropdownMenu(
         id='periods_dropdown',
@@ -324,7 +343,7 @@ def get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty_name
         className="border border-0",
         in_navbar=True,
         align_end=True,
-    ),
+    )
     
     selection_bar = dbc.Row(
         children=[

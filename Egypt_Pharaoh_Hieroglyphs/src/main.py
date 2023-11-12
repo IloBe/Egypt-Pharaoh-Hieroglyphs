@@ -36,13 +36,16 @@ from app import app
 from pages.layouts import get_header, get_footer
 from pages.not_found_404 import layout as layout_404
 from pages.home import layout as layout_home
-from pages.all_dynasties.all_dynasties import layout as layout_all_dynasties
-from pages.first_dynasty.first_dynasty import layout as layout_first_dynasty
-from pages.second_dynasty.second_dynasty import layout as layout_second_dynasty
-from pages.all_periods.all_periods import layout as layout_all_periods
+from pages.dynasties.all_dynasties import layout as layout_all_dynasties
+from pages.dynasties.first_dynasty import layout as layout_first_dynasty
+from pages.dynasties.second_dynasty import layout as layout_second_dynasty
+from pages.periods.all_periods import layout as layout_all_periods
+from pages.periods.early_dynastic_period import layout as layout_early_dynastic_period
+from pages.periods.old_kingdom import layout as layout_old_kingdom
 
 import ssl
 import dash
+import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
 import sys
 import logging
@@ -76,7 +79,7 @@ except Exception as e:
                      type(e).__name__, str(e))
     sys.exit(1)
 
-logging.info('Dataset content overview ...\n %s \n----------', df.info())
+logging.info('--- MAIN: Dataset content overview ...\n %s \n----------', df.info())
 
     
 def get_dynasty_names(start_no, end_no):
@@ -96,10 +99,10 @@ header = get_header(first_dynasty_names, decimal_dynasty_names, twenties_dynasty
 footer = get_footer()
 app.layout = dbc.Container(
     children =[
-        dcc.Store(id="store", data={}),
-        dcc.Location(id='url', refresh=False),
+        dcc.Location(id='url', refresh='callback-nav'),  #False),
+        dcc.Store(id="store", data={}),   #'initial data'),  #{}),
         header,
-        #page_container,
+        #dmc.Container(page_container),
         html.Div(id='page-content',),
         html.Hr(),
         footer,
@@ -119,23 +122,27 @@ app.layout = dbc.Container(
 #
 
 # changes layout of the page based on the URL,
-# read current URL page "http://127.0.0.1:8050/<page path - name>"
+# read current URL page "http://127.0.0.1:8050/<page path - name.py>"
 # and return associated layout
-@app.callback(Output('page-content', 'children'),  #this changes the content
-              [Input('url', 'pathname')])  #this listens for the url in use
+@app.callback(Output('page-content', 'children'),  # changes the content
+              [Input('url', 'pathname')])          # listens for the url in use
 def display_page(pathname):
     logger.info('--- MAIN - Selected page path: %s ---', pathname)
     
     if pathname == '/':
         return layout_home
-    elif pathname == '/pages/all_periods/':
+    elif pathname == '/pages/periods/all_periods.py':
         return layout_all_periods
-    elif pathname == '/pages/all_dynasties/':
+    elif pathname == '/pages/periods/early_dynastic_period.py':
+        return layout_early_dynastic_period
+    elif pathname == '/pages/periods/old_kingdom.py':
+        return layout_old_kingdom
+    elif pathname == '/pages/dynasties/all_dynasties.py':
         return layout_all_dynasties
-    elif pathname == '/pages/first_dynasty/':
-         return layout_first_dynasty
-    elif pathname == '/pages/second_dynasty/':
-         return layout_second_dynasty
+    elif pathname == '/pages/dynasties/first_dynasty.py':
+        return layout_first_dynasty
+    elif pathname == '/pages/dynasties/second_dynasty.py':
+        return layout_second_dynasty
     else:
         # domain page not found, return 404 page
         return layout_404  

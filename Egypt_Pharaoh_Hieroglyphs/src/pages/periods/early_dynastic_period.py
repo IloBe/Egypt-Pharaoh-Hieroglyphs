@@ -10,7 +10,7 @@ Date: Oct. 2023
 ##########################
 
 from dash import (
-    dcc, html, no_update,
+    dcc, html, no_update, State,
     Input, Output, callback, register_page)
 from pathlib import Path
 
@@ -25,20 +25,14 @@ import logging
 # coding
 ##########################
 
-#dash.register_page(__name__, path="/pages/first_dynasty/")
-#dash.register_page(__name__)
-
+dash.register_page(__name__)
 
 # project path
-PROJ_PATH = Path(__file__).parent.parent.parent
-print(f'====   first dyn: PROJ_PATH: {PROJ_PATH}')
+#PROJ_PATH = Path(__file__).parent.parent.parent
+#print(f'====   early dynatic period: PROJ_PATH: {PROJ_PATH}')
 # local image path
-IMG_PATH = ''.join([str(PROJ_PATH), '/assets/images/'])
-print(f'====   first dyn: IMG_PATH: {IMG_PATH}')
-
-# start with one example image to put in all cells
-birth_cartouches = dash.get_asset_url('images/narmer_birth_name.svg')  #narmer_birth_transliteral.PNG')
-
+#IMG_PATH = ''.join([str(PROJ_PATH), '/assets/images/'])
+#print(f'====   early dynastic period: IMG_PATH: {IMG_PATH}')
 
 # set basic, simple console logger
 logging.basicConfig(level=logging.DEBUG)
@@ -164,13 +158,13 @@ layout = html.Div(
     children = [
         html.Br(),
         html.H4(
-            "First Dynasty",
+            "Early Dynastic Period",
             className="fw-bolder text-decoration-underline opacity-75",
         ),
-        html.H6('3100 - 2890 BC, belongs to "Early Dynastic Period"'),
+        html.H6('3100 - 2686 BC, includes 1st & 2nd Dynasty'),
         html.Br(),
-        html.Div(id="grid-output_1"),
-        dbc.Modal(id="custom-component-img-modal_1", size="s"),
+        html.Div(id="grid-output-period_1"),
+        dbc.Modal(id="custom-component-img-modal-period_1", size="s"),
         html.Div(grid_note),
         html.Br(),
     ],
@@ -188,26 +182,20 @@ layout = html.Div(
 # 
 
 @callback(
-    Output("grid-output_1", "children"),
+    Output("grid-output-period_1", "children"),
     Input("store", "data"),
 )
 def update(store):
+    logger.debug('-----  in early_dynastic_period:  update(store):  store: %s  -----', store)
     if store == {}:
-        return "Have you selected first dynasty dropdown item? Dataset is empty ..."
-        
-    df_first_dyn = pd.DataFrame(store)
-    logger.info('-----  first_dynasty.py  callback update(store)  -----')
-    birth_cartouches = df_first_dyn['JSesh_birth_cartouche'].tolist()
-    data_dict = df_first_dyn.to_dict('records')
-    logger.debug('first dyn: data dict: %s', data_dict)
-    logger.debug('first dyn: birth cartouche img sequence: %s', birth_cartouches)
-    logger.debug('-------------------------------------')
+        return "Have you selected early dynastic period dropdown item? Dataset is empty ..."
 
+    df_early_period = pd.DataFrame(store)
     return dag.AgGrid(
-                id='first_dynasty_img_dag',
+                id='early_dynastic_period_img_dag',
                 defaultColDef = defaultColDef,
                 columnDefs=col_defs,
-                rowData=df_first_dyn.to_dict("records"),
+                rowData=df_early_period.to_dict("records"),
                 dashGridOptions={"rowHeight": 64},
                 style={
                     # see e.g.
@@ -221,12 +209,12 @@ def update(store):
            )
 
 @callback(
-    Output("custom-component-img-modal_1", "is_open"),
-    Output("custom-component-img-modal_1", "children"),
-    Input('first_dynasty_img_dag', "cellRendererData"),
+    Output("custom-component-img-modal-period_1", "is_open"),
+    Output("custom-component-img-modal-period_1", "children"),
+    Input('early_dynastic_period_img_dag', "cellRendererData"),
 )
 def show_change(data):
     if data:
-        logger.debug(f' ==> first_dynasty.py  callback show_change(data):\n   ==> data: %s', data)
+        logger.debug(' ==> early_dynastic_period.py  callback show_change(data):\n   ==> data: %s', data)
         return True, html.Img(src=data["value"])
     return False, None
