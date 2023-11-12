@@ -52,9 +52,7 @@ def get_df_query_part(no):
 
 def get_dynasty_df(dyn_no):
     ''' Returns the prepared dataframe of specific dynasty given by integer parm dyn_no'''
-
-    #dyn_no = dyn_no[0]
-    logger.debug('get_dynasty_df - dyn_no param: %s', dyn_no)
+    logger.debug('--- def get_dynasty_df - dyn_no param: %s', dyn_no)
     df_mod = get_df_query_part(dyn_no)
 
     # add image path name of plotly dash - /assets/images/ - to (svg) images
@@ -136,6 +134,7 @@ def search_page_dynasty(click_first, click_second):
         Returns selected dynasty layout page too, if clicked, nothing changed if not.
     '''
     item_clicked = ctx.triggered_id
+    logger.debug('=== callback search_page_dynasty: ===')
     logger.debug('---  item_clicked: %s ---', item_clicked)
     
     if (click_first is None or click_first == 0) and (click_second is None or click_second == 0):
@@ -155,7 +154,7 @@ def search_page_dynasty(click_first, click_second):
             type(e).__name__, str(e)
         )
 
-    logger.debug('callback search_page_dynasty ===>  2 first rows of mod dataframe ...')
+    logger.debug('---  2 first rows of mod dataframe ...')
     logger.debug(df_mod.head(2))
 
     # return df dictionary
@@ -176,6 +175,7 @@ def search_page_period(click_early, click_old):
         Returns selected period layout page too, if clicked, nothing changed if not.
     '''
     item_clicked = ctx.triggered_id
+    logger.debug('=== callback search_page_period: ===')
     logger.debug('---  item_clicked: %s ---', item_clicked)
     
     if (click_early is None or click_early == 0) and (click_old is None or click_old == 0):
@@ -187,12 +187,11 @@ def search_page_period(click_early, click_old):
         dyn_no_list = [3, 4, 5, 6],
 
     # list is first element of a tuple ?
-    logger.debug('---  search_page_period:   dyn_no_list: %s', dyn_no_list[0])
-    
+    logger.debug('---  dyn_no_list: %s', dyn_no_list[0])
     try:
         dfs = []
         for element in dyn_no_list[0]:
-            logger.debug(f'-----> callback: search_page_period: element of dyn_no_list: {element}  -----')
+            logger.debug('---  element of dyn_no_list: {element}  -----')
             df = get_dynasty_df(element)
             dfs.append(df)
 
@@ -200,11 +199,11 @@ def search_page_period(click_early, click_old):
     except Exception as e:
         # toDo - fallback solution and user information
         logger.exception(
-            "Creating Dynasty Dataframe - Exception of type %s occurred. Details: %s",
+            "Creating Period Dataframe - Exception of type %s occurred. Details: %s",
             type(e).__name__, str(e)
         )
 
-    logger.debug('callback search_page_period ===>  2 last rows of mod dataframe ...')
+    logger.debug('---  2 last rows of mod dataframe ...')
     logger.debug(df_mod.tail(2))
 
     # return df dictionary
