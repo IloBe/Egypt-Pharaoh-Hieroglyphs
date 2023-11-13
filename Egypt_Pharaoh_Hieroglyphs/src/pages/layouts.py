@@ -474,7 +474,7 @@ def get_footer():
                                 href='https://github.com/IloBe/Egypt-Pharaoh-Hieroglyphs',
                             ),
                             html.H6(
-                                children=['MIT Licence, I. Brinkmeier 2023'],
+                                children=['MIT Licence, I. Brinkmeier 2023; images shared under CC BY-NC-SA 4.0 licence'],
                                 style={"display": "inline"},
                                 className='px-2',
                             ),
@@ -611,7 +611,7 @@ def get_col_defs(throne_class):
     ]
 
 def get_default_col_def():
-    ''' Returns the default column definition for visualisation '''
+    ''' Returns the default Dash AgGrid column definition for visualisation '''
     return {
         "flex": 1,
         "minWidth": 38,

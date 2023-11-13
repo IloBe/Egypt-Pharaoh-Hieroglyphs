@@ -9,11 +9,12 @@ Date: Oct. 2023
 # imports
 ##########################
 
-from dash import dcc, html
+from dash import dcc, html, Input, Output, no_update, callback, clientside_callback
 from dash_iconify import DashIconify
 
 import dash
 import dash_bootstrap_components as dbc
+import time
 
 ##########################
 # coding
@@ -28,7 +29,7 @@ dash.register_page(__name__, path='/')  #, top_nav=True)
 txt_intro = dcc.Markdown(
     """
 The world of the ancient Egyptians is fascinating. Most people have seen images of the pyramids, burial objects, hieroglyphs or other objects of everyday life in films, pictures, documents, museums or perhaps even directly in Egypt.
-But the first thing that comes to mind are the kings and queens, called pharaohs with names framed by cartouches. For example, the right part image of the [Rosetta Stone](https://www.britishmuseum.org/blog/everything-you-ever-wanted-know-about-rosetta-stone), created by the _British Museum_, shows the cartouche name of _Ptolemy V_.
+But the first thing that comes to mind are the kings and queens, called pharaohs with names framed by cartouches. For example, the right part image of the [Rosetta Stone](https://www.britishmuseum.org/blog/everything-you-ever-wanted-know-about-rosetta-stone), created by the _British Museum_, shows the [cartouche name of _Ptolemy V_](https://www.britishmuseum.org/collection/image/385347001).
     """
 )
 CARTOUCHE = dash.get_app().get_asset_url('images/RosettaStoneCartouche2_TrusteesBritishMuseum.png')
@@ -79,6 +80,8 @@ layout = html.Div(
                     dbc.Col(
                         children = [
                             html.Img(
+                                id='cartouche',
+                                title="© The Trustees of the British Museum. Shared under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) licence.",
                                 src=CARTOUCHE,
                                 height="160px",
                             ),

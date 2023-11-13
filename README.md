@@ -49,7 +49,7 @@ After starting the application with browser zoom factor 90% and having read some
 
 
 ## Software
-In general, the software is implemented with Python 3.12.0 and for the web application with Plotly 5.17.0 resp. Dash 2.13.0. 
+In general, the software is implemented with Python 3.12.0 and for the web application with Plotly 5.17.0, Dash 2.13.0. 
 
 
 ## License
