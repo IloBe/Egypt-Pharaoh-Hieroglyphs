@@ -13,7 +13,7 @@ calendar_period_start,calendar_period_end,dynasty_no,dynasty_name,kingdom_name,k
 2890,2686,2,Second Dynasty,Early Dynastic Period,Peribsen,,,,,None,None,None,None,peribsen_seth_throne_name.svg
 2890,2686,2,Second Dynasty,Early Dynastic Period,Sekhemib,,,,,None,None,None,None,sekhemib_throne_name.svg
 2890,2686,2,Second Dynasty,Early Dynastic Period,Khasekhem,,,,Djadjay,None,None,None,khasekhem_birth_name.svg,None
-2686,2613,3,Third Dynasty,Old Kingdom,Djoser,,,,Netjerikhet,None,None,None,None,djoser_throne_name.svg
+2686,2613,3,Third Dynasty,Old Kingdom,Djoser,,,,Netjerikhet,Egypt_Museum_Kairo_2016-03-29_Djoser_03.jpg,None,None,None,djoser_throne_name.svg
 2686,2613,3,Third Dynasty,Old Kingdom,Sekhemkhet,,,,Teti,None,None,None,sekhemkhet_birth_name.svg,sekhemkhet_throne_name.svg
 2686,2613,3,Third Dynasty,Old Kingdom,Sanakht,,,,None,None,None,None,None,sanakht_throne_name.svg
 2613,2494,4,Fourth Dynasty,Old Kingdom,,,,Sneferu,,sneferu_koenigstitel.jpg,https://www.selket.de/wp-content/uploads/2014/01/koenigstitel.jpg,Carina Felske,None,sneferu_throne_name.svg
@@ -21,7 +21,7 @@ calendar_period_start,calendar_period_end,dynasty_no,dynasty_name,kingdom_name,k
 2613,2494,4,Fourth Dynasty,Old Kingdom,,,,Djedefra,,None,None,None,None,djedefra_throne_name.svg
 2613,2494,4,Fourth Dynasty,Old Kingdom,,,,Khafra,,None,None,None,None,khafra_throne_name.svg
 2613,2494,4,Fourth Dynasty,Old Kingdom,,,,Menkaura,,None,None,None,None,menkaura_throne_name.svg
-2613,2494,4,Fourth Dynasty,Old Kingdom,,,,Shepseskaf,,None,None,None,None,shepseskaf_throne_name.svg
+2613,2494,4,Fourth Dynasty,Old Kingdom,,,,Shepseskaf,,100px-Abydos_KL_04-06_n25_Shepseskaf.jpg,None,None,None,shepseskaf_throne_name.svg
 2494,2345,5,Fifth Dynasty,Old Kingdom,,,,UserKaf,,None,None,None,None,userkaf_throne_name.svg
 2494,2345,5,Fifth Dynasty,Old Kingdom,,,,Sahura,,None,None,None,None,sahura_throne_name.svg
 2494,2345,5,Fifth Dynasty,Old Kingdom,,,,Neferirkara,Kakai,None,None,None,kakai_birth_name.svg,neferirkara_throne_name.svg
@@ -32,7 +32,7 @@ calendar_period_start,calendar_period_end,dynasty_no,dynasty_name,kingdom_name,k
 2345,2181,6,Sixth Dynasty,Old Kingdom,,,,Teti,,None,None,None,None,teti_throne_name.svg
 2345,2181,6,Sixth Dynasty,Old Kingdom,,,,Meryra,Pepy I,None,None,None,pepyI_birth_name.svg,meryra_throne_name.svg
 2345,2181,6,Sixth Dynasty,Old Kingdom,,,,Merenra,Nemtyemsaf,None,None,None,nemtyemsaf_birth_name.svg,merenra_throne_name.svg
-2345,2181,6,Sixth Dynasty,Old Kingdom,,,,Neferkara,Pepy II,None,None,None,pepyII_birth_name.svg,neferkara_throne_name.svg
+2345,2181,6,Sixth Dynasty,Old Kingdom,,,,Neferkara,Pepy II,Abydos_KL_03-05_n19_Neferkara-I.jpg,None,None,pepyII_birth_name.svg,neferkara_throne_name.svg
 2181,2055,7,Seventh Dynasty,First Intermediate Period,,,,,,None,None,None,None,None
 2181,2160,8,Eighth Dynasty,First Intermediate Period,,,,,,None,None,None,None,None
 2160,2130,9,Ninth Dynasty,First Intermediate Period,,,,,,None,None,None,None,None
