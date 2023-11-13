@@ -124,10 +124,16 @@ def search_all_periods(click_all_periods):
     Output("store", "data", allow_duplicate=True),
     Input("First Dynasty", "n_clicks"),
     Input("Second Dynasty", "n_clicks"),
+    Input("Third Dynasty", "n_clicks"),
+    Input("Fourth Dynasty", "n_clicks"),
+    Input("Fifth Dynasty", "n_clicks"),
+    Input("Sixth Dynasty", "n_clicks"),
     prevent_initial_call='initial_duplicate',
 )
 @print_callback(log_level)
-def search_page_dynasty(click_first, click_second):
+def search_page_dynasty(
+    click_first, click_second, click_third, click_fourth, click_fifth, click_sixth,
+):
     ''' 
         Do necessary preprocessing according dropdown value like "First Dynasty" 
         for store results in a dcc.Store in app instance of main.py.
@@ -137,13 +143,23 @@ def search_page_dynasty(click_first, click_second):
     logger.debug('=== callback search_page_dynasty: ===')
     logger.debug('---  item_clicked: %s ---', item_clicked)
     
-    if (click_first is None or click_first == 0) and (click_second is None or click_second == 0):
+    if (click_first is None or click_first == 0) and (click_second is None or click_second == 0) \
+    and (click_third is None or click_third == 0) and (click_fourth is None or click_fourth == 0) \
+    and (click_fifth is None or click_fifth == 0) and (click_sixth is None or click_sixth == 0):
         return dash.no_update
 
     if item_clicked == "First Dynasty":
         dyn_no = 1,
     if item_clicked == "Second Dynasty":
         dyn_no = 2,
+    if item_clicked == "Third Dynasty":
+        dyn_no = 3,
+    if item_clicked == "Fourth Dynasty":
+        dyn_no = 4,
+    if item_clicked == "Fifth Dynasty":
+        dyn_no = 5,
+    if item_clicked == "Sixth Dynasty":
+        dyn_no = 6,
 
     try:
         df_mod = get_dynasty_df(dyn_no)  # delivers a tuple to function, why not integer ?

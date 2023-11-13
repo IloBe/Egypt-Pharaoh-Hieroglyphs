@@ -29,10 +29,10 @@ calendar_period_start,calendar_period_end,dynasty_no,dynasty_name,kingdom_name,k
 2494,2345,5,Fifth Dynasty,Old Kingdom,,,,Menkauhor,Kaiu,None,None,None,kaiu_birth_name.svg,menkauhor_throne_name.svg
 2494,2345,5,Fifth Dynasty,Old Kingdom,,,,Djedkara,Isesi,None,None,None,isesi_birth_name.svg,djedkara_throne_name.svg
 2494,2345,5,Fifth Dynasty,Old Kingdom,,,,Unas,,None,None,None,None,unas_throne_name.svg
-2345,2181,6,Six Dynasty,Old Kingdom,,,,Teti,,None,None,None,None,teti_throne_name.svg
-2345,2181,6,Six Dynasty,Old Kingdom,,,,Meryra,Pepy I,None,None,None,pepyI_birth_name.svg,meryra_throne_name.svg
-2345,2181,6,Six Dynasty,Old Kingdom,,,,Merenra,Nemtyemsaf,None,None,None,nemtyemsaf_birth_name.svg,merenra_throne_name.svg
-2345,2181,6,Six Dynasty,Old Kingdom,,,,Neferkara,Pepy II,None,None,None,pepyII_birth_name.svg,neferkara_throne_name.svg
+2345,2181,6,Sixth Dynasty,Old Kingdom,,,,Teti,,None,None,None,None,teti_throne_name.svg
+2345,2181,6,Sixth Dynasty,Old Kingdom,,,,Meryra,Pepy I,None,None,None,pepyI_birth_name.svg,meryra_throne_name.svg
+2345,2181,6,Sixth Dynasty,Old Kingdom,,,,Merenra,Nemtyemsaf,None,None,None,nemtyemsaf_birth_name.svg,merenra_throne_name.svg
+2345,2181,6,Sixth Dynasty,Old Kingdom,,,,Neferkara,Pepy II,None,None,None,pepyII_birth_name.svg,neferkara_throne_name.svg
 2181,2055,7,Seventh Dynasty,First Intermediate Period,,,,,,None,None,None,None,None
 2181,2160,8,Eighth Dynasty,First Intermediate Period,,,,,,None,None,None,None,None
 2160,2130,9,Ninth Dynasty,First Intermediate Period,,,,,,None,None,None,None,None
