@@ -10,8 +10,7 @@ Date: Nov. 2023
 ##########################
 
 from dash import (
-    dcc, html, no_update,
-    Input, Output, callback, register_page)
+    dcc, html, Input, Output, callback, register_page)
 from ..layouts import get_default_col_def, get_col_defs
 
 import dash
@@ -30,7 +29,6 @@ dash.register_page(__name__)
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("pharaoh_hieroglyphs")
 
-
 grid_note = dcc.Markdown(
     """
 **Note:**
@@ -42,19 +40,18 @@ to come back to this page.
     """
 )
 
-
 # subtitle includes BC calendar period and period kingdom name
 layout = html.Div(
     children = [
         html.Br(),
         html.H4(
-            "Fifth Dynasty",
+            "Ninth & Tenth Dynasties",
             className="fw-bolder text-decoration-underline opacity-75",
         ),
-        html.H6('2494 - 2345 BC, belongs to the "Old Kingdom"'),
+        html.H6('2160 - 2025 BC, belongs to the "First Intermediate Period"; civil war between Thebes and Heracleopolis'),
         html.Br(),
-        html.Div(id="grid-output_5"),
-        dbc.Modal(id="custom-component-img-modal_5", size="s"),
+        html.Div(id="grid-output_10"),
+        dbc.Modal(id="custom-component-img-modal_10", size="s"),
         html.Div(grid_note),
         html.Br(),
     ],
@@ -70,20 +67,20 @@ layout = html.Div(
 #
 # add controls to build the interaction
 # 
-
 @callback(
-    Output("grid-output_5", "children"),
+    Output("grid-output_10", "children"),
     Input("store", "data"),
 )
 def update(store):
+    ''' Update for tenth dynasty, having an empty dataframe '''
     if store == {}:
-        return "Have you selected fifth dynasty dropdown item? Dataset is empty ..."
-        
-    df_dyn = pd.DataFrame(store)
-    logger.debug('-----  in fifth dyn: callback update(store): store: %s -----', store)
+        return "Have you selected tenth dynasty dropdown item? Empty dataframe columns shall be visible ..."
+    
+    df_dyn = pd.DataFrame({})
+    logger.debug('-----  in tenth dyn: callback update(store): store: %s -----', store)
 
     return dag.AgGrid(
-                id='fifth_dynasty_img_dag',
+                id='tenth_dynasty_img_dag',
                 defaultColDef=get_default_col_def(),
                 columnDefs=get_col_defs(throne_class="king_sedge_bee"),
                 rowData=df_dyn.to_dict("records"),
@@ -98,15 +95,3 @@ def update(store):
                 },
                 columnSize="sizeToFit",  # 'autoSize',
            )
-
-@callback(
-    Output("custom-component-img-modal_5", "is_open"),
-    Output("custom-component-img-modal_5", "children"),
-    Input('fifth_dynasty_img_dag', "cellRendererData"),
-)
-def show_change(data):
-    ''' Shows image or cartouche on additional screen after click on such element '''
-    if data:
-        logger.debug('--- in fifth dyn: callback show_change(data):\n  ==> data: %s  -----', data)
-        return True, html.Img(src=data["value"])
-    return False, None

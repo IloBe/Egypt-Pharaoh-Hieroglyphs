@@ -1,5 +1,5 @@
 """
-Web applications page content of having selected second dynasties. 
+Web applications page content of having selected dynasties. 
 
 Author: Ilona Brinkmeier
 Date: Nov. 2023
@@ -10,8 +10,7 @@ Date: Nov. 2023
 ##########################
 
 from dash import (
-    dcc, html, no_update,
-    Input, Output, callback, register_page)
+    dcc, html, Input, Output, callback, register_page)
 from ..layouts import get_default_col_def, get_col_defs
 
 import dash
@@ -79,14 +78,14 @@ def update(store):
     if store == {}:
         return "Have you selected sixth dynasty dropdown item? Dataset is empty ..."
         
-    df_first_dyn = pd.DataFrame(store)
+    df_dyn = pd.DataFrame(store)
     logger.debug('-----  in sixth dyn: callback update(store): store: %s -----', store)
 
     return dag.AgGrid(
                 id='sixth_dynasty_img_dag',
                 defaultColDef=get_default_col_def(),
                 columnDefs=get_col_defs(throne_class="king_sedge_bee"),
-                rowData=df_first_dyn.to_dict("records"),
+                rowData=df_dyn.to_dict("records"),
                 dashGridOptions={"rowHeight": 64},
                 style={
                     # see e.g.

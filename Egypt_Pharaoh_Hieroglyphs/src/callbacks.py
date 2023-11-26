@@ -128,11 +128,16 @@ def search_all_periods(click_all_periods):
     Input("Fourth Dynasty", "n_clicks"),
     Input("Fifth Dynasty", "n_clicks"),
     Input("Sixth Dynasty", "n_clicks"),
+    Input("Seventh Dynasty", "n_clicks"),
+    Input("Eighth Dynasty", "n_clicks"),
+    Input("Ninth Dynasty", "n_clicks"),
+    Input("Tenth Dynasty", "n_clicks"),
     prevent_initial_call='initial_duplicate',
 )
 @print_callback(log_level)
 def search_page_dynasty(
     click_first, click_second, click_third, click_fourth, click_fifth, click_sixth,
+    click_seventh, click_eighth, click_ninth, click_tenth
 ):
     ''' 
         Do necessary preprocessing according dropdown value like "First Dynasty" 
@@ -145,7 +150,8 @@ def search_page_dynasty(
     
     if (click_first is None or click_first == 0) and (click_second is None or click_second == 0) \
     and (click_third is None or click_third == 0) and (click_fourth is None or click_fourth == 0) \
-    and (click_fifth is None or click_fifth == 0) and (click_sixth is None or click_sixth == 0):
+    and (click_fifth is None or click_fifth == 0) and (click_sixth is None or click_sixth == 0)\
+    and (click_seventh is None or click_seventh == 0) and (click_eighth is None or click_eighth == 0):
         return dash.no_update
 
     if item_clicked == "First Dynasty":
@@ -160,6 +166,9 @@ def search_page_dynasty(
         dyn_no = 5,
     if item_clicked == "Sixth Dynasty":
         dyn_no = 6,
+    if item_clicked == "Seventh Dynasty" or item_clicked == "Eighth Dynasty" \
+    or item_clicked == "Ninth Dynasty" or item_clicked == "Tenth Dynasty":
+        dyn_no = 0,
 
     try:
         df_mod = get_dynasty_df(dyn_no)  # delivers a tuple to function, why not integer ?

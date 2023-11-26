@@ -89,14 +89,14 @@ def update(store):
     if store == {}:
         return "Have you selected second dynasty dropdown item? Dataset is empty ..."
         
-    df_first_dyn = pd.DataFrame(store)
+    df_dyn = pd.DataFrame(store)
     logger.debug('-----  in sec dyn: callback update(store): store: %s -----', store)
 
     return dag.AgGrid(
                 id='second_dynasty_img_dag',
                 defaultColDef=get_default_col_def(),
                 columnDefs=get_col_defs(throne_class="king_horus"),
-                rowData=df_first_dyn.to_dict("records"),
+                rowData=df_dyn.to_dict("records"),
                 dashGridOptions={"rowHeight": 64},
                 style={
                     # see e.g.
