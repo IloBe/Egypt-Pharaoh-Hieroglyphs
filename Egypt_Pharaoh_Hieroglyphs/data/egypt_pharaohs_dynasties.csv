@@ -44,7 +44,7 @@ calendar_period_start,calendar_period_end,dynasty_no,dynasty_name,kingdom_name,k
 2055,1985,11,Eleventh Dynasty,Middle Kingdom,,,,Sankhkara,Mentuhotep III,None,None,None,None,None
 2055,1985,11,Eleventh Dynasty,Middle Kingdom,,,,Nebtawyra,Mentuhotep IV,None,None,None,None,None
 1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Sehetepibra,Amenemhat I,None,None,None,None,None
-1985,1795,12,Twelfth Dynasty,Middle Kingdom,Ankhmesut,,,Kheperkara,Senusret I,None,None,None,None,None
+1985,1795,12,Twelfth Dynasty,Middle Kingdom,Ankhmesut,,,Kheperkara,Senusret I,Karnak_PartOfKinglist_Aegypten99358.jpg,None,None,None,None
 1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Nubkaura,Amenemhat II,None,None,None,None,None
 1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Khakheperra,Senusret II,None,None,None,None,None
 1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Khakaura,Senusret III,None,None,None,None,None
@@ -75,14 +75,14 @@ calendar_period_start,calendar_period_end,dynasty_no,dynasty_name,kingdom_name,k
 1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Djeserkara,Amenhotep I,None,None,None,None,None
 1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Aakheperkara,Thutmose I,None,None,None,None,None
 1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Aakheperenra,Thutmose II,None,None,None,None,None
-1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Maatkara,Hatshepsut(-amun),None,None,None,None,None
-1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Menkheperra,Thutmose III,None,None,None,None,None
+1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Maatkara,Hatshepsut(-amun),Karnak_temple_Hatshepsut.PNG,None,None,None,None
+1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Menkheperra,Thutmose III,Temple-Hatshepsut_Cartouche-ThutmoseIII_Aegypten99454.jpg,None,None,None,None
 1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Aakheperura,Amenhotep (heqa-iunu) II,None,None,None,None,None
 1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Menkheperura,Thutmose IV,None,None,None,None,None
 1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Nebmaatra,Amenhotep (heqa-waset) III,None,None,None,None,None
 1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Neferkheperura-Waenra,Akhenaten,None,None,None,None,None
 1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Ankhkheperura,Smenkhkara (djeser-kheperu),None,None,None,None,None
-1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Nebkheperura,Tutankhamun (heqa-iunu-shema),None,None,None,None,None
+1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Nebkheperura,Tutankhamun (heqa-iunu-shema),Tutankhamun_Aegypten99776.jpg,None,None,None,None
 1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Kheperkheperura-Irmaat,Ay (it-netjer),None,None,None,None,None
 1550,1295,18,Eighteenth Dynasty,New Kingdom,,,,Djeserkheperura-Setepenra,Horemheb (meryamun),None,None,None,None,None
 1295,1186,19,Nineteenth Dynasty,New Kingdom,,,,Menpehtyra,Ramses I,None,None,None,None,None
@@ -93,11 +93,11 @@ calendar_period_start,calendar_period_end,dynasty_no,dynasty_name,kingdom_name,k
 1295,1186,19,Nineteenth Dynasty,New Kingdom,,,,Menmira-Setepenra,Amenmesse (heqa-waset),None,None,None,None,None
 1295,1186,19,Nineteenth Dynasty,New Kingdom,,,,Akhenra-Setepenra,Sitpah (merenptah),None,None,None,None,None
 1295,1186,19,Nineteenth Dynasty,New Kingdom,,,,Sitra-Meryamun,Tausret (setepetenmut),None,None,None,None,None
-1186,1069,20,Twentieth Dynasty,New Kingdom,,,,Userkhaura-Setepenra,Setnakht (mereramunra),None,None,None,None,None
+1186,1069,20,Twentieth Dynasty,New Kingdom,,,,Userkhaura-Setepenra,Setnakht (mereramunra),20Dynasty_Cartouche-Setnakht_Temple-RamsesVI_Aegypten99438.jpg,None,None,None,None
 1186,1069,20,Twentieth Dynasty,New Kingdom,,,,Usermaatra-Meryamun,Ramses (heqa-iunu) III,None,None,None,None,None
 1186,1069,20,Twentieth Dynasty,New Kingdom,,,,Heqamaatra,Ramses IV,None,None,None,None,None
-1186,1069,20,Twentieth Dynasty,New Kingdom,,,,Nebmaatra-Meryamun,Ramses (amunherkhepshef-netjerheqaiunu) VI,None,None,None,None,None
-1186,1069,20,Twentieth Dynasty,New Kingdom,,,,Neferkara-Setepenra,Ramses IX,None,None,None,None,None
+1186,1069,20,Twentieth Dynasty,New Kingdom,,,,Nebmaatra-Meryamun,Ramses (amunherkhepshef-netjerheqaiunu) VI,20Dynasty_Cartouche-RamsesVI_Aegypten99438.jpg,None,None,None,None
+1186,1069,20,Twentieth Dynasty,New Kingdom,,,,Neferkara-Setepenra,Ramses IX,RamsesIX_Aegypten99442.jpg,None,None,None,None
 1186,1069,20,Twentieth Dynasty,New Kingdom,,,,Menmaatra-Setepenptah,Ramses (khaemwaset-mereramun-netjerheqaiunu) XI,None,None,None,None,None
 1186,1069,20,Twentieth Dynasty,New Kingdom,,,,Hemnetjertepyenamun,Herihor (siamun),None,None,None,None,None
 1069,945,21,Twenty-First Dynasty,Third Intermediate Period - Tanite,,,,Hedjkheperra-Setepenra,Nesbanebdjed (meryamun) (Smendes I),None,None,None,None,None
