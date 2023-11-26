@@ -7,7 +7,7 @@ calendar_period_start,calendar_period_end,dynasty_no,dynasty_name,kingdom_name,k
 3100,2890,1,First Dynasty,Early Dynastic Period,Adjib,,,,Merybiap,None,None,None,adjib_birth_name.svg,None
 3100,2890,1,First Dynasty,Early Dynastic Period,Semerkhet,,,,Iry,None,None,None,semerkhet_birth_name.svg,None
 3100,2890,1,First Dynasty,Early Dynastic Period,Qa'a,,,,Sen,None,None,None,qaa_birth_name.svg,None
-2890,2686,2,Second Dynasty,Early Dynastic Period,Hetepsekhemwy,,,,None,None,None,None,hetepsekhemwy_birth_name.svg,None
+2890,2686,2,Second Dynasty,Early Dynastic Period,Hetepsekhemwy,,,Bedjau,None,None,None,None,None,hetepsekhemwy_throne_name.svg
 2890,2686,2,Second Dynasty,Early Dynastic Period,Nebra,,,,Kakau,220px-Stela_of_Raneb-Nebra_MET_DP259528.jpg,https://en.wikipedia.org/wiki/Nebra_(pharaoh),None,nebra_birth_name.svg,nebra_throne_name.svg
 2890,2686,2,Second Dynasty,Early Dynastic Period,Nlnetjer,,,,Banetjer,None,None,None,nlnetjer_birth_name.svg,None
 2890,2686,2,Second Dynasty,Early Dynastic Period,Peribsen,,,,,None,None,None,None,peribsen_seth_throne_name.svg

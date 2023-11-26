@@ -47,6 +47,7 @@ from pages.dynasties.seventh_dynasty import layout as layout_seventh_dynasty
 from pages.dynasties.eighth_dynasty import layout as layout_eighth_dynasty
 from pages.dynasties.ninth_dynasty import layout as layout_ninth_dynasty
 from pages.dynasties.tenth_dynasty import layout as layout_tenth_dynasty
+from pages.dynasties.eleventh_dynasty import layout as layout_eleventh_dynasty
 from pages.periods.all_periods import layout as layout_all_periods
 from pages.periods.early_dynastic_period import layout as layout_early_dynastic_period
 from pages.periods.old_kingdom import layout as layout_old_kingdom
@@ -173,6 +174,8 @@ def display_page(pathname):
         return layout_ninth_dynasty
     elif pathname == '/pages/dynasties/tenth_dynasty.py':
         return layout_tenth_dynasty
+    elif pathname == '/pages/dynasties/eleventh_dynasty.py':
+        return layout_eleventh_dynasty
     else:
         # domain page not found, return 404 page
         return layout_404  
