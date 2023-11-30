@@ -50,7 +50,7 @@ layout = html.Div(
             className="fw-bolder text-decoration-underline opacity-75",
         ),
         html.H6(
-            '2125 - 1985 BC, the "Intef" kings belong to the "First Intermediate Period (Thebes only)";\
+            '2125 - 1985 BC, the "Intef" kings belong to the "First Intermediate Period (Thebes only)",\
             the "Mentuhotep" kings belong to the "Middle Kingdom (ruling all of Egypt)"'),
         html.Br(),
         html.Div(id="grid-output_11"),
