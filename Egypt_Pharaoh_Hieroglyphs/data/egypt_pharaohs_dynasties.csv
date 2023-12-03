@@ -34,7 +34,7 @@ calendar_period_start,calendar_period_end,dynasty_no,dynasty_name,kingdom_name,k
 2345,2181,6,Sixth Dynasty,Old Kingdom,,,,Merenra,Nemtyemsaf,None,None,None,nemtyemsaf_birth_name.svg,merenra_throne_name.svg
 2345,2181,6,Sixth Dynasty,Old Kingdom,,,,Neferkara,Pepy II,Abydos_KL_03-05_n19_Neferkara-I.jpg,None,None,pepyII_birth_name.svg,neferkara_throne_name.svg
 2181,2055,7,Seventh Dynasty,First Intermediate Period,,,,,,None,None,None,None,None
-2181,2160,8,Eighth Dynasty,First Intermediate Period,,,,,,None,None,None,None,None
+2181,2160,8,Eighth Dynasty,First Intermediate Period,,,,Qakara,Iby,None,None,None,ibi_birth_name.svg,qakara_throne_name.svg
 2160,2130,9,Ninth Dynasty,First Intermediate Period,,,,,,None,None,None,None,None
 2130,2125,10,Tenth Dynasty,First Intermediate Period,,,,,,None,None,None,None,None
 2125,2055,11,Eleventh Dynasty,First Intermediate Period - Thebes only,Sehertawy,,,,Intef I,None,None,None,intef_birth_name.svg,sehertawy_throne_name.svg
@@ -43,14 +43,14 @@ calendar_period_start,calendar_period_end,dynasty_no,dynasty_name,kingdom_name,k
 2055,1985,11,Eleventh Dynasty,Middle Kingdom,,,,Nebhepetra,Mentuhotep II,None,None,None,mentuhotep_birth_name.svg,nebhepetra_throne_name.svg
 2055,1985,11,Eleventh Dynasty,Middle Kingdom,,,,Sankhkara,Mentuhotep III,None,None,None,mentuhotep_birth_name.svg,sankhkara_throne_name.svg
 2055,1985,11,Eleventh Dynasty,Middle Kingdom,,,,Nebtawyra,Mentuhotep IV,None,None,None,mentuhotep_birth_name.svg,nebtawyra_throne_name.svg
-1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Sehetepibra,Amenemhat I,None,None,None,None,None
-1985,1795,12,Twelfth Dynasty,Middle Kingdom,Ankhmesut,,,Kheperkara,Senusret I,Karnak_PartOfKinglist_Aegypten99358.jpg,None,None,None,None
-1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Nubkaura,Amenemhat II,None,None,None,None,None
-1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Khakheperra,Senusret II,None,None,None,None,None
-1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Khakaura,Senusret III,None,None,None,None,None
-1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Nimaatra,Amenemhat III,None,None,None,None,None
-1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Maakherura,Amenemhat IV,None,None,None,None,None
-1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Sobekkara,Sobekneferu,None,None,None,None,None
+1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Sehetepibra,Amenemhat I,Lintel_of_Amenemhat_I_and_Deities_MET_DP322055.jpg,https://en.wikipedia.org/wiki/File:Lintel_of_Amenemhat_I_and_Deities_MET_DP322055.jpg,None,amenemhat_birth_name.svg,sehetepibra_throne_name.svg
+1985,1795,12,Twelfth Dynasty,Middle Kingdom,Ankhmesut,,,Kheperkara,Senusret I,Karnak_PartOfKinglist_Aegypten99358.jpg,None,Wolfgang Praegler,senusret_birth_name.svg,kheperkara_throne_name.svg
+1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Nubkaura,Amenemhat II,None,None,None,amenemhat_birth_name.svg,nubkaura_throne_name.svg
+1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Khakheperra,Senusret II,None,None,None,senusret_birth_name.svg,khakheperra_throne_name.svg
+1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Khakaura,Senusret III,None,None,None,senusret_birth_name.svg,khakaura_throne_name.svg
+1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Nimaatra,Amenemhat III,None,None,None,amenemhat_birth_name.svg,nimaatra_throne_name.svg
+1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Maakherura,Amenemhat IV,None,None,None,amenemhatIV_birth_name.svg,maakherura_throne_name.svg
+1985,1795,12,Twelfth Dynasty,Middle Kingdom,,,,Sobekkara,Sobekneferu,None,None,None,sobekneferu_birth_name.svg,sobekkara_throne_name.svg
 1795,1750,13,Thirteenth Dynasty,Middle Kingdom,,,,Khutawayra,Wegaf,None,None,None,None,None
 1795,1750,13,Thirteenth Dynasty,Middle Kingdom,,,,Sankhibra,Ameny Intef Amenemhat,None,None,None,None,None
 1795,1750,13,Thirteenth Dynasty,Middle Kingdom,,,,Auibra,Hor,None,None,None,None,None
