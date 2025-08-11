@@ -1,25 +1,22 @@
+# src/app.py
+
 """
-Web application about egypt pharaoh names and their dynasties. Initialise the app instance.
-More information is given with file main.py.
+Main entry point for the Dash application instance.
 
-Set some security configurations (Cross Side Scripting, Cookieaccording this blog post:
-https://www.securecoding.com/blog/flask-security-best-practices/
-and
-https://testdriven.io/blog/csrf-flask/
-
-With meta tags configuration we protect the against cookie attack vectors.
-
-Author: Ilona Brinkmeier
-Date: Oct. 2023
+It initialices the Dash app, configures it with necessary
+stylesheets and plugins (like Dash Pages) and sets meta tags.
 """
 
 ##########################
 # imports
 ##########################
 
-from cryptography.fernet import Fernet
-from dash import Dash
 import dash_bootstrap_components as dbc
+
+from pathlib import Path
+from dash import Dash
+from cryptography.fernet import Fernet
+from src.logging_setup import logger
 
 ##########################
 # coding
@@ -29,7 +26,9 @@ import dash_bootstrap_components as dbc
 # initialise the app
 #
 key = Fernet.generate_key()
+logger.info("Initializing Dash application instance.")
 
+# general meta tags for the application
 meta_tags = [
     # general
     {
@@ -71,11 +70,18 @@ meta_tags = [
     },
 ]
 
+# Plotly-Dash needs 'assets' dir for images
+# src -> parent -> project_root -> dashboard/assets
+ASSETS_PATH = Path(__file__).parent.parent / 'dashboard' / 'assets'      #'../dashboard/assets' - both possible
+
 app = Dash(
     __name__,
-    external_stylesheets=[dbc.themes.BOOTSTRAP],
-    meta_tags=meta_tags,
-    use_pages=True,
-    suppress_callback_exceptions=True,
+    external_stylesheets = [dbc.themes.BOOTSTRAP],
+    meta_tags = meta_tags,
+    use_pages = True,                      # dash: True; relevant for modular pages router architecture
+    suppress_callback_exceptions = True,   # False, for development
+    assets_folder = ASSETS_PATH,
 )
 
+# server object needed for WSGI servers like Gunicorn/Uvicorn in production
+server = app.server

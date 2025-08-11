@@ -1,0 +1,43 @@
+# requirements.txt
+
+# -----------------------------------------------------------------------------
+# Core Application Framework
+# -----------------------------------------------------------------------------
+# Using specific versions for stability.
+dash==3.2.0
+plotly==6.2.0
+dash[testing]==3.2.0
+
+# -----------------------------------------------------------------------------
+# Dash UI Components and Libraries
+# -----------------------------------------------------------------------------
+dash-bootstrap-components==1.6.0
+dash-ag-grid==32.3.1   # fits to specific dash 3.2; without grids not visible!
+dash-iconify==0.1.2
+dash-mantine-components==0.12.1
+
+# -----------------------------------------------------------------------------
+# Data Handling and Validation
+# -----------------------------------------------------------------------------
+pandas==2.2.2          # compatible with Python 3.12
+numpy==1.26.4          # required by pandas
+pydantic==2.11.7       # for data validation in the service layer
+
+# -----------------------------------------------------------------------------
+# Logging
+# -----------------------------------------------------------------------------
+loguru==0.7.3
+
+# -----------------------------------------------------------------------------
+# Web Server and Deployment
+# -----------------------------------------------------------------------------
+# Gunicorn is for Linux/macOS. For Windows, Waitress is a good alternative.
+gunicorn==23.0.0
+cryptography==43.0.0   # web security components
+flask_wtf==1.2.1       # Plotly basic needs, useful for forms
+
+# -----------------------------------------------------------------------------
+# Development and Testing
+# -----------------------------------------------------------------------------
+# typically kept in a separate `dev_requirements.txt`, simplyfication by now
+pytest==8.4.1

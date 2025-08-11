@@ -1,0 +1,54 @@
+/* dashboard/assets/custom_styles.css */
+
+/* --- Dropdown Menu Styling (floating box) --- */
+.themed-dropdown .dropdown-menu {
+    background-color: #E1DFD6;   /* french grey */
+    border: 1px solid #d3d0c2;
+    z-index: 1100;
+}
+
+/* --- Dropdown Item Styling (clickable links) --- */
+.navbar-dark .themed-dropdown .dropdown-menu .dropdown-item {
+    color: #6c757d !important;
+    background-color: transparent;
+}
+
+.navbar-dark .themed-dropdown .dropdown-menu .dropdown-item:hover {
+    color: #212529 !important;
+    background-color: #d3d0c2;
+}
+
+/* --- Dropdown Toggle Styling (button in navbar) --- */
+.navbar-dark .nav-item .nav-dropdown-outline {
+    border: 1px solid #0d6efd;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+}
+
+.navbar-dark .nav-item .nav-dropdown-outline:hover {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+/* --- Hover Activation and Nested Menu Positioning --- */
+@media (min-width: 992px) {
+    /* Rule definition to display main dropdown on hover. */
+    .dropdown:hover > .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+
+    /* Rule definition for positioning the nested menu. */
+    .themed-dropdown .dropdown-menu .dropdown-menu {
+        position: absolute;
+        left: auto !important;     /* Unset default right-opening behavior */
+        right: 100% !important;    /* Set new left-opening behavior */
+        top: -7px;
+        display: none;
+    }
+
+    /* Rule definition to show nested menu when parent item is hovered. */
+    .themed-dropdown .dropdown-menu .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
+}

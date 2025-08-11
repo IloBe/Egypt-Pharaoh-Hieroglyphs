@@ -1,0 +1,42 @@
+# pyproject.toml
+
+# This section tells build tools (like pip) what backend to use to build the package.
+# For most projects, setuptools is the standard choice.
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+# This section contains the core metadata about your package.
+# This is what will be displayed on PyPI if you ever publish it.
+[project]
+name = "egypt-pharaoh-dashboard"
+version = "1.0.0"
+authors = [
+  { name="IlBe", email="author@example.com" }, # Update with actual email if desired
+]
+description = "A Plotly Dash application for visualizing the timeline of Egyptian Pharaohs."
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Framework :: Dash",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+
+# This is a key part for maintainability.
+# Instead of listing dependencies here AND in requirements.txt, we tell
+# setuptools to read them directly from the file. This follows the DRY
+# (Don't Repeat Yourself) principle.
+dynamic = ["dependencies"]
+
+# This section tells tools where to find your packages.
+# 'find:' means it will automatically discover packages like 'dashboard'.
+[tool.setuptools.packages.find]
+where = ["."] # Search for packages in the root directory.
+
+# This section configures the 'dynamic' fields from the [project] table above.
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
