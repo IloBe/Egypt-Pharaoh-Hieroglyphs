@@ -33,7 +33,7 @@ loguru==0.7.3
 # -----------------------------------------------------------------------------
 # Gunicorn is for Linux/macOS. For Windows, Waitress is a good alternative.
 gunicorn==23.0.0
-cryptography==43.0.0   # web security components
+cryptography==44.0.1   # web security components
 flask_wtf==1.2.1       # Plotly basic needs, useful for forms
 
 # -----------------------------------------------------------------------------
