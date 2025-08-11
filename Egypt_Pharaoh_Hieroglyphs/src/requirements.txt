@@ -1,9 +1,0 @@
-cryptography==44.0.1
-dash==2.15.0
-dash_ag_grid==2.3.0
-dash_bootstrap_components==1.5.0
-dash_iconify==0.1.2
-dash_mantine_components==0.12.1
-flask_wtf==1.2.1
-numpy==1.26.1
-pandas==2.1.2

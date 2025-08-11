@@ -49,8 +49,75 @@ After starting the application with browser zoom factor 90% and having read some
 
 
 ## Software
-In general, the software is implemented with Python 3.12.0 and for the web application with Plotly 5.17.0, Dash 2.15.0. 
+In general, the software is implemented with Python 3.12.0 and for the web application with Plotly 6.2.0, Dash 3.2.0, Dash-AG-Grid 32.3.1, ...
 
+By now, for simplification the <i>pyproject.toml<i>, <i>requirements.txt</i> approach is used including development unit testing. Being in the project root with activated .venv, for installation of application dependencies you need:
+```
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -e .
+```
+The last installation command registers the 'src' directory with the Python environment permanently.<br>
+Note: Docker file handling is a future topic.
+
+## Project Structure Overview
+
+Egypt-Pharaoh-Hieroglyphs/
+│
+├── dashboard/
+│       ├── Fonts/                   # Directory for CGT_2023.TTF to create specific transliterations
+│       └── assets/
+│           ├── custom_styles.css    # Custom CSS for styling (dropdowns, grid headers, etc.)
+│           ├── dashAgGridComponentFunctions.js  # Visualises images, objects for Dash-AG-Grid tables (e.g. cartouche svg)
+│           ├── plotly_icon.JPG      # Temporary used plotly footer icon
+│           └── images/              # Static image assets (pharaoh photo objects, cartouches, etc.)
+│
+├── data/
+│   └── egypt_pharaohs_dynasties.csv # Applications primary data source
+│
+├── src/
+│   ├── callbacks/
+│   │   ├── dynasty_callbacks.py     # Modal dynasty callback file to create the interactive application
+│   │   └── period_callbacks.py      # Modal period callback file to create the interactive application
+│   │
+│   ├── models/
+│   │   └── pharaoh.py               # Pydantic model for validating each .cvs data row
+│   │
+│   ├── pages/
+│   │   ├── all_dynasties.py         # Layout for the "All Dynasties" summary page
+│   │   ├── all_periods.py           # Layout for the "All Periods" summary page
+│   │   ├── dynasty.py               # Dynamic page layout for displaying a *single* dynasty
+│   │   ├── home.py                  # Applications main landing page
+│   │   ├── period.py                # Dynamic page layout for displaying a *single* period
+│   │   ├── not_found_404.py         # Dynamic page if page selection fails, error case
+│   │   └── layouts.py               # UI component factory (header, footer, grid definitions)
+│   │
+│   ├── services/
+│   │   └── data_service.py          # Handles loading, validation and processing of .cvs data
+│   │
+│   ├── app.py                       # Initialises the global Dash app instance and configures assets
+│   ├── logging_setup.py             # Configures applications Loguru logger
+│   └── main.py                      # Main application entry point (run this file to start)
+│
+├── config/
+│   └── logging_config.json          # External configuration file for the logger
+│
+├── tests/                           
+│   ├── test_callbacks.py            # Unit tests for the application's callbacks
+│   └── test_data_service.py         # Unit tests for the DataService class
+│
+├── logs/                            # Directory where app log files are written
+│
+├── pyproject.toml                   # Config file treats project as a package to find src dir directly
+│
+└── requirements.txt                 # List of Python dependencies for the project (including development)
+
+## Application Start
+Being on project root: If all dependencies are installed and .venv is activated, the application can be called on CLI via command with main module:
+```
+python3 -m src.main
+```
 
 ## License
 This project coding is released under the [MIT](https://github.com/IloBe/Egypt-Pharaoh-Hieroglyphs/blob/main/LICENSEE) license.

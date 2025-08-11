@@ -1,460 +1,209 @@
-"""
-Web applications pages header and footer content. 
+# src/pages/layouts.py
 
-Author: Ilona Brinkmeier
-Date: Oct. 2023
+"""
+Factory module to generate the reusable UI components.
 """
 
 ##########################
 # imports
 ##########################
 
+import dash
+import dash_bootstrap_components as dbc
+import dash_ag_grid as dag
+
 from dash import dcc, html
 from dash_iconify import DashIconify
+from typing import Any, Dict, List
+from urllib.parse import quote
+from loguru import logger
 
-import dash
-import dash_ag_grid as dag
-import dash_bootstrap_components as dbc
-import logging
-import pandas as pd
+from src.services.data_service import pharaoh_data_service
 
 ##########################
 # coding
 ##########################
 
-# set basic, simple console logger
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger("pharaoh_hieroglyphs")
+# Type aliases
+ColumnDef = Dict[str, Any]
+NavChildren = List[dbc.NavItem | dbc.DropdownMenu]
+DropdownChildren = List[dbc.DropdownMenuItem | dbc.DropdownMenu]
 
+def get_grid_style() -> Dict[str, str]:
+    """Returns the standard style dictionary for all AG Grids."""
+    return {
+        "height": "800px",
+        "--ag-header-background-color": "#d3d0c2",   # brown/beige color
+        "--ag-header-foreground-color": "#333333",   # darker text for better contrast
+    }
 
-# helper functions
-def create_dropdownitem(name, id, href):
-    ''' returns the dbc.DropdownMenuItem '''
-    return dbc.DropdownMenuItem(
-            name,
-            href=href,
-            id=id,
-            n_clicks=0,
+def get_header() -> dbc.Navbar:
+    """Builds and returns the application's main navigation bar."""
+    logger.info("Creating application header component.")
+    
+    navigation_items: NavChildren = []
+
+    # Home button
+    navigation_items.append(
+        dbc.NavItem(dbc.Button(
+            DashIconify(
+                icon = 'bi:house',
+                width = 20,
+                height = 20,
+            ),
+            href = "/",
+            color = "primary",
+            outline = True,
+        ))
     )
 
-#
-# header
-#
-def get_header(ech_nof_img_path, first_dynasty_names, decimal_dynasty_names, twenties_dynasty_names):
-    """
-    Returns the navbar header with introduction title, home icon and dropdowns.
-    """
-    ECHNATON_NOFRETETE = ech_nof_img_path 
-    logger.info('----- echnaton, nofretete img path: %s', ECHNATON_NOFRETETE)
-
-    # for dropdown's see:
-    # https://dash-bootstrap-components.opensource.faculty.ai/docs/components/dropdown_menu/
-    dynasty_items = [
-        create_dropdownitem(
-            name='All', id='all_dynasties',
-            href='/pages/dynasties/all_dynasties.py',
-        ),
-        dbc.DropdownMenu(
-            id='first_dynasties',
-            children=[
-                create_dropdownitem(
-                    name=name, id=name, 
-                    #href='/pages/dynasties/'
-                    href=''.join(['/pages/dynasties/', name.replace(' ', '_').lower(), '.py']),
-                ) for name in first_dynasty_names
-            ],
-            label='1st Dynasties',
-            toggle_style={
-                #"textTransform": "uppercase",
-                # https://creativebooster.net/blogs/colors/shades-of-green-color
-                # https://creativebooster.net/blogs/colors/shades-of-azure-color
-                # https://www.color-hex.com/color/b6b19a
-                # Tints of french grey, French Grey, color Azure Sky
-                "background": '#E1DFD6',   # '#dad8cc'  # '#B6B19A'   # "#B0E0F6",  
-                'color': 'black',
-            },
-            className="px-1",
-            align_end=True,
-        ),    
-        dbc.DropdownMenu(
-            id='decimal_dynasties',
-            children=[
-                create_dropdownitem(
-                    name=name, id=name,
-                    #href='/pages/dynasties/',
-                    href=''.join(['/pages/dynasties/', name.replace(' ', '_').lower(), '.py']),
-                ) for name in decimal_dynasty_names
-            ],
-            label='10th Dynasties',
-            toggle_style={
-                # Tints of french grey, French Grey, color Azure Sky
-                "background": '#E1DFD6', 
-                'color': 'black',
-            },
-            className="mt-1 px-1",
-            align_end=True,
-        ),
-        dbc.DropdownMenu(
-            id='twenties_dynasties',
-            children=[
-                create_dropdownitem(
-                    name=name, id=name,
-                    #href='/pages/dynasties/',
-                    href=''.join(['/pages/dynasties/', name.replace(' ', '_').lower(), '.py']),
-                ) for name in twenties_dynasty_names
-            ],
-            label='20s Dynasties',
-            toggle_style={
-                # Tints of french grey, French Grey, color Azure Sky
-                "background": '#E1DFD6',
-                'color': 'black',
-            },
-            className="mt-1 px-1",
-            align_end=True,
-        ),
-        dbc.DropdownMenu(
-            id='thirties_dynasties',
-            children=[
-                dbc.DropdownMenuItem(
-                    "Thirtieth Dynasty",
-                    #page["name"], href=page["path"],
-                    id='thirtith_dynasty',
-                    n_clicks=0,
-                    #href='/pages/dynasties/',
-                    href=''.join(['/pages/dynasties/', "Thirtieth Dynasty".replace(' ', '_').lower(), '.py']),
-                ),
-                dbc.DropdownMenuItem(
-                    "Thirty-First Dynasty",
-                    #page["name"], href=page["path"],
-                    id='thirtyfirst_dynasty',
-                    n_clicks=0,
-                    #href='/pages/dynasties/',
-                    href=''.join(['/pages/dynasties/', "Thirty-First Dynasty".replace(' ', '_').lower(), '.py']),
-                ),
-            ],
-            label='30s Dynasties',
-            toggle_style={
-                # Tints of french grey, color Azure Sky
-                "background": '#E1DFD6',
-                'color': 'black',
-            },
-            className="mt-1 px-1",
-            align_end=True,
-        ),
-    ]
-    
-    period_items = [
-        create_dropdownitem(
-            name='All', id='all_periods',
-            href='/pages/periods/all_periods.py',
-        ),
-        create_dropdownitem(
-            name='Early Dynastic Period', id='early_dynastic_period',
-            href='/pages/periods/early_dynastic_period.py',
-        ),
-        create_dropdownitem(
-            name='Old Kingdom', id='old_kingdom',
-            href='/pages/periods/old_kingdom.py',
-        ),
-        dbc.DropdownMenu(
-            id='first_intermediate',
-            children=[
-                dbc.DropdownMenuItem(
-                    "First Intermediate Period - general",
-                    #page["name"], href=page["path"],
-                    id='first_intermediate_period_general',
-                    n_clicks=0,
-                    href='/pages/periods/first_intermediate_period_general.py',
-                ),
-                dbc.DropdownMenuItem(
-                    "First Intermediate Period - Thebes only",
-                    #page["name"], href=page["path"],
-                    id='first_intermediate_period_thebes_only',
-                    n_clicks=0,
-                    href='/pages/periods/first_intermediate_period_thebes_only.py',
+    # Dynamic menu generation
+    if pharaoh_data_service.is_data_loaded():
+        # initialisation
+        period_menu_items: DropdownChildren = []
+        dynasty_main_children: DropdownChildren = []
+        
+        try:
+            # Periods dropdown
+            all_periods_df = pharaoh_data_service.get_all_periods()
+            period_menu_items.extend([
+                dbc.DropdownMenuItem('All Periods', href = '/all-periods',),
+                dbc.DropdownMenuItem(divider = True,)
+            ])
+            for _, row in all_periods_df.iterrows():
+                period_menu_items.append(
+                    dbc.DropdownMenuItem(
+                        children = row['kingdom_name'],
+                        href = f"/period/{quote(row['kingdom_name'].replace(' ', '_'))}",
+                    )
                 )
-            ],
-            label='First Intermediate Period',
-            toggle_style={
-                # Tints of french grey, French Grey, color Azure Sky
-                "background": '#E1DFD6',
-                'color': 'black',
-            },
-            className="px-1",
-            align_end=True,
-        ),
-        create_dropdownitem(
-            name='Middle Kingdom', id='middle_kingdom',
-            href='/pages/periods/middle_kingdom.py',
-        ),
-        dbc.DropdownMenu(
-            id='second_intermediate',
-            children=[
-                dbc.DropdownMenuItem(
-                    "Second Intermediate Period - Hyksos",
-                    #page["name"], href=page["path"],
-                    id='second_intermediate_period_hyksos',
-                    n_clicks=0,
-                    href='/pages/periods/second_intermediate_period_hyksos.py',
-                ),
-                dbc.DropdownMenuItem(
-                    "Second Intermediate Period - rulers based in Thebes",
-                    #page["name"], href=page["path"],
-                    id='second_intermediate_period_rulers_thebes',
-                    n_clicks=0,
-                    href='/pages/periods/second_intermediate_period_rulers_thebes.py',
-                ),
-            ],
-            label='Second Intermediate Period',
-            toggle_style={
-                "background": '#E1DFD6',
-                'color': 'black',
-            },
-            className="px-1",
-            align_end=True,
-        ),
-        create_dropdownitem(
-            name='New Kingdom', id='new_kingdom',
-            href='/pages/periods/new_kingdom.py',
-        ),
-        dbc.DropdownMenu(
-            id='third_intermediate',
-            children=[
-                dbc.DropdownMenuItem(
-                    "Third Intermediate Period - Tanite",
-                    #page["name"], href=page["path"],
-                    id='third_intermediate_period_tanite',
-                    n_clicks=0,
-                    #href='/pages/periods/',
-                    href=''.join(['/pages/periods/', "Third Intermediate Period - Tanite".
-                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
-                ),
-                dbc.DropdownMenuItem(
-                    "Third Intermediate Period - Bubastite/Libyan",
-                    #page["name"], href=page["path"],
-                    id='third_intermediate_period_bubastite_libyan',
-                    n_clicks=0,
-                    #href='/pages/periods/',
-                    href=''.join(['/pages/periods/', "Third Intermediate Period - Bubastite/Libyan".
-                        replace(' ', '_').replace('-','').replace('  ', '_').
-                        replace('/', '_').lower(), '.py']),
-                ),
-                dbc.DropdownMenuItem(
-                    "Third Intermediate Period - Tanite/Libyan",
-                    #page["name"], href=page["path"],
-                    id='third_intermediate_period_tanite_libyan',
-                    n_clicks=0,
-                    #href='/pages/periods/',
-                    href=''.join(['/pages/periods/', "Third Intermediate Period - Tanite/Libyan".
-                        replace(' ', '_').replace('-','').replace('  ', '_').
-                        replace('/', '_').lower(), '.py']),
-                ),
-                dbc.DropdownMenuItem(
-                    "Third Intermediate Period - General",
-                    #page["name"], href=page["path"],
-                    id='third_intermediate_period_general',
-                    n_clicks=0,
-                    #href='/pages/periods/',
-                    href=''.join(['/pages/periods/', "Third Intermediate Period - General".
-                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
-                ),
-                dbc.DropdownMenuItem(
-                    "Third Intermediate Period - Kushite",
-                    #page["name"], href=page["path"],
-                    id='third_intermediate_period_kushite',
-                    n_clicks=0,
-                    #href='/pages/periods/',
-                    href=''.join(['/pages/periods/', "Third Intermediate Period - Kushite".
-                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
-                ),
-            ],
-            label='Third Intermediate Period',
-            toggle_style={
-                "background": '#E1DFD6',
-                'color': 'black',
-            },
-            className="px-1",
-            align_end=True,
-        ),
-        dbc.DropdownMenu(
-            id='late_period',
-            children=[
-                dbc.DropdownMenuItem(
-                    "Late Period - General First",
-                    #page["name"], href=page["path"],
-                    id='late_period_general_first',
-                    n_clicks=0,
-                    #href='/pages/periods/',
-                    href=''.join(['/pages/periods/', "Late Period - General First".
-                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
-                ),
-                dbc.DropdownMenuItem(
-                    "Late Period - First Persian Period",
-                    #page["name"], href=page["path"],
-                    id='late_period_first_persian_period',
-                    n_clicks=0,
-                    #href='/pages/periods/',
-                    href=''.join(['/pages/periods/', "Late Period - First Persian Period".
-                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
-                ),
-                dbc.DropdownMenuItem(
-                    "Late Period - General Second",
-                    #page["name"], href=page["path"],
-                    id='late_period_general_second',
-                    n_clicks=0,
-                    #href='/pages/periods/',
-                    href=''.join(['/pages/', "Late Period - General Second".
-                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
-                ),
-                dbc.DropdownMenuItem(
-                    "Late Period - Second Persian Period",
-                    #page["name"], href=page["path"],
-                    id='late_period_second_persian_period',
-                    n_clicks=0,
-                    #href='/pages/periods/',
-                    href=''.join(['/pages/', "Late Period - Second Persian Period".
-                        replace(' ', '_').replace('-','').replace('  ', '_').lower(), '.py']),
-                ),
-            ],
-            label='Late Period',
-            toggle_style={
-                "background": '#E1DFD6',
-                'color': 'black',
-            },
-            className="mt-1 px-1",
-            align_end=True,
-        ),
-    ]
-    
-    dynasties_dropdown = dbc.DropdownMenu(
-        id='dynasties_dropdown',
-        children=dynasty_items,
-        label="Dynasties",
-        toggle_style={"background": "black"},
-        in_navbar=True,
-        align_end=True,
-    )
-    
-    periods_dropdown = dbc.DropdownMenu(
-        id='periods_dropdown',
-        children=period_items,
-        label="Periods",
-        toggle_style={"background": "black"},
-        className="border border-0",
-        in_navbar=True,
-        align_end=True,
-    )
-    
-    selection_bar = dbc.Row(
-        children=[
-            dbc.Col(
-                dbc.NavItem(
-                    dbc.Button(
-                        children=[
-                            DashIconify(
-                                icon='bi:house',
-                                width=20,
-                                height=20,
-                                color='white',
-                            ),
-                        ],
-                        id="button_link_home",
-                        n_clicks=0,
-                        outline=True,
-                        color= "primary",
-                        href="/"
+            
+            navigation_items.append(
+                dbc.DropdownMenu(
+                    label = "Periods",
+                    children = period_menu_items,
+                    nav = True,
+                    align_end = True,
+                    toggle_class_name = "nav-dropdown-outline ms-2",
+                    class_name = "themed-dropdown",
+                )
+            )
+
+            # Nested Dynasties dropdown
+            dynasty_main_children.extend([
+                dbc.DropdownMenuItem("All Dynasties", href = "/all-dynasties",),
+                dbc.DropdownMenuItem(divider = True,),
+            ])
+            all_dynasties_df = pharaoh_data_service.get_all_dynasties()
+            dynasty_groups = {
+                'Dynasties 1-9': (1, 9),
+                'Dynasties 10-19': (10, 19),
+                'Dynasties 20-31': (20, 31),
+            }
+            
+            for label, (start, end) in dynasty_groups.items():
+                group_df = all_dynasties_df.query("@start <= dynasty_no <= @end")
+                if not group_df.empty:
+                    dynasty_sub_menu_items = [
+                        dbc.DropdownMenuItem(
+                            children = row['dynasty_name'],
+                            href = f"/dynasty/{row['dynasty_no']}",
+                        )
+                        for _, row in group_df.iterrows()
+                    ]
+                    
+                    dynasty_main_children.append(
+                        dbc.DropdownMenu(
+                            label = label,
+                            children = dynasty_sub_menu_items,
+                       )
+                    )
+
+            navigation_items.append(
+                dbc.DropdownMenu(
+                    label = "Dynasties",
+                    children = dynasty_main_children,
+                    nav = True,
+                    align_end = True,
+                    toggle_class_name = "nav-dropdown-outline ms-2",
+                    class_name = "themed-dropdown",
+                )
+            )
+
+        except Exception as e:
+            logger.exception(f"Failed to build dynamic navigation menus: {e}")
+            navigation_items = [dbc.NavItem(dbc.Label("Error: Menus failed to load", color = "danger",))]
+    else:
+        navigation_items = [dbc.NavItem(dbc.Label("Data failed to load", color = "danger",))]
+        
+    # 
+    # Entire Header
+    # 
+    header_brand = html.A(
+        dbc.Row(
+            [
+                dbc.Col(
+                    html.Img(
+                        src = dash.get_asset_url('images/EchnatonNofretete_AegyptischesMuseumBerlin_small-18.PNG'),
+                        height = "110px",
                     ),
+                    width = "auto",
                 ),
-                className="me-auto px-2",
-                align='end',
-                style={'color': 'bg-dark'}
-            ),
-            dbc.Col(
-                periods_dropdown,
-                className="me-auto",
-                align='start',   #'end',
-                style={'color': 'dark'},
-            ),
-            dbc.Col(
-                dynasties_dropdown,
-                className="me-auto px-2",
-                align='start',   #'end',
-            ),
-        ],
-        className="g-0 ms-auto",
-        align="end",
+                dbc.Col([
+                    html.H1(
+                        id = "navbar-title",
+                        children = ["Egyptian Pharaoh's"],
+                        style = {"color" : "white", 'padding': 5},
+                    ),
+                    html.H5(
+                        id = "navbar-subtitle",
+                        children = ["BC dynasties from early up to late period"],
+                        style = {"color" : "grey", 'padding': 5},
+                    ),
+                ],
+                className = "ms-3"),
+            ],
+            align = "center",
+            className = "g-0",
+        ),
+        href = "/",
+        style = {"textDecoration": "none"},
     )
     
-    
-    # horizontally aligned navigation bar at the top of the page
-    # right block - egyptian image and brand title
-    # left block - dropdown menues and plotly icon
-    navbar = dbc.Navbar(
+    return dbc.Navbar(
         dbc.Container(
             [
-                # left block for introduction title
-                html.Div(
-                    dbc.Row(
-                        children=[
-                            dbc.Col(
-                                children=[
-                                    html.Img(
-                                        src=ECHNATON_NOFRETETE,
-                                        height="110px",
-                                    ),
-                                ],
-                                width='auto',
-                            ),
-                            dbc.Col(
-                                children=[
-                                    html.H1(
-                                        id="navbar-title",
-                                        children=["Egyptian Pharaoh's"],
-                                        style={"color" : "white", 'padding': 5},
-                                    ),
-                                    html.H5(
-                                        id="navbar-subtitle",
-                                        children=["BC dynasties from early up to late period"],
-                                        style={"color" : "white", 'padding': 5},
-                                    ),
-                                ],
-                                className='px-1'
-                            ),
-                        ],
-                        align="end",
-                        className="ps-0",
+                header_brand,
+                dbc.NavbarToggler(id = "navbar-toggler"),
+                dbc.Collapse(                   
+                    dbc.Nav(
+                        navigation_items,
+                        navbar = True,
+                        # see: https://getbootstrap.com/docs/5.1/utilities/spacing/
+                        class_name = "ms-auto mb-3"
                     ),
-                ),
-                # right block for user selection 
-                dbc.Col(
-                    children=[
-                        dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
-                        dbc.Collapse(
-                            selection_bar,
-                            id="navbar-collapse",
-                            navbar=True,
-                        ),
-                    ],
-                    align="end",
-                    className="mb-2",
+                    id = "navbar-collapse",
+                    is_open = False,
+                    navbar = True,
+                    class_name = "align-self-end",
                 ),
             ],
+            fluid = True,
         ),
-        color="black",
-        dark=True,
-        sticky='top',
-        expand='lg',
+        color = "black",
+        dark = True,
+        sticky = 'top',
     )
 
-    return navbar
-
-
 #
-# footer
+# Footer
 #
-def get_footer():
+def get_footer() -> html.Div:
     """
-    Returns the footer with github and plotly icons together with licence and author information. 
+    Builds and returns the application's footer.
+
+    Returns:
+        html.Div: A Div component containing footer information and links.
     """
     return html.Div(
         children = [
@@ -463,157 +212,173 @@ def get_footer():
                     dbc.Col(
                         children = [
                             html.A(
-                                [
-                                    DashIconify(
-                                        icon='charm:github',
-                                        width=20,
-                                        height=20,
-                                        color='#000000',  # black; origin default: blue
-                                    ),
+                                [DashIconify(
+                                    icon = 'charm:github',
+                                    width = 20,
+                                    height = 20,
+                                    color = '#000000',)
                                 ],
-                                href='https://github.com/IloBe/Egypt-Pharaoh-Hieroglyphs',
+                                href = 'https://github.com/IloBe/Egypt-Pharaoh-Hieroglyphs',
+                                target = "_blank",           # opens in new tab
+                                rel = "noopener noreferrer", # security practice
                             ),
                             html.H6(
-                                children=['MIT Licence, I. Brinkmeier 2023; images shared under CC BY-NC-SA 4.0 licence'],
-                                style={"display": "inline"},
-                                className='px-2',
+                                children = ['MIT Licence, I. Brinkmeier 2025; images shared under CC BY-NC-SA 4.0 licence'],
+                                style = {"display": "inline"},
+                                className = 'px-2',
                             ),
                         ],
-                        width=11,
-                        className="text-muted fs-6",
+                        width = 11,
+                        className = "text-muted fs-6",
                         style = {'float': 'right'},
                     ),
                     dbc.Col(
                         children = [
                             html.A(
-                                [
-                                    html.Img(
-                                        # completely black background and white signs
-                                        #src='https://global.discourse-cdn.com/business7/uploads/plot/optimized/3X/b/2/b20398c2f56ade4bbfdbfdb8f2dc09188eac4d86_2_504x500.jpeg',
-                                        # link with black signs
-                                        src='https://global.discourse-cdn.com/business7/uploads/plot/original/3X/f/3/f3da33405ee7e693abfd12bd4ae334a55e8345d0.png',
-                                        height='25px',
-                                    ),
+                                [html.Img(
+                                    src = dash.get_asset_url('plotly_icon.JPG'),
+                                    height = '25px',)
                                 ],
-                                href='https://dash.plotly.com/',
+                                href = 'https://dash.plotly.com/',
+                                target = "_blank",           # opens in new tab
+                                rel = "noopener noreferrer", # security practice
                             ),
                         ],
-                        width=1,
+                        width = 1,
                     ),
                 ],
-                justify='start',
+                justify = 'start',
             ),
        ],
-       className="g-0 ps-5 pe-5",
+       className = "g-0 ps-5 pe-5",
     )
 
 #
-#  to create DashAgGrid
+# For Pages 
 #
+def get_grid_note() -> dcc.Markdown:
+    """
+    Returns the standardized note displayed below the AgGrid component.
 
-# image column filter params
-objectFilterParams = {
-    "filterOptions": ["contains", "notContains"],
-    "debounceMs": 200,
-    "suppressAndOrCondition": True,
-}
+    Returns:
+        dcc.Markdown: Markdown component with usage notes for the data grid
+    """
+    return dcc.Markdown(
+        """
+        **Note:**
+        - To filter, type directly below the column headers.
+        - The special font 'CGT_2023.TTF' is required for proper transliteration display.
+        - Image assets are for educational and demonstrative purposes.
+        """,
+        className = "small text-muted mt-3",
+    )
 
-# structure includes transliterations of birth, throne names and cartouches as svg images
-def get_col_defs(throne_class):
-    ''' Returns DashAgGrid table structure, means column definitions for data visualisation '''
+
+def get_col_defs(throne_class: str) -> List[ColumnDef]:
+    """
+    Returns the column definitions that match the required grid layout.
+
+    Args:
+        throne_class (str): column name to use for the throne name transliteration
+
+    Returns:
+        List[ColumnDef]: list of dictionaries defining the AgGrid columns
+    """
     return [
-        {
-            "headerName": "Object",
-            "stickyLabel": True,
-            "field": "image_local",
-            "cellRenderer": "ImgThumbnail",
-            "width": 20,
-            "height": 20,
-            "filterParams": objectFilterParams,
-        },
-        {
-            "headerName": "Throne Name",
-            "stickyLabel": True,
-            "children": [
-                {
-                    "field": "king_horus", 
-                    "headerName": "Horus", 
-                    "width": 60
-                },
-                {
-                    "field": "king_sedge_bee",
-                    "headerName": "Sedge Bee",
-                    "width": 50
-                },
-            ],
-        },
-        {
-            "headerName": "Birth Name",
-            "stickyLabel": True,
-            "children": [
-                {
-                    "field": "king_birth_son_of_ra",
-                    "headerName": "Son of Ra",
-                    "width": 70,
-                },
-            ]
-        },
-        {
-            "headerName": "Name Transliteration",
-            "stickyLabel": True,
-            "children": [
-                {
-                    "field":  "king_birth_son_of_ra",
-                    "headerName": "Birth",
-                    "width": 48,
-                    "height": 10,
-                    "cellStyle": {
-                        'font-family': 'Trlit_CG Times',
-                        'font-size': 16,
-                    },
-                    "filter": False,
-                },
-                {
-                    "headerName": "Throne",
-                    "field": throne_class,
-                    "width": 48,
-                    "height": 10,
-                    "cellStyle": {
-                        'font-family': 'Trlit_CG Times',
-                        'font-size': 16,
-                    },
-                    "filter": False,
-                },
-            ],
-        },
-        {
-            "headerName": "Cartouche",
-            "stickyLabel": True,
-            "children": [
-                {
-                    "field": "JSesh_birth_cartouche",
-                    "headerName": "Birth",
-                    "cellRenderer": "ImgThumbnail",
-                    "width": 52,
-                    "height": 20,
-                    "filter": False,
-                },
-                {
-                    "field": "JSesh_throne_praenomen_cartouche",
-                    "headerName": "Throne",
-                    "cellRenderer": "ImgThumbnail",
-                    "width": 52,
-                    "height": 20,
-                    "filter": False,
-                },
-            ],
-        },
+        {"headerName": "Object",
+         "field": "image_local",
+         "cellRenderer": "ImgThumbnail",
+         "width": 100,
+         "filter": False,
+         "sortable": False},
+        {"headerName": "Throne Name",
+         "children": [
+            {"headerName": "Horus",
+             "field": "king_horus",
+             "width": 150},
+            {"headerName": "Sedge Bee",
+             "field": "king_sedge_bee",
+             "width": 150},
+        ]},
+        {"headerName": "Birth Name",
+         "children": [
+            {"headerName": "Son of Ra",
+             "field": "king_birth_son_of_ra",
+             "width": 180},
+        ]},
+        {"headerName": "Name Transliteration",
+         "children": [
+            {"headerName": "Birth",
+             "field": "king_birth_son_of_ra",
+             "width": 120,
+             "cellStyle": {'font-family': 'Trlit_CG Times', 'font-size': 16}},
+            {"headerName": "Throne",
+             "field": throne_class,
+             "width": 120,
+             "cellStyle": {'font-family': 'Trlit_CG Times', 'font-size': 16}},
+        ]},
+        {"headerName": "Cartouche",
+         "children": [
+            {"headerName": "Birth",
+             "field": "jsesh_birth_cartouche",
+             "cellRenderer": "ImgThumbnail",
+             "width": 150,
+             "filter": False,
+             "sortable": False},
+            {"headerName": "Throne",
+             "field": "jsesh_throne_praenomen_cartouche",
+             "cellRenderer": "ImgThumbnail",
+             "width": 150,
+             "filter": False,
+             "sortable": False},
+        ]},
     ]
 
-def get_default_col_def():
-    ''' Returns the default Dash AgGrid column definition for visualisation '''
-    return {
-        "flex": 1,
-        "minWidth": 38,
-        "filter": True,
-    }
+
+def get_default_col_def() -> Dict[str, Any]:
+    """
+    Returns the default column definition for all grids.
+
+    Returns:
+        Dict[str, Any]: dictionary of default properties for AgGrid columns
+    """
+    return {"filter": True, "resizable": True, "sortable": True, "minWidth": 100}
+
+
+def create_browse_all_layout(title: str) -> html.Div:
+    """
+    Generates the layout for the pages displaying the entire pharaoh dataset.
+    This function is reusable for both the "All Periods" and "All Dynasties" views.
+    It fulfills the DRY (Dont-Repeat-Yourself) principle for both dropdown items.
+
+    Args:
+        title (str): title to display at the top of the specific page (e.g., "All Periods")
+
+    Returns:
+        html.Div: Dash component tree for the specific page
+    """
+    # fetch whole DataFrame
+    full_dataset = pharaoh_data_service.df.copy()
+
+    # unified throne name column for consistent display
+    full_dataset['throne_name_display'] = full_dataset['king_horus'].combine_first(full_dataset['king_sedge_bee'])
+
+    # page layout
+    return html.Div(
+        children = [
+            html.Br(),
+            html.H4(title, className = "fw-bolder"),
+            html.Br(),
+            dag.AgGrid(
+                id = f"browse-all-grid-{title.replace(' ', '-')}",   # unique ID
+                rowData = full_dataset.to_dict("records"),
+                columnDefs = get_col_defs(throne_class = 'throne_name_display'),
+                defaultColDef = get_default_col_def(),
+                columnSize = "sizeToFit",
+                dashGridOptions = {"rowHeight": 64},
+                style = get_grid_style(),
+            ),
+            get_grid_note(),
+        ],
+        className = "g-0 ps-5 pe-5",
+    )
