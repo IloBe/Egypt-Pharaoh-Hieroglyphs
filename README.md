@@ -1,6 +1,6 @@
 [//]: # (Image References)
-[image1]: ./Egypt_Pharaoh_Hieroglyphs/src/assets/images/Abydos_kinglist_stitched_1.jpg "abydos_kinglist"
-[image2]: ./Egypt_Pharaoh_Hieroglyphs/src/assets/images/screenshot_secDyn.PNG "sec_dyn"
+[image1]: ./Egypt_Pharaoh_Hieroglyphs/dashboard/assets/images/Abydos_kinglist_stitched_1.jpg "abydos_kinglist"
+[image2]: ./Egypt_Pharaoh_Hieroglyphs/dashboard/assets/images/screenshot_secDyn.PNG "sec_dyn"
 
 [![made-with-python](https://img.shields.io/badge/Made_with-Python_3.12-blue?style=flat&logo=Python%203.12)](https://www.python.org/)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg?style=flat&logo=appveyor)](https://opensource.org/license/mit/)
@@ -12,6 +12,9 @@ Python/Plotly-Dash web application informs about most important Egypt pharaoh na
 Note:<br>
 The goal implementing this web application is to learn functionalities and concepts of [Plotly-Dash](https://dash.plotly.com/). As I am not an archaeologist, but a data scientist, I do not guarantee the correctness and completeness of the pharaoh name list. Notes on errors and necessary corrections are therefore expressly welcome. 
 
+This project, its software and image objects are privately owned or created by museums. Commercial use is not permitted!
+
+Furthermore, I would like to thank the British Museum as well as other museums and individuals (in particular Wolfgang Prägler and Carina Felske) for allowing me to use the image material they have created.
 
 ## Data
 Regarding the historical data used for analysis from a self-generated dataset, the BC dates from the first dynasty up to the late period and its dynasties given are approximate. The information is based on [_Stephen Quirke_, 2010, Who are the Pharaohs?](https://www.britishmuseum.org/collection/term/BIB766) published by _The British Museum_. Another source of more detailed listed pharaoh names is given via [Wikipedia](https://en.wikipedia.org/wiki/List_of_pharaohs), but I don't know how much such article is reviewed and accepted by domain experts.
@@ -63,55 +66,10 @@ Note: Docker file handling is a future topic.
 
 ## Project Structure Overview
 
-Egypt-Pharaoh-Hieroglyphs/
-│
-├── dashboard/
-│       ├── Fonts/                   # Directory for CGT_2023.TTF to create specific transliterations
-│       └── assets/
-│           ├── custom_styles.css    # Custom CSS for styling (dropdowns, grid headers, etc.)
-│           ├── dashAgGridComponentFunctions.js  # Visualises images, objects for Dash-AG-Grid tables (e.g. cartouche svg)
-│           ├── plotly_icon.JPG      # Temporary used plotly footer icon
-│           └── images/              # Static image assets (pharaoh photo objects, cartouches, etc.)
-│
-├── data/
-│   └── egypt_pharaohs_dynasties.csv # Applications primary data source
-│
-├── src/
-│   ├── callbacks/
-│   │   ├── dynasty_callbacks.py     # Modal dynasty callback file to create the interactive application
-│   │   └── period_callbacks.py      # Modal period callback file to create the interactive application
-│   │
-│   ├── models/
-│   │   └── pharaoh.py               # Pydantic model for validating each .cvs data row
-│   │
-│   ├── pages/
-│   │   ├── all_dynasties.py         # Layout for the "All Dynasties" summary page
-│   │   ├── all_periods.py           # Layout for the "All Periods" summary page
-│   │   ├── dynasty.py               # Dynamic page layout for displaying a *single* dynasty
-│   │   ├── home.py                  # Applications main landing page
-│   │   ├── period.py                # Dynamic page layout for displaying a *single* period
-│   │   ├── not_found_404.py         # Dynamic page if page selection fails, error case
-│   │   └── layouts.py               # UI component factory (header, footer, grid definitions)
-│   │
-│   ├── services/
-│   │   └── data_service.py          # Handles loading, validation and processing of .cvs data
-│   │
-│   ├── app.py                       # Initialises the global Dash app instance and configures assets
-│   ├── logging_setup.py             # Configures applications Loguru logger
-│   └── main.py                      # Main application entry point (run this file to start)
-│
-├── config/
-│   └── logging_config.json          # External configuration file for the logger
-│
-├── tests/                           
-│   ├── test_callbacks.py            # Unit tests for the application's callbacks
-│   └── test_data_service.py         # Unit tests for the DataService class
-│
-├── logs/                            # Directory where app log files are written
-│
-├── pyproject.toml                   # Config file treats project as a package to find src dir directly
-│
-└── requirements.txt                 # List of Python dependencies for the project (including development)
+<p align="left">
+  <img src="./Egypt_Pharaoh_Hieroglyphs/dashboard/assets/images/project_sw_structure.JPG" alt="application software structure overview" width="75%"/>
+</p>
+<br>
 
 ## Application Start
 Being on project root: If all dependencies are installed and .venv is activated, the application can be called on CLI via command with main module:
