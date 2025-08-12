@@ -10,7 +10,7 @@
 Python/Plotly-Dash web application informs about most important Egypt pharaoh names of main BC dynasties.
 
 Note:<br>
-The goal implementing this web application is to learn functionalities and concepts of [Plotly-Dash](https://dash.plotly.com/). As I am not an archaeologist, but a data scientist, I do not guarantee the correctness and completeness of the pharaoh name list. Notes on errors and necessary corrections are therefore expressly welcome. 
+The goal implementing this web application is to learn functionalities and concepts of [Plotly-Dash](https://dash.plotly.com/). As I am not an archaeologist, but a data scientist, I do not guarantee the correctness and completeness of the pharaoh name list. Notes on errors and necessary corrections are therefore expressly welcome.  
 
 This project, its software and image objects are privately owned or created by museums. Commercial use is not permitted!
 

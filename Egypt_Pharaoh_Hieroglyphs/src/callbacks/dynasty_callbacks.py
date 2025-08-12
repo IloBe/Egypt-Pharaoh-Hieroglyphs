@@ -1,41 +1,15 @@
 # src/callbacks/dynasty_callbacks.py
 
 """
-Callbacks for the dynasty page.
+Local callbacks for the dynasty page. All Inputs and Outputs are components
+that are defined within a single page's layout. 
 
-Note:
-Separation of the callbacks is necessary for test logic. The callbacks.py file
-shall not be on main.py level, because:
-During testing by call of pytest, main Dash app object from src/app.py has not been created.
-The register_page function has no app object to register itself with.
-So it raises a Dash PageError:
-dash.register_page() must be called after app instantiation.
+This file is intentionally empty. All grid callback logic is now centralized
+in src/main.py for robustness and clarity.
 
-But with pytest call, import of the test file (tests/test_callbacks.py) happens.
-That file tries e.g. to import show_dynasty_image_modal from src/pages/dynasty.py.
-To do this, Python must execute the dynasty.py file from top to bottom.
-It immediately hits the register_page(...) line, which is at the top level of the module.
-It needs the Dash app object to do the registration.
+It is there for future scalability, like
+"On the dynasty pages only, add a special button that downloads the grid data as a CSV."
+Then this new local callback has nothing to do with the global click-handling logic.
+It is specific to the dynasty pages. So, it provides prepared, correctly-placed "slots"
+for future page-specific logic, making the project easier and safer to extend.
 """
-
-##########################
-# imports
-##########################
-
-from dash import MATCH, Input, Output, callback, html
-
-##########################
-# coding
-##########################
-
-@callback(
-    Output({'type': 'dynasty-modal', 'id': MATCH}, "is_open"),
-    Output({'type': 'dynasty-modal', 'id': MATCH}, "children"),
-    Input({'type': 'dynasty-grid', 'id': MATCH}, "cellRendererData"),
-    prevent_initial_call=True,
-)
-def show_dynasty_image_modal(cell_data):
-    """Shows the image/cartouche in a modal when a cell is clicked."""
-    if not cell_data:
-        return False, None
-    return True, html.Img(src = cell_data["value"], style = {'width': '100%'})

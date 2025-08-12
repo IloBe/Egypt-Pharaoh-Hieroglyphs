@@ -11,10 +11,11 @@ Factory module to generate the reusable UI components.
 import dash
 import dash_bootstrap_components as dbc
 import dash_ag_grid as dag
+import pandas as pd
 
 from dash import dcc, html
 from dash_iconify import DashIconify
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 from urllib.parse import quote
 from loguru import logger
 
@@ -89,7 +90,7 @@ def get_header() -> dbc.Navbar:
                 )
             )
 
-            # Nested Dynasties dropdown
+            # nested Dynasties dropdown
             dynasty_main_children.extend([
                 dbc.DropdownMenuItem("All Dynasties", href = "/all-dynasties",),
                 dbc.DropdownMenuItem(divider = True,),
@@ -258,7 +259,7 @@ def get_footer() -> html.Div:
 #
 def get_grid_note() -> dcc.Markdown:
     """
-    Returns the standardized note displayed below the AgGrid component.
+    Returns the standardised note displayed below the AgGrid component.
 
     Returns:
         dcc.Markdown: Markdown component with usage notes for the data grid
@@ -267,6 +268,8 @@ def get_grid_note() -> dcc.Markdown:
         """
         **Note:**
         - To filter, type directly below the column headers.
+        - To get Pharaoh's details card click on text cell (disappears with second click)
+        - To view object images and cartouches with bigger size, click on them (disappears with second click)
         - The special font 'CGT_2023.TTF' is required for proper transliteration display.
         - Image assets are for educational and demonstrative purposes.
         """,
@@ -370,7 +373,7 @@ def create_browse_all_layout(title: str) -> html.Div:
             html.H4(title, className = "fw-bolder"),
             html.Br(),
             dag.AgGrid(
-                id = f"browse-all-grid-{title.replace(' ', '-')}",   # unique ID
+                id = {'type': 'pharaoh-data-grid', 'id': f'browse-{title.replace(" ", "-")}'},
                 rowData = full_dataset.to_dict("records"),
                 columnDefs = get_col_defs(throne_class = 'throne_name_display'),
                 defaultColDef = get_default_col_def(),
@@ -382,3 +385,83 @@ def create_browse_all_layout(title: str) -> html.Div:
         ],
         className = "g-0 ps-5 pe-5",
     )
+
+
+def create_pharaoh_detail_card(pharaoh_data: Dict[str, Any]) -> dbc.Card:
+    """
+    Creates a detailed information card for a single pharaoh.
+
+    Args:
+        pharaoh_data (Dict[str, Any]): dictionary representing one row of pharaoh data,
+                                   typically from the `cellClicked` event of an AG Grid
+
+    Returns:
+        dbc.Card: Dash Bootstrap Card component with detailed information.
+    """
+    if not pharaoh_data:
+        return dbc.Card(dbc.CardBody("No data provided."))
+
+    # helper function creates list group items only if data exists
+    def create_list_item(label: str, value: Any) -> Optional[dbc.ListGroupItem]:
+        return dbc.ListGroupItem([html.B(f"{label}: "), value]) if value and pd.notna(value) else None
+
+    # primary header name
+    card_header_title: str = pharaoh_data.get('king_birth_son_of_ra') or \
+        pharaoh_data.get('king_sedge_bee') or \
+        pharaoh_data.get('king_horus') or \
+        "Details"
+
+    # details list for card body
+    details_list: List[Optional[dbc.ListGroupItem]] = [
+        create_list_item("Dynasty", pharaoh_data.get('dynasty_name')),
+        create_list_item("Period", pharaoh_data.get('kingdom_name')),
+        create_list_item("Horus Name", pharaoh_data.get('king_horus')),
+        create_list_item("Sedge and Bee Name", pharaoh_data.get('king_sedge_bee')),
+        create_list_item("Son of Ra Name (Birth Name)", pharaoh_data.get('king_birth_son_of_ra')),
+    ]
+
+    # card component
+    card = dbc.Card(
+        [
+            dbc.CardHeader(
+                html.H4(
+                    card_header_title,
+                    className = "mb-0"
+                )
+            ),
+            dbc.CardBody(
+                dbc.Row(
+                    [
+                        # left column for cartouche images
+                        dbc.Col(
+                            [
+                                html.H6("Birth Name Cartouche", className = "mt-2"),
+                                html.Img(
+                                    src = pharaoh_data.get('jsesh_birth_cartouche'),
+                                    className = "w-100"
+                                ) if pharaoh_data.get('jsesh_birth_cartouche') else html.Em("Not available"),
+                                html.Hr(),
+                                html.H6("Throne Name Cartouche", className = "mt-2"),
+                                html.Img(
+                                    src = pharaoh_data.get('jsesh_throne_praenomen_cartouche'),
+                                    className = "w-100"
+                                ) if pharaoh_data.get('jsesh_throne_praenomen_cartouche') else html.Em("Not available"),
+                            ],
+                            md = 4,
+                            className = "text-center",
+                        ),
+                        # right column for textual details
+                        dbc.Col(
+                            dbc.ListGroup(
+                                # filter out any None values
+                                [item for item in details_list if item is not None],
+                                flush = True,
+                            ),
+                            md = 8,
+                        ),
+                    ]
+                )
+            ),
+        ]
+    )
+    return card
