@@ -16,7 +16,6 @@ import pandas as pd
 import pytest
 from pathlib import Path
 
-# We need to import the class we are testing
 from src.services.data_service import DataService
 
 ##########################

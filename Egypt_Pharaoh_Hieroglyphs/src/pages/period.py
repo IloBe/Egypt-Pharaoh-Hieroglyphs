@@ -19,6 +19,7 @@ from dash import (
 )
 from urllib.parse import unquote
 from loguru import logger
+from typing import Optional
 
 from src.pages.layouts import (
     get_col_defs, get_default_col_def,
@@ -32,13 +33,13 @@ from src.services.data_service import pharaoh_data_service
 
 register_page(__name__, path_template = "/period/<period_name_url>")
 
-def layout(period_name_url: str = None) -> html.Div:
+def layout(period_name_url: Optional[str] = None) -> html.Div:
     """Generates the static shell layout for a specific period page."""
     if not period_name_url:
         return html.Div(html.H4("No period specified."))
         
-    period_name = unquote(period_name_url.replace('_', ' '))
-    period_data = pharaoh_data_service.get_period(period_name)
+    period_name: str = unquote(period_name_url.replace('_', ' '))
+    period_data: pd.DataFrame = pharaoh_data_service.get_period(period_name)
     
     if period_data.empty:
         return html.Div(html.H4(f"Sorry, no data was found for the period: {period_name}."))
@@ -58,7 +59,7 @@ def layout(period_name_url: str = None) -> html.Div:
                 id = f"loading-period-{period_name_url}",
                 type = "circle",
                 children = dag.AgGrid(
-                    id = {'type': 'period-grid', 'id': period_name_url},
+                    id={'type': 'pharaoh-data-grid', 'id': f'period-{period_name_url}'},
                     rowData = period_data.to_dict("records"),
                     columnDefs = get_col_defs(throne_class = throne_class),
                     defaultColDef = get_default_col_def(),
@@ -67,7 +68,6 @@ def layout(period_name_url: str = None) -> html.Div:
                     style = get_grid_style(),
                 )
             ),
-            dbc.Modal(id = {'type': 'period-modal', 'id': period_name_url}, size = "s", centered = True),
             get_grid_note(),
         ],
         className = "g-0 ps-5 pe-5",
