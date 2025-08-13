@@ -267,11 +267,11 @@ def get_grid_note() -> dcc.Markdown:
     return dcc.Markdown(
         """
         **Note:**
-        - To filter, type directly below the column headers.
+        - To filter, type directly below the column headers
         - To get Pharaoh's details card click on text cell (disappears with second click)
         - To view object images and cartouches with bigger size, click on them (disappears with second click)
-        - The special font 'CGT_2023.TTF' is required for proper transliteration display.
-        - Image assets are for educational and demonstrative purposes.
+        - The special font 'CGT_2023.TTF' is required for proper transliteration display
+        - Image assets are for educational and demonstrative purposes
         """,
         className = "small text-muted mt-3",
     )

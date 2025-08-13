@@ -14,7 +14,7 @@ The goal implementing this web application is to learn functionalities and conce
 
 This project, its software and image objects are privately owned or created by museums. Commercial use is not permitted!
 
-Furthermore, I would like to thank the British Museum as well as other museums and individuals (in particular Wolfgang Prägler and Carina Felske) for allowing me to use the image material they have created.
+Furthermore, I would like to thank the British Museum as well as other museums and individuals (in particular <i>Wolfgang Prägler</i> and <i>Carina Felske</i>) for allowing me to use the image material they have created.
 
 ## Data
 Regarding the historical data used for analysis from a self-generated dataset, the BC dates from the first dynasty up to the late period and its dynasties given are approximate. The information is based on [_Stephen Quirke_, 2010, Who are the Pharaohs?](https://www.britishmuseum.org/collection/term/BIB766) published by _The British Museum_. Another source of more detailed listed pharaoh names is given via [Wikipedia](https://en.wikipedia.org/wiki/List_of_pharaohs), but I don't know how much such article is reviewed and accepted by domain experts.
@@ -43,18 +43,50 @@ Few king lists are found, the major ones are:
 They include rows of pharaoh names cartouches. Basis for this application is the [Abydos list](https://commons.wikimedia.org/wiki/File:Abydos_K%C3%B6nigsliste_stitched_1.jpg) (object image created by _Olaf Tausch_). This list is used as background information to create the transliterals and cartouche images.
 
 ![abydos_kinglist][image1]
-
+<br>
 
 ## Application
-After starting the application with browser zoom factor 90% and having read some information about it on the home page, you can search for names selecting a specific period or dynasty via hovering on dropdown menu buttons of the navigation bar. E.g. having clicked on second dynasty the page you are going to get is looking like this, after having installed the mentioned font for diacritic transliteration. There you can filter on _Object_, _Throne-_ and _Birth-Names_.
+After starting the application with browser zoom factor 90% and having read some information about it on the home page, you can search for names selecting a specific period or dynasty via hovering on dropdown menu buttons of the navigation bar. E.g. having clicked on second dynasty the page you are going to get is looking like this, after having installed the mentioned font for diacritic transliteration. There you can filter on _Object_, _Throne-_ and _Birth-Names_. 
+
+When you click on an image or cartouche object, it appears in a larger window for better visibility. This disappears with a second click.<br>
+When you click on a name cell, information about the selected pharaoh appears on a detailed map. This also disappears with a second click.
 
 ![sec_dyn][image2]
+<br>
 
+## Quick Start: Application Run with Docker
+As **prerequisite**, you need <i>Docker Desktop</i> installed and running on your system. [Docker Desktop](https://www.docker.com/products/docker-desktop/) is a single application that includes the Docker Engine, the docker compose command and a user-friendly interface.
+
+1. To get the project code, you can download it as a zip-file or clone this GitHub project repository to a convenient location on your computer. Then, open a command-line terminal and navigate into the project folder you just created.
+
+2. To build and run the application, in your project root directory run this command:
+```
+docker compose up --build
+```
+If you do it the first time, it may take few minutes. Furthermore, you see a lot of messages in your terminal. This is normal and means the application is running correctly.<br>
+
+3. Once the startup process is complete, open your favorite web browser and start the following address:
+```
+http://localhost:8050
+```
+The Egyptian Pharaohs entry page of the <i>interactive Plotly Dash application</i> with some text explanation should be visible. So, play around with the links, dropdown items, images, cartouches and grid table cells ...<br>
+
+4. If you want to stop the application, go back to your terminal window where the application is running. There, press:
+```
+Ctrl + C  (hold the Control key and press C)
+```
+Note: On some keyboards Ctrl means Strg button.<br>
+The CLI log messages stops and the application shuts down. Then, close the browser tab.
+
+5. Remove the container after you are done with CLI command:
+```
+docker compose down
+```
 
 ## Software
 In general, the software is implemented with Python 3.12.0 and for the web application with Plotly 6.2.0, Dash 3.2.0, Dash-AG-Grid 32.3.1, ...
 
-By now, for simplification the <i>pyproject.toml<i>, <i>requirements.txt</i> approach is used including development unit testing. Being in the project root with activated .venv, for installation of application dependencies you need:
+By now, for simplification the <i>pyproject.toml</i>, <i>requirements.txt</i> approach is used including development unit testing. Being in the project root with activated .venv, for installation of application dependencies you need:
 ```
 python3.12 -m venv .venv
 source .venv/bin/activate
@@ -71,7 +103,7 @@ Note: Docker file handling is a future topic.
 </p>
 <br>
 
-## Application Start
+## Developer Application Start
 Being on project root: If all dependencies are installed and .venv is activated, the application can be called on CLI via command with main module:
 ```
 python3 -m src.main
