@@ -207,5 +207,5 @@ def close_detail_modal_on_click(
     
 
 if __name__ == '__main__':
-    logger.info("\nStarting Pharaoh Hieroglyphs application server...")
+    logger.info("\nStarting Pharaoh Hieroglyphs WSGI application server...")
     app.run(debug = True, host = '0.0.0.0')

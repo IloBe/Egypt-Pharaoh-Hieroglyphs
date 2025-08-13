@@ -1,0 +1,27 @@
+# Git and project documentation
+.git/
+.gitignore
+*.md
+
+# Python virtual environment and cache
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+Egypt_Pharaoh_Hieroglyphs/.venv/
+
+# IDE and OS-specific files
+.idea/
+.vscode/
+.DS_Store
+
+# Test and coverage artifacts
+tests/
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Local log files
+logs/
+*.log
+Egypt_Pharaoh_Hieroglyphs/sys.stderr

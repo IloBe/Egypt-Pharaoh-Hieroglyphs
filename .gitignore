@@ -1,5 +1,5 @@
 # project specific
-./Egypt_Pharaoh_Hieroglyphs/logs/*.*
+./logs/*.*
 ./Egypt_Pharaoh_Hieroglyphs/sys.stderr
 
 
