@@ -237,12 +237,12 @@ def get_footer() -> html.Div:
                         children = [
                             html.A(
                                 [html.Img(
-                                    src = dash.get_asset_url('plotly_icon.JPG'),
+                                    src = dash.get_asset_url('Plotly-Logo-Black.svg'),
                                     height = '25px',)
                                 ],
                                 href = 'https://dash.plotly.com/',
-                                target = "_blank",           # opens in new tab
-                                rel = "noopener noreferrer", # security practice
+                                target = "_blank",                # opens in new tab
+                                rel = "noopener noreferrer",      # security practice
                             ),
                         ],
                         width = 1,
