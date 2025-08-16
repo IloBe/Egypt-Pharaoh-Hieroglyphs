@@ -1,14 +1,16 @@
 # Git and project documentation
-.git/
+.git
 .gitignore
 *.md
 
 # Python virtual environment and cache
 .venv/
+Egypt_Pharaoh_Hieroglyphs/.venv/
 __pycache__/
 *.pyc
 *.pyo
-Egypt_Pharaoh_Hieroglyphs/.venv/
+node_modules
+venv
 
 # IDE and OS-specific files
 .idea/
@@ -21,7 +23,18 @@ tests/
 htmlcov/
 .coverage
 
-# Local log files
-logs/
+# Local log and temp files
+*.tmp
 *.log
+logs/*.*
 Egypt_Pharaoh_Hieroglyphs/sys.stderr
+
+# Environment files
+.env
+.env.local
+secrets.json
+
+# Docker artifacts
+Dockerfile
+docker-compose.yml
+
