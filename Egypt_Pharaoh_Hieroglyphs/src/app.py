@@ -84,4 +84,6 @@ app = Dash(
 )
 
 # server object needed for WSGI servers like Gunicorn/Uvicorn in production
+# get underlying Flask server instance
 server = app.server
+

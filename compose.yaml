@@ -8,6 +8,8 @@ services:
     restart: unless-stopped
     # binding: host port 8050 to container port 8000 for Gunicorn
     # user app access: http://localhost:8050
+    networks:
+      - default
     ports:
       - "8050:8000"
     volumes:

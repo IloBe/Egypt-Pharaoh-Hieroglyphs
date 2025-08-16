@@ -44,7 +44,7 @@ txt_names = dcc.Markdown(
     - **He of the Two Ladies** - starts with hieroglyphs for upper- and lower-Egypt, the _falcon Nechbet_ and the _cobra Wadjet_
     - **(Horus of) Gold** - starts with _horus falcon_ sitting on the _hieroglyph sign for gold_
     - **He of the Sedge and Bee** - throne name in general as cartouche, used from the fourth dynasty on
-    - **Son of Ra** - birth name of the king, shown as cartouche as well, can be modified by an added epithet (note: indicated on our pages in brackets).
+    - **Son of Ra** - birth name of the king, shown as cartouche as well, can be modified by an added epithet (note: indicated on our pages in brackets)
 
     So, their five names are an elaboration of names, titles and epithets. On monuments you will find mainly the three common ones, which are the _Horus_ name and the _praenomen_ (assigned on accession) resp. _nomen_ (birth name), both contained in cartouches. The cartouche contents may look a little bit different for kings or queens depending on specific king list visualisation.
         """
