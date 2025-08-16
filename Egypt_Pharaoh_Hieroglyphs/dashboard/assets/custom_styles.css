@@ -52,3 +52,30 @@
         display: block;
     }
 }
+
+/* new rules for pharaoh timeline */
+/* Base styles for the timeline card */
+.timeline-card {
+    background-color: #E1DFD6;
+    border: 1px solid #d3d0c2;
+    border-radius: 5px;
+    padding: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+/* --- Step 2: Dynamic Interactivity --- */
+/* Hover state: card lifts and enlarges */
+.timeline-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    cursor: pointer;
+}
+
+/* --- Step 3: Progressive Disclosure --- */
+/* The container for the extra details */
+.details-content {
+    border-top: 1px solid #d3d0c2;
+    margin-top: 8px;
+    padding-top: 8px;
+}
