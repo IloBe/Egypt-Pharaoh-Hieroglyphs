@@ -10,6 +10,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 COPY Egypt_Pharaoh_Hieroglyphs/requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
+
 # rest of app source code
 # current dir in project to work dir in image
 COPY Egypt_Pharaoh_Hieroglyphs/. .
@@ -38,4 +39,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 # container listens on Gunicorn port
 EXPOSE 8000
 # container default: apps WSGI server run
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "src.main:server"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--chdir", "src", "--access-logfile", "-", "src.main:server"]

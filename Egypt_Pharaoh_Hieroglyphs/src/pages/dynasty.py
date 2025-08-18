@@ -24,7 +24,8 @@ from src.pages.layouts import (
     get_col_defs, get_default_col_def,
     get_grid_note, get_grid_style
 )
-from src.services.data_service import pharaoh_data_service
+
+from src.services.data_service import pharaoh_data_service  # src.services.data_service import pharaoh_data_service
 
 ##########################
 # coding

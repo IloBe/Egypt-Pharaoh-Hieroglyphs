@@ -15,7 +15,7 @@ from typing import List
 from loguru import logger
 from pydantic import ValidationError
 
-from src.models.pharaoh import PharaohRecord
+from src.models.pharaoh import PharaohRecord  # src.models.pharaoh import PharaohRecord
 
 ##########################
 # coding

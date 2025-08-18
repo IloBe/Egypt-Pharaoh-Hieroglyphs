@@ -34,7 +34,7 @@ dynamic = ["dependencies"]
 # This section tells tools where to find your packages.
 # 'find:' means it will automatically discover packages like 'dashboard'.
 [tool.setuptools.packages.find]
-where = ["."] # Search for packages in the root directory.
+where = ["."]  # Search for packages in the root directory.
 
 # This section configures the 'dynamic' fields from the [project] table above.
 [tool.setuptools.dynamic]

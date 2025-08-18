@@ -22,9 +22,10 @@ from dash import (
 from loguru import logger
 from typing import List, Dict, Any, Tuple, Optional, Literal
 
-from src.app import app, server
-from src.callbacks import dynasty_callbacks, period_callbacks
+from src.app import app, server  # src.app import app, server
+from src.callbacks import dynasty_callbacks, period_callbacks   #src.callbacks import dynasty_callbacks, period_callbacks
 from src.pages.layouts import get_footer, get_header, create_pharaoh_detail_card
+   #src.pages.layouts import get_footer, get_header, create_pharaoh_detail_card
 
 ##########################
 # coding

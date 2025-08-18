@@ -35,7 +35,9 @@ def get_grid_style() -> Dict[str, str]:
     return {
         "height": "800px",
         "--ag-header-background-color": "#d3d0c2",   # brown/beige color
-        "--ag-header-foreground-color": "#333333",   # darker text for better contrast
+        #"--ag-header-foreground-color": "#333333",   # darker text for better contrast
+        # foreground (text) color 'French Grey' hex code.
+        "--ag-header-foreground-color": "#6c757d",
     }
 
 def get_header() -> dbc.Navbar:
@@ -130,6 +132,16 @@ def get_header() -> dbc.Navbar:
                     class_name = "themed-dropdown",
                 )
             )
+            
+            navigation_items.append(
+                dbc.NavItem(
+                    dbc.NavLink(
+                        "Timeline",
+                        href="/timeline",
+                        className="nav-dropdown-outline ms-2" # same class as dropdowns
+                    )
+                )
+            )
 
         except Exception as e:
             logger.exception(f"Failed to build dynamic navigation menus: {e}")
@@ -209,6 +221,7 @@ def get_footer() -> html.Div:
     return html.Div(
         children = [
             dbc.Row(
+                align="center",
                 children = [
                     dbc.Col(
                         children = [
@@ -233,7 +246,8 @@ def get_footer() -> html.Div:
                         className = "text-muted fs-6",
                         style = {'float': 'right'},
                     ),
-                    dbc.Col(
+                    dbc.Col( # push to the right
+                        className="ms-auto",
                         children = [
                             html.A(
                                 [html.Img(
@@ -243,6 +257,7 @@ def get_footer() -> html.Div:
                                 href = 'https://dash.plotly.com/',
                                 target = "_blank",                # opens in new tab
                                 rel = "noopener noreferrer",      # security practice
+                                style = {"margin-left": "22px"},
                             ),
                         ],
                         width = 1,
@@ -253,6 +268,7 @@ def get_footer() -> html.Div:
        ],
        className = "g-0 ps-5 pe-5",
     )
+
 
 #
 # For Pages 

@@ -41,8 +41,8 @@
     /* Rule definition for positioning the nested menu. */
     .themed-dropdown .dropdown-menu .dropdown-menu {
         position: absolute;
-        left: auto !important;     /* Unset default right-opening behavior */
-        right: 100% !important;    /* Set new left-opening behavior */
+        left: auto !important;     /* Unset default right-opening behaviour */
+        right: 100% !important;    /* Set new left-opening behaviour */
         top: -7px;
         display: none;
     }
@@ -53,18 +53,104 @@
     }
 }
 
-/* new rules for pharaoh timeline */
-/* Base styles for the timeline card */
+/* --- New Rules for Interactive Pharaoh Timeline --- */
+/* Main container for the whole page */
+.timeline-container {
+    font-family: sans-serif;
+    /* own content style with little bit lighter colour */
+    /* padding: 0 20px 40px 20px; */
+    /* background-color: #f8f9fa; */
+}
+
+/* Main Page Header */
+.timeline-header {
+    text-align: left;
+    font-family: sans-serif;
+    font-size: 1.5em; /* adjusted size */
+    padding: 20px 0;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Kingdom Banner Styles */
+.kingdom-banner {
+    position: relative;
+    height: 55px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-size: cover;
+    background-position: center;
+    border-top: 1px solid #d3d0c2;
+    border-bottom: 1px solid #d3d0c2;
+    /* grid allows simple vertical centering */
+    display: grid;
+    place-items: center
+}
+.banner-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.banner-text {
+    position: relative;
+    text-align: center;
+    color: #FFFFFF;
+    z-index: 2;
+}
+.banner-text h2 {
+    font-size: 1.2em;
+    margin: 0;
+    font-family: serif;
+}
+.banner-text p {
+    font-size: 0.8em;
+    margin: 0;
+    font-weight: 300;
+}
+
+/* Timeline Wrapper and Line */
+.timeline-wrapper {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-image: linear-gradient(#0d6efd 60%, transparent 40%);
+    background-size: 2px 8px;
+    background-repeat: repeat-y;
+    margin-left: -1px;
+    z-index: 1;
+}
+
+/* Each item is a full-width row. */
+.timeline-item {
+    position: relative;
+    margin-bottom: 15px;
+    display: flex; /* Use Flexbox to position the card inside */
+}
+.timeline-item-right {
+    justify-content: flex-end; /* Pushes card to right */
+}
+.timeline-item-left {
+    justify-content: flex-start; /* Pushes card to left */
+}
+
 .timeline-card {
+    width: calc(50% - 20px);  /* half container width, minus padding */
     background-color: #E1DFD6;
     border: 1px solid #d3d0c2;
-    border-radius: 5px;
+    border-radius: 6px;
     padding: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
-/* --- Step 2: Dynamic Interactivity --- */
 /* Hover state: card lifts and enlarges */
 .timeline-card:hover {
     transform: scale(1.04);
@@ -72,10 +158,131 @@
     cursor: pointer;
 }
 
-/* --- Step 3: Progressive Disclosure --- */
-/* The container for the extra details */
+/* Timeline Point */
+.timeline-point {
+    position: absolute;
+    top: 8px;
+    left: 50%; /* Always starts in the middle */
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border: 2px solid #0d6efd;
+    border-radius: 50%;
+    z-index: 2;
+    margin-left: -6px; /* Center the point on the line */
+}
+
+/* Card Content */
+.card-meta {
+    color: #6c757d;
+    margin: 0;
+    font-size: 0.7em;
+}
+.card-title {
+    color: #212529;
+    margin: 2px 0 6px 0;
+    font-size: 0.9em;
+}
+.pharaoh-image {
+    max-width: 100%;
+    border-radius: 3px;
+}
+.no-image-placeholder {
+    width: 100%;
+    height: 40px;
+    background-color: #d3d0c2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+}
+.no-image-placeholder p {
+    color: #6c757d;
+    font-size: 0.7em;
+    margin: 0;
+}
+
+/* Container for extra details */
 .details-content {
-    border-top: 1px solid #d3d0c2;
+    /* controlled by max-height for a smooth slide animation */
+    border-top: 1px solid transparent; /* start transparent to avoid jump */
     margin-top: 8px;
+    padding-top: 0;
+    transition: all 0.35s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+/* state when card is expanded */
+.timeline-card.is-expanded .details-content {
+    max-height: 200px; /* Animate to this height */
+    opacity: 1;
     padding-top: 8px;
+    border-top-color: #d3d0c2; /* Fade in the border */
+}
+
+.details-content p {
+    font-size: 0.75em;
+    margin: 0 0 4px 0;
+}
+.details-content p span {
+    font-weight: bold;
+    color: #212529;
+}
+
+/* Arrow for expanding */
+.card-expand-arrow {
+    text-align: right;
+    margin-top: 6px;
+    color: #0d6efd;
+    font-size: 0.8em;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* arrow state when the card is expanded */
+.timeline-card.is-expanded .card-expand-arrow {
+    transform: rotate(180deg);
+}
+
+/* Image attribution for card */
+.image-credit {
+    font-size: 0.65em; /* Make it small */
+    color: #6c757d;    /* Use the secondary text color */
+    text-align: right; /* Align to the right corner */
+    margin: 4px 0 0 0; /* Add a little space above */
+}
+
+.image-credit a {
+    color: #6c757d;
+    text-decoration: underline;
+}
+
+.image-credit a:hover {
+    color: #0d6efd; /* use the accent blue on hover */
+}
+
+/* Controls size of "No image available" text */
+.no-image-placeholder p {
+    color: #6c757d;
+    font-size: 0.7em;
+    margin: 0;
+}
+
+/* Controls size of alt text for BROKEN images */
+.pharaoh-image {
+    max-width: 100%;
+    border-radius: 3px;
+    /* add these lines to style the alt text */
+    font-size: 0.7em;
+    color: #6c757d;
+    text-align: center;
+}
+
+
+/* Rule definition of all H4 headers on content pages (Dynasty, Period, Timeline)
+   sets colour to 'French Grey' to match all (sub)headers. */
+.g-0.ps-5.pe-5 h4.fw-bolder {
+    color: #6c757d;
 }
