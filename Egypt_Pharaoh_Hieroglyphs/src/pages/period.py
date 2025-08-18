@@ -27,7 +27,6 @@ from src.pages.layouts import (
 )
 
 from src.services.data_service import pharaoh_data_service
- # src.services.data_service import pharaoh_data_service
 
 ##########################
 # coding
