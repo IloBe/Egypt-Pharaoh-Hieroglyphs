@@ -7,14 +7,14 @@
 
 
 # Egypt Pharaoh Hieroglyphs
-Python/Plotly-Dash web application informs about most important Egypt pharaoh names of main BC dynasties.
+This Python/Plotly-Dash web application informs about most important Egypt pharaoh names of main BC dynasties.
 
 Note:<br>
 The goal implementing this web application is to learn functionalities and concepts of [Plotly-Dash](https://dash.plotly.com/). As I am not an archaeologist, but a data scientist, I do not guarantee the correctness and completeness of the pharaoh name list. Notes on errors and necessary corrections are therefore expressly welcome.  
 
 This project, its software and image objects are privately owned or created by museums. Commercial use is not permitted!
 
-Furthermore, I would like to thank the British Museum as well as other museums and individuals (in particular <i>Wolfgang Prägler</i> and <i>Carina Felske</i>) for allowing me to use the image material they have created.
+Furthermore, I would like to thank the British Museum as well as other museums and individuals (in particular <i>Wolfgang Praegler</i> and <i>Carina Felske</i>) for allowing me to use the image material they have created.
 
 ## Data
 Regarding the historical data used for analysis from a self-generated dataset, the BC dates from the first dynasty up to the late period and its dynasties given are approximate. The information is based on [_Stephen Quirke_, 2010, Who are the Pharaohs?](https://www.britishmuseum.org/collection/term/BIB766) published by _The British Museum_. Another source of more detailed listed pharaoh names is given via [Wikipedia](https://en.wikipedia.org/wiki/List_of_pharaohs), but I don't know how much such article is reviewed and accepted by domain experts.
@@ -104,7 +104,7 @@ Note: Docker file handling is a future topic.
 <br>
 
 ## Developer Application Start
-Being on project root: If all dependencies are installed and .venv is activated, the application can be called on CLI via command with main module:
+Being on project application root <i>Egypt_Pharaoh_Hieroglyphs</i>: If all dependencies are installed and .venv is activated, the application can be called on CLI via command with main module:
 ```
 python3 -m src.main
 ```
