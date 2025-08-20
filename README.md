@@ -14,7 +14,7 @@ The goal implementing this web application is to learn functionalities and conce
 
 This project, its software and image objects are privately owned or created by museums. Commercial use is not permitted!
 
-Furthermore, I would like to thank the British Museum as well as other museums and individuals (in particular <i>Wolfgang Praegler</i> and <i>Carina Felske</i>) for allowing me to use the image material they have created.
+Furthermore, I would like to thank the <i>British Museum</i> as well as other museums and individuals (in particular <i>Wolfgang Praegler</i> and <i>Carina Felske</i>) for allowing me to use the image material they have created.
 
 ## Data
 Regarding the historical data used for analysis from a self-generated dataset, the BC dates from the first dynasty up to the late period and its dynasties given are approximate. The information is based on [_Stephen Quirke_, 2010, Who are the Pharaohs?](https://www.britishmuseum.org/collection/term/BIB766) published by _The British Museum_. Another source of more detailed listed pharaoh names is given via [Wikipedia](https://en.wikipedia.org/wiki/List_of_pharaohs), but I don't know how much such article is reviewed and accepted by domain experts.
@@ -46,7 +46,8 @@ They include rows of pharaoh names cartouches. Basis for this application is the
 <br>
 
 ## Application
-After starting the application with browser zoom factor 90% and having read some information about it on the home page, you can search for names selecting a specific period or dynasty via hovering on dropdown menu buttons of the navigation bar. E.g. having clicked on second dynasty the page you are going to get is looking like this, after having installed the mentioned font for diacritic transliteration. There you can filter on _Object_, _Throne-_ and _Birth-Names_. 
+After starting the application with browser zoom factor 90% and having read some information about it on the home page, you can search for names selecting a specific period or dynasty via hovering on dropdown menu buttons of the navigation bar. E.g. having clicked on second dynasty the page you are going to get is looking like this, after having installed the mentioned font for diacritic transliteration. There you can filter on _Object_, _Throne-_ and _Birth-Names_.<br>
+Another information page is the Pharao timeline diagram, which you can explore via <i>timeline</i> button of the applications header menu.
 
 When you click on an image or cartouche object, it appears in a larger window for better visibility. This disappears with a second click.<br>
 When you click on a name cell, information about the selected pharaoh appears on a detailed map. This also disappears with a second click.
@@ -101,7 +102,6 @@ Note: Docker file handling is a future topic.
 <p align="left">
   <img src="./Egypt_Pharaoh_Hieroglyphs/dashboard/assets/images/project_sw_structure.JPG" alt="application software structure overview" width="75%"/>
 </p>
-<br>
 
 ## Developer Application Start
 Being on project application root <i>Egypt_Pharaoh_Hieroglyphs</i>: If all dependencies are installed and .venv is activated, the application can be called on CLI via command with main module:
