@@ -54,7 +54,10 @@ def layout(period_name_url: Optional[str] = None) -> html.Div:
     return html.Div(
         children = [
             html.Br(),
-            html.H4(period_name, className = "fw-bolder"),
+            html.H4(
+                period_name,
+                className = "fw-bolder"),
+            html.Br(),
             html.Br(),
             dcc.Loading(
                 id = f"loading-period-{period_name_url}",
@@ -73,3 +76,4 @@ def layout(period_name_url: Optional[str] = None) -> html.Div:
         ],
         className = "g-0 ps-5 pe-5",
     )
+

@@ -388,6 +388,7 @@ def create_browse_all_layout(title: str) -> html.Div:
             html.Br(),
             html.H4(title, className = "fw-bolder"),
             html.Br(),
+            html.Br(),
             dag.AgGrid(
                 id = {'type': 'pharaoh-data-grid', 'id': f'browse-{title.replace(" ", "-")}'},
                 rowData = full_dataset.to_dict("records"),

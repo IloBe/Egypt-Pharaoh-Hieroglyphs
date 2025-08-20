@@ -37,7 +37,8 @@ def generate_timeline_layout() -> html.Div:
                 "Living Timeline of the Pharaoh's",
                 className = "fw-bolder")],  # class_name
             className = "g-0 ps-5 pe-5",
-        )
+        ),
+        html.Br(),
     ]
     
     current_period = ""
@@ -141,12 +142,12 @@ def generate_timeline_layout() -> html.Div:
             children = [
                 html.Div(
                     className = "timeline-card",
-                    children=[
-                        html.P(dynasty_info, className="card-meta"),
-                        html.H3(main_name_display, className="card-title"),
+                    children = [
+                        html.P(dynasty_info, className = "card-meta"),
+                        html.H3(main_name_display, className = "card-title"),
                         *(image_component if isinstance(image_component, list) else [image_component]),
-                        html.Div(details_parts, className="details-content"),
-                        html.Div("▾", className="card-expand-arrow")
+                        html.Div(details_parts, className = "details-content"),
+                        html.Div("▾", className = "card-expand-arrow")
                     ]
                 ),
                 html.Div(className = "timeline-point")

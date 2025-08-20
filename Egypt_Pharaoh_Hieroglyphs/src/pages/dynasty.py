@@ -45,7 +45,8 @@ def layout(dynasty_id: Optional[str] = None) -> html.Div:
         return html.Div(html.H4(f"No data found for Dynasty {dynasty_no}."))
 
     details: pd.Series = dynasty_data.iloc[0]
-    throne_class = "king_horus" if dynasty_no <= 2 else "king_sedge_bee"
+    # up to dynasty 4 horus name is prominent
+    throne_class = "king_horus" if dynasty_no < 5 else "king_sedge_bee"
 
     return html.Div(
         children = [

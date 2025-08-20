@@ -120,7 +120,7 @@ class TimelineService:
         dynasty = row.get('dynasty_no')
         
         # up to fourth dynasty, horus name is prominent
-        if dynasty is not None and dynasty <= 4:
+        if dynasty is not None and dynasty < 5:
             return horus if pd.notna(horus) else (sedge_bee if pd.notna(sedge_bee) else birth_son_of_ra)
         # afterwards birth son of ra is prominent
         else:

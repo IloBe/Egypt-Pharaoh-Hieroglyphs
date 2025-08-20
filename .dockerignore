@@ -12,6 +12,11 @@ __pycache__/
 node_modules
 venv
 
+# Jupyter/IPython notebook checkpoint files
+.ipynb_checkpoints/*.*
+assets/.ipynb_checkpoints/*.*
+Egypt_Pharaoh_Hieroglyphs/dashboard/assets/.ipynb_checkpoints/*.*
+
 # IDE and OS-specific files
 .idea/
 .vscode/

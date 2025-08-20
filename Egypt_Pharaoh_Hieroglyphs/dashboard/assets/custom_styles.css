@@ -231,7 +231,7 @@
     color: #212529;
 }
 
-/* Arrow for expanding */
+/* arrow for expanding */
 .card-expand-arrow {
     text-align: right;
     margin-top: 6px;
@@ -263,14 +263,14 @@
     color: #0d6efd; /* use the accent blue on hover */
 }
 
-/* Controls size of "No image available" text */
+/* controls size of "No image available" text */
 .no-image-placeholder p {
     color: #6c757d;
     font-size: 0.7em;
     margin: 0;
 }
 
-/* Controls size of alt text for BROKEN images */
+/* controls size of alt text for BROKEN images */
 .pharaoh-image {
     max-width: 100%;
     border-radius: 3px;
@@ -280,9 +280,17 @@
     text-align: center;
 }
 
-
-/* Rule definition of all H4 headers on content pages (Dynasty, Period, Timeline)
-   sets colour to 'French Grey' to match all (sub)headers. */
-.g-0.ps-5.pe-5 h4.fw-bolder {
+/* Style rules for all H4, H6 headers of content pages (Dynasty, Period, Timeline)
+/* Rule definition of all H4 headers, sets 'French Grey' colour, adds small underline. */
+.g-0.ps-5.pe-5 h4.fw-bolder { 
     color: #6c757d;
+    text-decoration: underline;
+    display: inline-block; /* underline is only as long as text */
+}
+
+/* Rule defintion for H6 sub-headers (e.g., "2890 - 2686 BC...") */
+/* with adjacent sibling selector to target associated H6
+   that immediately follows styled H4, ensuring consistent color. */
+h4.fw-bolder + h6 {
+    color: #6c757d; /* French Grey */
 }
