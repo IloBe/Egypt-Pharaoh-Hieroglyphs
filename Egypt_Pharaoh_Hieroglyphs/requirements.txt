@@ -43,3 +43,4 @@ flask_wtf==1.2.1       # Plotly basic needs, useful for forms
 # typically kept in a separate `dev_requirements.txt`, simplyfication by now
 pytest==8.4.1
 pytest-mock==3.14.1
+urllib3>=2.5.0 # not directly required, pinned by Snyk to avoid a vulnerability
