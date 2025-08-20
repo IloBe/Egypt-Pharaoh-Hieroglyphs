@@ -4,6 +4,7 @@
 
 [![made-with-python](https://img.shields.io/badge/Made_with-Python_3.12-blue?style=flat&logo=Python%203.12)](https://www.python.org/)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg?style=flat&logo=appveyor)](https://opensource.org/license/mit/)
+[![Known Vulnerabilities](https://snyk.io/test/github/IloBe/Egypt-Pharaoh-Hieroglyphs/badge.svg?style=flat-square)](https://snyk.io/test/github/IloBe/Egypt-Pharaoh-Hieroglyphs)
 
 
 # Egypt Pharaoh Hieroglyphs
