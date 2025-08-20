@@ -1,6 +1,6 @@
 # --- Builder ---
 # specific Python 'slim' version
-FROM python:3.12-slim as builder
+FROM python:3.14.0rc2-alpine3.22 as builder
 
 WORKDIR /app
 RUN python -m venv .venv
@@ -17,7 +17,7 @@ COPY Egypt_Pharaoh_Hieroglyphs/. .
 
 # --- Prod Image ---
 # start from clean base image
-FROM python:3.12-slim
+FROM python:3.14.0rc2-alpine3.22
 WORKDIR /app
 
 # non-root user
