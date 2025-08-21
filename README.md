@@ -90,7 +90,7 @@ In general, the software is implemented with Python >=3.12.11 and for the web ap
 
 By now, for simplification the <i>pyproject.toml</i>, <i>requirements.txt</i> approach is used including development unit testing. Being in the project root with activated .venv, for installation of application dependencies you need:
 ```
-python3.12 -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip
 pip install -e .
