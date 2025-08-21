@@ -86,7 +86,7 @@ docker compose down
 ```
 
 ## Software
-In general, the software is implemented with Python 3.12.0 and for the web application with Plotly 6.2.0, Dash 3.2.0, Dash-AG-Grid 32.3.1, ...
+In general, the software is implemented with Python >=3.12.11 and for the web application with Plotly 6.2.0, Dash 3.2.0, Dash-AG-Grid 32.3.1, ...
 
 By now, for simplification the <i>pyproject.toml</i>, <i>requirements.txt</i> approach is used including development unit testing. Being in the project root with activated .venv, for installation of application dependencies you need:
 ```
