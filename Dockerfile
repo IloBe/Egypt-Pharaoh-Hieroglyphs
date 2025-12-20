@@ -18,7 +18,7 @@ COPY Egypt_Pharaoh_Hieroglyphs/. .
 
 # --- Prod Image ---
 # start from clean base image
-FROM python:3.14.0rc2-alpine3.22
+FROM python:3.14.2-alpine3.22
 WORKDIR /app
 
 # non-root user
