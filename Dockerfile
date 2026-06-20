@@ -1,7 +1,7 @@
 # --- Builder ---
 # specific Python 'slim' version
-# FROM python:3.14.0rc2-alpine3.22 as builder  # from snyk to avoid vulnerabilities, not usable by now
-FROM python:3.12-slim
+FROM python:3.14.3-alpine3.22 as builder  # from snyk to avoid vulnerabilities
+# FROM python:3.12-slim   # origin
 
 WORKDIR /app
 RUN python -m venv .venv
