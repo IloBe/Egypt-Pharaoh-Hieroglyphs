@@ -45,5 +45,6 @@ flask_wtf==1.2.1       # Plotly basic needs, useful for forms
 #          testing stacks and can trigger “package versions caused conflicts”.
 pytest==8.3.5
 pytest-mock==3.14.1
+pytest-xdist==3.6.1
 urllib3>=2.5.0 # not directly required, pinned by Snyk to avoid a vulnerability
-selenium>=4.15.1 # not directly required, pinned by Snyk to avoid a vulnerability
+selenium>=4.24.0 # not directly required, pinned by Snyk to avoid a vulnerability
